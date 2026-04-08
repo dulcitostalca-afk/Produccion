@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Berlín · Rosca · Bollería Base · Dulcitos</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --amber:#EF9F27; --amber-osc:#633806; --amber-med:#854F0B; --amber-cl:#FAEEDA;
+  --verde:#1D9E75; --verde-osc:#085041; --verde-cl:#E1F5EE;
+  --purple:#7F77DD; --purple-osc:#26215C; --purple-cl:#EEEDFE;
+  --rojo:#A32D2D; --rojo-cl:#FCEBEB;
+  --azul:#185FA5; --azul-cl:#E6F1FB;
+  --crema:#F9F5ED; --crema-med:#F0E8D4; --crema-osc:#E8DCC4;
+  --gris:#F4F2ED; --borde:#DDD5C0; --texto:#1a1a18; --sub:#7A6F5A;
+  --r:12px; --r-sm:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:var(--texto);min-height:100vh;padding-bottom:80px}
+.page{max-width:680px;margin:0 auto;padding:1.25rem}
+
+/* HEADER — crema editorial */
+.d-header{background:var(--crema-med);border-radius:var(--r);padding:1.5rem;margin-bottom:1.25rem;border-top:3px solid #1a1a18;position:relative}
+.d-header-eyebrow{font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--sub);margin-bottom:8px}
+.d-header-title{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:#1a1a18;line-height:1.2}
+.d-header-line{width:40px;height:3px;background:var(--amber);margin-top:10px;border-radius:2px}
+.d-header-sub{font-size:13px;color:var(--sub);margin-top:8px;line-height:1.6}
+.d-header-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.d-htag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(0,0,0,.06);color:var(--sub);border:1px solid var(--borde)}
+
+/* CARD */
+.d-card{background:#fff;border-radius:var(--r);border:1px solid var(--borde);padding:1.1rem 1.25rem;margin-bottom:12px}
+.d-card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--amber-osc);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.d-card-title::after{content:'';flex:1;height:1px;background:var(--crema-osc)}
+
+/* TABLA */
+.d-ing-table{width:100%;border-collapse:collapse;font-size:14px}
+.d-ing-table th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);padding:6px 10px;border-bottom:2px solid var(--crema-osc)}
+.d-ing-table th.r{text-align:right}
+.d-ing-table td{padding:9px 10px;border-bottom:1px solid var(--crema-med);vertical-align:middle}
+.d-ing-table td.r{text-align:right;font-weight:600;min-width:68px}
+.d-ing-table td.pct{text-align:right;color:#bbb;font-size:12px;min-width:46px}
+.d-ing-table tr.d-sep td{background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--amber-med);padding:5px 10px}
+.d-ing-table tr.d-tot td{border-top:2px solid var(--borde);font-weight:700;background:var(--crema);border-bottom:none}
+
+/* CALCULADORA */
+.d-calc-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--crema-osc)}
+.d-calc-item:last-child{border-bottom:none}
+.d-calc-info{flex:1}
+.d-calc-name{font-size:15px;font-weight:600;line-height:1.3;color:var(--texto)}
+.d-calc-peso{font-size:12px;color:var(--sub);margin-top:2px}
+.d-qty{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.d-qty-btn{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--borde);background:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--sub);font-weight:600;transition:all .12s}
+.d-qty-btn:active{background:var(--amber-cl);border-color:var(--amber);color:var(--amber-osc);transform:scale(.93)}
+.d-qty-num{font-size:22px;font-weight:700;min-width:36px;text-align:center;color:var(--texto)}
+
+/* RESULTADO */
+.d-res-total{background:#1a1a18;border-radius:var(--r-sm);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.d-res-lbl{font-size:12px;font-weight:600;color:rgba(255,255,255,.6)}
+.d-res-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
+.d-res-val{font-family:'Fraunces',serif;font-size:32px;font-weight:700;color:#EF9F27;line-height:1}
+.d-res-unit{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px;text-align:right}
+.d-res-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid var(--crema-med)}
+.d-res-row:last-child{border-bottom:none}
+.d-res-row-lbl{color:var(--sub)}
+.d-res-row-val{font-weight:600}
+
+/* TOGGLE */
+.d-toggle{width:100%;padding:12px 16px;background:var(--crema);border:1px solid var(--borde);border-radius:var(--r-sm);font-size:13px;font-weight:600;color:var(--amber-osc);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;transition:all .15s}
+.d-toggle:active{background:var(--amber-cl);border-color:var(--amber)}
+.d-rec-wrap{overflow:hidden;max-height:0;transition:max-height .4s ease}
+.d-rec-wrap.open{max-height:5000px}
+
+/* PASOS */
+.d-paso{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--crema-med)}
+.d-paso:last-child{border-bottom:none}
+.d-paso-num{width:26px;height:26px;border-radius:50%;background:var(--crema-osc);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--amber-osc);flex-shrink:0;margin-top:1px}
+.d-paso-body{flex:1}
+.d-paso-title{font-size:14px;font-weight:600;margin-bottom:3px;color:var(--texto)}
+.d-paso-desc{font-size:13px;color:var(--sub);line-height:1.6}
+.d-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.d-badge{font-size:11px;font-weight:600;padding:2px 9px;border-radius:100px}
+.d-badge-r{background:var(--rojo-cl);color:var(--rojo)}
+.d-badge-a{background:var(--amber-cl);color:var(--amber-osc)}
+.d-badge-v{background:var(--verde-cl);color:var(--verde-osc)}
+
+/* CRÍTICOS */
+.d-crit{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--crema-med);font-size:13px;line-height:1.6;color:var(--sub)}
+.d-crit:last-child{border-bottom:none}
+.d-crit-icon{color:var(--amber);flex-shrink:0;font-size:15px;margin-top:1px}
+
+/* NOTAS */
+.d-nota{border-radius:var(--r-sm);padding:10px 14px;font-size:13px;border-left:3px solid var(--amber);line-height:1.6;margin-top:10px;background:var(--amber-cl);color:var(--amber-osc)}
+.d-nota-v{background:var(--verde-cl);color:var(--verde-osc);border-left-color:var(--verde)}
+.d-nota-r{background:var(--rojo-cl);color:var(--rojo);border-left-color:var(--rojo)}
+
+/* GRUPO */
+.d-grupo{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--sub);margin:1.25rem 0 8px;display:flex;align-items:center;gap:8px}
+.d-grupo::after{content:'';flex:1;height:1px;background:var(--borde)}
+
+/* HORNO */
+.d-horno-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.d-horno-box{background:var(--crema);border-radius:var(--r-sm);padding:12px;border:1px solid var(--crema-osc)}
+.d-horno-lbl{font-size:10px;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.d-horno-val{font-size:20px;font-weight:700;color:var(--rojo);font-family:'Fraunces',serif}
+.d-horno-desc{font-size:11px;color:var(--sub);margin-top:3px;line-height:1.4}
+
+/* HOME BTN */
+.d-home{position:fixed;bottom:20px;right:20px;z-index:999;display:flex;align-items:center;gap:8px;background:#1a1a18;color:#fff;text-decoration:none;padding:12px 20px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+
+.d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
+.d-card{animation:fadeUp .2s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body><div class="page">
+
+<div class="d-header"><span class="d-header-emoji">🍩</span><div class="d-header-title">Berlín · Bomba · Pavita<br>y Rosca de Azúcar</div><div class="d-header-sub">Masa bollería base Pavitas · Frita · 65 g por unidad</div><div class="d-header-tags"><span class="d-htag">Base 1.000 g</span><span class="d-htag">Aceite 170°C</span><span class="d-htag">Bollería frita</span></div></div>
+<div class="d-card"><div class="d-card-title">Utensilios necesarios antes de empezar</div>
+<div style="font-size:13px;color:var(--sub);line-height:1.9">Amasadora espiral · Sobadora Mákas · Ovilladora · Bandejas aluminio 60×40 · Fermentadora Progas · Freidora con aceite · Manga pastelera · Boquilla larga · Tijeras · Tamiz para azúcar glass · Spray de agua</div></div>
+<div class="d-card"><div class="d-card-title">Calculadora — por unidades</div>
+<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Berlín / Bomba / Pavita</div><div class="d-calc-peso">65 g por unidad · Crema pastelera</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cbl('b',-1)">−</button><div class="d-qty-num" id="qb">0</div><button class="d-qty-btn" onclick="cbl('b',1)">+</button></div></div>
+<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Rosca de Azúcar</div><div class="d-calc-peso">65 g por unidad · Azúcar granulada</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cbl('r',-1)">−</button><div class="d-qty-num" id="qr">0</div><button class="d-qty-btn" onclick="cbl('r',1)">+</button></div></div>
+</div>
+<div id="res"><div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div></div>
+<div class="d-card"><button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button><div class="d-rec-wrap" id="rw">
+<table class="d-ing-table"><thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead><tbody>
+<tr class="d-sep"><td colspan="4">Secos — incorporar primero</td></tr>
+<tr><td>1</td><td>Harina Puente Alto</td><td class="r">592</td><td class="pct">59,2%</td></tr>
+<tr><td>2</td><td>Azúcar</td><td class="r">62</td><td class="pct">6,2%</td></tr>
+<tr><td>3</td><td>Levadura instantánea</td><td class="r">6</td><td class="pct">0,6%</td></tr>
+<tr><td>4</td><td>Mejorador Magimix</td><td class="r">3</td><td class="pct">0,3%</td></tr>
+<tr><td>5</td><td>Sal</td><td class="r">3</td><td class="pct">0,3%</td></tr>
+<tr><td>6</td><td>Mejorador Frescura</td><td class="r">0,8</td><td class="pct">0,08%</td></tr>
+<tr class="d-sep"><td colspan="4">Húmedos — incorporar al final</td></tr>
+<tr><td>7</td><td>Leche líquida</td><td class="r">165</td><td class="pct">16,5%</td></tr>
+<tr><td>8</td><td>Gramos de huevo</td><td class="r">103</td><td class="pct">10,3%</td></tr>
+<tr><td>9</td><td>Margarina Cordobesa 16%</td><td class="r">60</td><td class="pct">6,0%</td></tr>
+<tr><td>10</td><td>Vainilla blanca</td><td class="r">5</td><td class="pct">0,5%</td></tr>
+<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">999,8</td><td class="pct">~100%</td></tr>
+</tbody></table>
+<div class="d-nota" style="margin-top:10px">Tanda amasadora (1.944 g) = receta × 1,944. Etiqueta Bollería 1 ya tiene esas cantidades.
+
+    <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--amber-osc);margin-bottom:12px">Calculadora por kilos de mezcla</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <input type="number" id="ci-kg" min="0.1" step="0.1" placeholder="ej: 4.5" oninput="calcInversa()" style="width:110px;height:46px;border:1.5px solid var(--borde);border-radius:8px;padding:0 12px;font-size:20px;font-weight:600;color:var(--texto);background:white;outline:none;font-family:inherit">
+        <span style="font-size:15px;color:var(--sub);font-weight:600">kg de mezcla</span>
+        <button onclick="document.getElementById('ci-kg').value='';document.getElementById('ci-res').innerHTML=''" style="background:none;border:1px solid var(--borde);border-radius:6px;color:var(--sub);font-size:13px;cursor:pointer;padding:6px 12px;font-family:inherit">Limpiar</button>
+      </div>
+      <div id="ci-res" style="margin-top:12px"></div>
+    </div>
+</div>
+</div></div>
+<div class="d-card"><div class="d-card-title">Proceso — masa bollería</div>
+<div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body"><div class="d-paso-title">Amasado</div><div class="d-paso-desc">Secos en amasadora, incorporar húmedos. Masa lisa y homogénea.</div><div class="d-badges"><span class="d-badge d-badge-r">⏱ 25 min</span></div></div></div>
+<div class="d-paso"><div class="d-paso-num">2</div><div class="d-paso-body"><div class="d-paso-title">Sobado — Sobadora Mákas</div><div class="d-badges"><span class="d-badge d-badge-a">3 pasadas</span></div></div></div>
+<div class="d-paso"><div class="d-paso-num">3</div><div class="d-paso-body"><div class="d-paso-title">Reposo</div><div class="d-badges"><span class="d-badge d-badge-r">⏱ 30 min</span></div></div></div>
+<div class="d-paso"><div class="d-paso-num">4</div><div class="d-paso-body"><div class="d-paso-title">Ovilladora — bollos de 65 g</div></div></div>
+<div class="d-paso"><div class="d-paso-num">5</div><div class="d-paso-body"><div class="d-paso-title">Fermentadora Progas 30°C</div><div class="d-badges"><span class="d-badge d-badge-r">⏱ 1 hora base</span></div></div></div>
+<div class="d-paso"><div class="d-paso-num">6</div><div class="d-paso-body"><div class="d-paso-title">Fritura — aceite 170°C</div></div></div>
+</div>
+<div class="d-card"><div class="d-card-title">Terminación — Berlín</div>
+<div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body"><div class="d-paso-title">Crema pastelera fría de nevera</div></div></div>
+<div class="d-paso"><div class="d-paso-num">2</div><div class="d-paso-body"><div class="d-paso-title">Cargar manga con boquilla larga</div></div></div>
+<div class="d-paso"><div class="d-paso-num">3</div><div class="d-paso-body"><div class="d-paso-title">Corte con tijera — limpio y recto</div></div></div>
+<div class="d-paso"><div class="d-paso-num">4</div><div class="d-paso-body"><div class="d-paso-title">Rellenar — generoso pero sin desbordar</div></div></div>
+<div class="d-paso"><div class="d-paso-num">5</div><div class="d-paso-body"><div class="d-paso-title">Azúcar glass con tamiz — justo antes de vitrina</div></div></div>
+</div>
+<div class="d-card"><div class="d-card-title">Terminación — Rosca de Azúcar</div>
+<div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body"><div class="d-paso-title">Atomizar con spray de agua — superficie apenas húmeda</div></div></div>
+<div class="d-paso"><div class="d-paso-num">2</div><div class="d-paso-body"><div class="d-paso-title">Sumergir en azúcar granulada — presionar levemente</div><div class="d-paso-desc">Atomizar y rebozar al momento, no en tanda.</div></div></div>
+</div>
+<div class="d-card"><div class="d-card-title">Puntos críticos</div>
+<div class="d-crit"><span class="d-crit-icon">⚠</span><span>Crema pastelera siempre fría al rellenar</span></div>
+<div class="d-crit"><span class="d-crit-icon">⚠</span><span>Corte con tijera limpio y recto</span></div>
+<div class="d-crit"><span class="d-crit-icon">⚠</span><span>Azúcar glass justo antes de vitrina — si se aplica antes se humedece</span></div>
+<div class="d-crit"><span class="d-crit-icon">⚠</span><span>Aceite: menos de 160°C absorbe grasa · más de 180°C crudo por dentro</span></div>
+<div class="d-crit"><span class="d-crit-icon">⚠</span><span>Rosca: atomizar y rebozar al momento, no en tanda</span></div>
+</div>
+<script>
+const RBL=[{n:'Harina Puente Alto',g:592,p:59.2,t:'s'},{n:'Azúcar',g:62,p:6.2,t:'s'},{n:'Levadura instantánea',g:6,p:0.6,t:'s'},{n:'Mejorador Magimix',g:3,p:0.3,t:'s'},{n:'Sal',g:3,p:0.3,t:'s'},{n:'Mejorador Frescura',g:0.8,p:0.08,t:'s'},{n:'Leche líquida',g:165,p:16.5,t:'h'},{n:'Gramos de huevo',g:103,p:10.3,t:'h'},{n:'Margarina Cordobesa 16%',g:60,p:6.0,t:'h'},{n:'Vainilla blanca',g:5,p:0.5,t:'h'}];
+const ESPBL=['vainilla'];
+let qbl={b:0,r:0};
+function cbl(k,d){qbl[k]=Math.max(0,qbl[k]+d);document.getElementById('q'+k).textContent=qbl[k];renderBL();}
+function fmtBL(n,v){if(ESPBL.some(e=>n.toLowerCase().includes(e)))return v.toFixed(1);return v>=10?Math.round(v).toString():(Math.round(v*10)/10).toString();}
+function renderBL(){
+  const tot=(qbl.b+qbl.r)*65,el=document.getElementById('res');
+  if(!tot){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div>';return;}
+  const f=tot/1000,tandas=Math.round(tot/1944*10)/10;
+  let desg='',pt='',rH='';
+  if(qbl.b)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">Berlín · ${qbl.b} uds × 65g</span><span class="d-res-row-val">${qbl.b*65} g</span></div>`;
+  if(qbl.r)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">Rosca · ${qbl.r} uds × 65g</span><span class="d-res-row-val">${qbl.r*65} g</span></div>`;
+  RBL.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='s'?'Secos':'Húmedos'}</td></tr>`;pt=i.t;}rH+=`<tr><td>${i.n}</td><td class="r">${fmtBL(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${qbl.b+qbl.r} unidades</div>
+  <div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''} de amasadora</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
+  <div style="margin-bottom:14px">${desg}</div>
+  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
+}
+
+
+
+// ── CALCULADORA INVERSA ──────────────────────────
+  let html = '<table style="width:100%;border-collapse:collapse;font-size:14px">';
+  html += '<thead><tr><th style="text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Ingrediente</th><th style="text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Cantidad</th></tr></thead><tbody>';
+  let sepActual = '';
+  receta.forEach(function(ing){
+    if(ing.sep && ing.sep !== sepActual){
+      sepActual = ing.sep;
+      html += '<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';
+    }
+    const cant = ing.g * factor;
+    html += '<tr><td style="padding:8px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,cant)+'</td></tr>';
+  });
+  const total = receta.reduce(function(s,i){return s+i.g*factor;},0);
+  html += '<tr><td style="padding:8px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px;font-weight:700;background:var(--crema);text-align:right">'+(Math.round(total*10)/10).toLocaleString('es-CL')+' g</td></tr>';
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+
+, {"n": "Azúcar", "g": 62, "sep": "Secos"}, {"n": "Levadura instantánea", "g": 6, "sep": "Secos"}, {"n": "Mejorador Magimix", "g": 3, "sep": "Secos"}, {"n": "Sal", "g": 3, "sep": "Secos"}, {"n": "Mejorador Frescura", "g": 0.8, "sep": "Secos"}, {"n": "Leche líquida", "g": 165, "sep": "Húmedos"}, {"n": "Gramos de huevo", "g": 103, "sep": "Húmedos"}, {"n": "Margarina Cordobesa 16%", "g": 60, "sep": "Húmedos"}, {"n": "Vainilla blanca", "g": 5, "sep": "Húmedos"}]; }
+
+
+
+
+function getRecetaBase(){ return [{"n": "Harina Puente Alto", "g": 592, "sep": "Secos"}, {"n": "Azúcar", "g": 62, "sep": "Secos"}, {"n": "Levadura instantánea", "g": 6, "sep": "Secos"}, {"n": "Mejorador Magimix", "g": 3, "sep": "Secos"}, {"n": "Sal", "g": 3, "sep": "Secos"}, {"n": "Mejorador Frescura", "g": 0.8, "sep": "Secos"}, {"n": "Leche líquida", "g": 165, "sep": "Húmedos"}, {"n": "Gramos de huevo", "g": 103, "sep": "Húmedos"}, {"n": "Margarina Cordobesa 16%", "g": 60, "sep": "Húmedos"}, {"n": "Vainilla blanca", "g": 5, "sep": "Húmedos"}]; }
+function calcInversa(){
+  var kg=parseFloat(document.getElementById('ci-kg').value);
+  var el=document.getElementById('ci-res');
+  if(!kg||kg<=0){el.innerHTML='';return;}
+  var receta=getRecetaBase();
+  var ESP=['esencia','vainilla','colorante','propianato','sorbato','glucosa','oxidasa','bicarbonato','frescura','ralladura','enzima'];
+  function fmt(n,v){
+    if(ESP.some(function(e){return n.toLowerCase().indexOf(e)>=0;})) return v.toFixed(1)+' g';
+    if(v>=1000) return Math.round(v/10)*10+' g';
+    if(v>=10) return Math.round(v)+' g';
+    return (Math.round(v*10)/10)+' g';
+  }
+  var html='<table style="width:100%;border-collapse:collapse;font-size:14px"><thead><tr><th style="text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Ingrediente</th><th style="text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Cantidad</th></tr></thead><tbody>';
+  var sep='';
+  receta.forEach(function(i){
+    if(i.sep&&i.sep!==sep){sep=i.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+i.sep+'</td></tr>';}
+    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+i.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(i.n,i.g*kg)+'</td></tr>';
+  });
+  var tot=receta.reduce(function(s,i){return s+i.g*kg;},0);
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  el.innerHTML=html;
+}
+
+function tog(){
+  var w=document.getElementById('rw'),l=document.getElementById('tl');
+  w.classList.toggle('open');
+  l.textContent=w.classList.contains('open')?'Ocultar receta base':'Ver receta base';
+}
+
+</script></div><a class="d-home" href="index.html">🏠 Inicio</a></body></html>

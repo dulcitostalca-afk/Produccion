@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Bizcocho Base · Dulcitos</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --amber:#EF9F27; --amber-osc:#633806; --amber-med:#854F0B; --amber-cl:#FAEEDA;
+  --verde:#1D9E75; --verde-osc:#085041; --verde-cl:#E1F5EE;
+  --purple:#7F77DD; --purple-osc:#26215C; --purple-cl:#EEEDFE;
+  --rojo:#A32D2D; --rojo-cl:#FCEBEB;
+  --azul:#185FA5; --azul-cl:#E6F1FB;
+  --crema:#F9F5ED; --crema-med:#F0E8D4; --crema-osc:#E8DCC4;
+  --gris:#F4F2ED; --borde:#DDD5C0; --texto:#1a1a18; --sub:#7A6F5A;
+  --r:12px; --r-sm:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:var(--texto);min-height:100vh;padding-bottom:80px}
+.page{max-width:680px;margin:0 auto;padding:1.25rem}
+
+/* HEADER — crema editorial */
+.d-header{background:var(--crema-med);border-radius:var(--r);padding:1.5rem;margin-bottom:1.25rem;border-top:3px solid #1a1a18;position:relative}
+.d-header-eyebrow{font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--sub);margin-bottom:8px}
+.d-header-title{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:#1a1a18;line-height:1.2}
+.d-header-line{width:40px;height:3px;background:var(--amber);margin-top:10px;border-radius:2px}
+.d-header-sub{font-size:13px;color:var(--sub);margin-top:8px;line-height:1.6}
+.d-header-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.d-htag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(0,0,0,.06);color:var(--sub);border:1px solid var(--borde)}
+
+/* CARD */
+.d-card{background:#fff;border-radius:var(--r);border:1px solid var(--borde);padding:1.1rem 1.25rem;margin-bottom:12px}
+.d-card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--amber-osc);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.d-card-title::after{content:'';flex:1;height:1px;background:var(--crema-osc)}
+
+/* TABLA */
+.d-ing-table{width:100%;border-collapse:collapse;font-size:14px}
+.d-ing-table th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);padding:6px 10px;border-bottom:2px solid var(--crema-osc)}
+.d-ing-table th.r{text-align:right}
+.d-ing-table td{padding:9px 10px;border-bottom:1px solid var(--crema-med);vertical-align:middle}
+.d-ing-table td.r{text-align:right;font-weight:600;min-width:68px}
+.d-ing-table td.pct{text-align:right;color:#bbb;font-size:12px;min-width:46px}
+.d-ing-table tr.d-sep td{background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--amber-med);padding:5px 10px}
+.d-ing-table tr.d-tot td{border-top:2px solid var(--borde);font-weight:700;background:var(--crema);border-bottom:none}
+
+/* CALCULADORA */
+.d-calc-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--crema-osc)}
+.d-calc-item:last-child{border-bottom:none}
+.d-calc-info{flex:1}
+.d-calc-name{font-size:15px;font-weight:600;line-height:1.3;color:var(--texto)}
+.d-calc-peso{font-size:12px;color:var(--sub);margin-top:2px}
+.d-qty{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.d-qty-btn{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--borde);background:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--sub);font-weight:600;transition:all .12s}
+.d-qty-btn:active{background:var(--amber-cl);border-color:var(--amber);color:var(--amber-osc);transform:scale(.93)}
+.d-qty-num{font-size:22px;font-weight:700;min-width:36px;text-align:center;color:var(--texto)}
+
+/* RESULTADO */
+.d-res-total{background:#1a1a18;border-radius:var(--r-sm);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.d-res-lbl{font-size:12px;font-weight:600;color:rgba(255,255,255,.6)}
+.d-res-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
+.d-res-val{font-family:'Fraunces',serif;font-size:32px;font-weight:700;color:#EF9F27;line-height:1}
+.d-res-unit{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px;text-align:right}
+.d-res-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid var(--crema-med)}
+.d-res-row:last-child{border-bottom:none}
+.d-res-row-lbl{color:var(--sub)}
+.d-res-row-val{font-weight:600}
+
+/* TOGGLE */
+.d-toggle{width:100%;padding:12px 16px;background:var(--crema);border:1px solid var(--borde);border-radius:var(--r-sm);font-size:13px;font-weight:600;color:var(--amber-osc);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;transition:all .15s}
+.d-toggle:active{background:var(--amber-cl);border-color:var(--amber)}
+.d-rec-wrap{overflow:hidden;max-height:0;transition:max-height .4s ease}
+.d-rec-wrap.open{max-height:5000px}
+
+/* PASOS */
+.d-paso{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--crema-med)}
+.d-paso:last-child{border-bottom:none}
+.d-paso-num{width:26px;height:26px;border-radius:50%;background:var(--crema-osc);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--amber-osc);flex-shrink:0;margin-top:1px}
+.d-paso-body{flex:1}
+.d-paso-title{font-size:14px;font-weight:600;margin-bottom:3px;color:var(--texto)}
+.d-paso-desc{font-size:13px;color:var(--sub);line-height:1.6}
+.d-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.d-badge{font-size:11px;font-weight:600;padding:2px 9px;border-radius:100px}
+.d-badge-r{background:var(--rojo-cl);color:var(--rojo)}
+.d-badge-a{background:var(--amber-cl);color:var(--amber-osc)}
+.d-badge-v{background:var(--verde-cl);color:var(--verde-osc)}
+
+/* CRÍTICOS */
+.d-crit{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--crema-med);font-size:13px;line-height:1.6;color:var(--sub)}
+.d-crit:last-child{border-bottom:none}
+.d-crit-icon{color:var(--amber);flex-shrink:0;font-size:15px;margin-top:1px}
+
+/* NOTAS */
+.d-nota{border-radius:var(--r-sm);padding:10px 14px;font-size:13px;border-left:3px solid var(--amber);line-height:1.6;margin-top:10px;background:var(--amber-cl);color:var(--amber-osc)}
+.d-nota-v{background:var(--verde-cl);color:var(--verde-osc);border-left-color:var(--verde)}
+.d-nota-r{background:var(--rojo-cl);color:var(--rojo);border-left-color:var(--rojo)}
+
+/* GRUPO */
+.d-grupo{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--sub);margin:1.25rem 0 8px;display:flex;align-items:center;gap:8px}
+.d-grupo::after{content:'';flex:1;height:1px;background:var(--borde)}
+
+/* HORNO */
+.d-horno-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.d-horno-box{background:var(--crema);border-radius:var(--r-sm);padding:12px;border:1px solid var(--crema-osc)}
+.d-horno-lbl{font-size:10px;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.d-horno-val{font-size:20px;font-weight:700;color:var(--rojo);font-family:'Fraunces',serif}
+.d-horno-desc{font-size:11px;color:var(--sub);margin-top:3px;line-height:1.4}
+
+/* HOME BTN */
+.d-home{position:fixed;bottom:20px;right:20px;z-index:999;display:flex;align-items:center;gap:8px;background:#1a1a18;color:#fff;text-decoration:none;padding:12px 20px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+
+.d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
+.d-card{animation:fadeUp .2s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body><div class="page">
+
+<div class="d-header">
+  <span class="d-header-emoji">🎂</span>
+  <div class="d-header-title">Bizcocho Base</div>
+  <div class="d-header-sub">Sin premezclas · Horno Ventus N°4 · Circular, rectangular y ponquesitos</div>
+  <div class="d-header-tags"><span class="d-htag">Base 1.000 g</span><span class="d-htag">158°C sin convector</span><span class="d-htag">Pastelería</span></div>
+</div>
+<div class="d-card">
+  <div class="d-card-title">Utensilios necesarios antes de empezar</div>
+  <div style="font-size:13px;color:var(--sub);line-height:1.9">Bowl de batidora limpio · Accesorio globo · Accesorio lira · Espátula larga flexible · Balanza digital · Moldes desmontados con desmoldante · Spray desmoldante · Varilla fina para prueba de cocción</div>
+</div>
+<div class="d-card">
+  <div class="d-card-title">Calculadora — por moldes</div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Molde circular 26 cm</div><div class="d-calc-peso">2.200 g de mezcla c/u</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cc('c26',-1)">−</button><div class="d-qty-num" id="q-c26">0</div><button class="d-qty-btn" onclick="cc('c26',1)">+</button></div></div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Molde circular 24 cm — Bizcocho</div><div class="d-calc-peso">2.000 g de mezcla c/u</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cc('c24b',-1)">−</button><div class="d-qty-num" id="q-c24b">0</div><button class="d-qty-btn" onclick="cc('c24b',1)">+</button></div></div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Molde circular 24 cm — Torta de Piña</div><div class="d-calc-peso">1.500 g de mezcla c/u</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cc('c24p',-1)">−</button><div class="d-qty-num" id="q-c24p">0</div><button class="d-qty-btn" onclick="cc('c24p',1)">+</button></div></div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Molde circular 24 cm — Bizcocho Marmoleado</div><div class="d-calc-peso">1.500 g de mezcla c/u</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cc('c24m',-1)">−</button><div class="d-qty-num" id="q-c24m">0</div><button class="d-qty-btn" onclick="cc('c24m',1)">+</button></div></div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Molde rectangular</div><div class="d-calc-peso">800 g de mezcla c/u</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cc('rect',-1)">−</button><div class="d-qty-num" id="q-rect">0</div><button class="d-qty-btn" onclick="cc('rect',1)">+</button></div></div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Ponquesitos</div><div class="d-calc-peso">Paquetes de 5 uds · 50 g c/u · 250 g por paquete</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cc('ponq',-1)">−</button><div class="d-qty-num" id="q-ponq">0</div><button class="d-qty-btn" onclick="cc('ponq',1)">+</button></div></div>
+</div>
+<div id="res"><div class="d-card"><div class="d-empty">Elegí al menos un molde para ver la receta</div></div></div>
+<div class="d-card">
+  <button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button>
+  <div class="d-rec-wrap" id="rw">
+  <table class="d-ing-table"><thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead><tbody>
+    <tr><td>1</td><td>Harina pastelera</td><td class="r">297</td><td class="pct">29,7%</td></tr>
+    <tr><td>2</td><td>Azúcar</td><td class="r">233</td><td class="pct">23,3%</td></tr>
+    <tr><td>3</td><td>Huevos extra</td><td class="r">227</td><td class="pct">22,7%</td></tr>
+    <tr><td>4</td><td>Aceite</td><td class="r">131</td><td class="pct">13,1%</td></tr>
+    <tr><td>5</td><td>Leche líquida entera Colun</td><td class="r">95</td><td class="pct">9,5%</td></tr>
+    <tr><td>6</td><td>Polvo de hornear</td><td class="r">11</td><td class="pct">1,1%</td></tr>
+    <tr><td>7</td><td>Vainilla blanca Levapan</td><td class="r">5</td><td class="pct">0,5%</td></tr>
+    <tr><td>8</td><td>Ralladura naranja o limón</td><td class="r">0,7</td><td class="pct">0,07%</td></tr>
+    <tr><td>9</td><td>Propianato (0,15–0,2% harina)</td><td class="r">0,4</td><td class="pct">0,04%</td></tr>
+    <tr><td>10</td><td>Enzima Frescura</td><td class="r">0,3</td><td class="pct">0,03%</td></tr>
+    <tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000</td><td class="pct">100%</td></tr>
+  </tbody></table>
+  <div class="d-nota" style="margin-top:10px">⚠ Usar Leche Colun entera y Vainilla Levapan. Balanza de GRAMAJE para Propianato y Enzima Frescura.
+    <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--amber-osc);margin-bottom:12px">Calculadora por kilos de mezcla</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <input type="number" id="ci-kg" min="0.1" step="0.1" placeholder="ej: 4.5" oninput="calcInversa()" style="width:110px;height:46px;border:1.5px solid var(--borde);border-radius:8px;padding:0 12px;font-size:20px;font-weight:600;color:var(--texto);background:white;outline:none;font-family:inherit">
+        <span style="font-size:15px;color:var(--sub);font-weight:600">kg de mezcla</span>
+        <button onclick="document.getElementById('ci-kg').value='';document.getElementById('ci-res').innerHTML=''" style="background:none;border:1px solid var(--borde);border-radius:6px;color:var(--sub);font-size:13px;cursor:pointer;padding:6px 12px;font-family:inherit">Limpiar</button>
+      </div>
+      <div id="ci-res" style="margin-top:12px"></div>
+    </div>
+</div>
+</div>
+</div>
+<div class="d-card">
+  <div class="d-card-title">Proceso de batido</div>
+  <div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body"><div class="d-paso-title">Preparar moldes</div><div class="d-paso-desc">Desmoldante en spray — fondo y paredes completas.</div></div></div>
+  <div class="d-paso"><div class="d-paso-num">2</div><div class="d-paso-body"><div class="d-paso-title">Batir huevos y azúcar</div><div class="d-paso-desc">Bowl de batidora. Batir hasta integrar bien.</div><div class="d-badges"><span class="d-badge d-badge-a">Globo · Vel 3</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">3</div><div class="d-paso-body"><div class="d-paso-title">Incorporar líquidos y aromas</div><div class="d-paso-desc">Leche, aceite, ralladura y esencia de a poco.</div><div class="d-badges"><span class="d-badge d-badge-a">Globo · Vel 2</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">4</div><div class="d-paso-body"><div class="d-paso-title">Cambiar a lira — agregar harina</div><div class="d-paso-desc">Secos poco a poco. No sobrebatir.</div><div class="d-badges"><span class="d-badge d-badge-a">Lira · Vel 1</span><span class="d-badge d-badge-r">≈ 3 min</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">5</div><div class="d-paso-body"><div class="d-paso-title">Raspar bowl con espátula larga</div><div class="d-paso-desc">Despegar sólidos de paredes y fondo.</div></div></div>
+  <div class="d-paso"><div class="d-paso-num">6</div><div class="d-paso-body"><div class="d-paso-title">Batido final</div><div class="d-paso-desc">Último batido para homogeneizar.</div><div class="d-badges"><span class="d-badge d-badge-a">Lira · Vel 1</span><span class="d-badge d-badge-r">2–3 min</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">7</div><div class="d-paso-body"><div class="d-paso-title">Dispensar en moldes con cantidades exactas</div><div class="d-paso-desc">Nunca a ojo. Usar balanza.</div></div></div>
+</div>
+<div class="d-card">
+  <div class="d-card-title">Horneado — Horno Ventus N°4</div>
+  <div class="d-horno-grid">
+    <div class="d-horno-box"><div class="d-horno-lbl">Temperatura</div><div class="d-horno-val">158°C</div><div class="d-horno-desc">Sin convector · Puerta cerrada</div></div>
+    <div class="d-horno-box"><div class="d-horno-lbl">Molde rectangular 800g</div><div class="d-horno-val" style="color:var(--texto)">60 min</div><div class="d-horno-desc">Verificar con varilla</div></div>
+    <div class="d-horno-box"><div class="d-horno-lbl">Circular 26cm / 2.200g</div><div class="d-horno-val" style="color:var(--texto)">95 min</div><div class="d-horno-desc">Verificar con varilla</div></div>
+    <div class="d-horno-box"><div class="d-horno-lbl">Prueba de cocción</div><div class="d-horno-val" style="font-size:16px;color:var(--texto)">Varilla seca</div><div class="d-horno-desc">Debe salir completamente seca</div></div>
+  </div>
+</div>
+<div class="d-card">
+  <div class="d-card-title">Puntos críticos</div>
+  <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Globo para líquidos, lira para harina — nunca al revés</span></div>
+  <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Raspar el bowl antes del batido final — sin esto quedan grumos</span></div>
+  <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Harina siempre a velocidad 1 — velocidad alta endurece el bizcocho</span></div>
+  <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Dispensar con cantidades exactas por molde</span></div>
+  <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Varilla de cocción obligatoria — debe salir completamente seca</span></div>
+</div>
+<script>
+const M={c26:{g:2200,l:'Circular 26cm'},c24b:{g:2000,l:'Circular 24cm bizcocho'},c24p:{g:1500,l:'Circular 24cm torta piña'},c24m:{g:1500,l:'Circular 24cm marmoleado'},rect:{g:800,l:'Rectangular'},ponq:{g:250,l:'Ponquesitos (paq.5)',paq:true}};
+const REC=[{n:'Harina pastelera',g:297,p:29.7},{n:'Azúcar',g:233,p:23.3},{n:'Huevos extra',g:227,p:22.7},{n:'Aceite',g:131,p:13.1},{n:'Leche líquida Colun',g:95,p:9.5},{n:'Polvo de hornear',g:11,p:1.1},{n:'Vainilla blanca Levapan',g:5,p:0.5},{n:'Ralladura naranja/limón',g:0.7,p:0.07},{n:'Propianato',g:0.4,p:0.04},{n:'Enzima Frescura',g:0.3,p:0.03}];
+const ESP=['vainilla','propianato','enzima','ralladura'];
+let qty={c26:0,c24b:0,c24p:0,c24m:0,rect:0,ponq:0};
+function cc(k,d){qty[k]=Math.max(0,qty[k]+d);document.getElementById('q-'+k).textContent=qty[k];render();}
+function render(){
+  let tot=0,desg='';
+  Object.keys(qty).forEach(k=>{if(qty[k]>0){const masa=qty[k]*M[k].g;tot+=masa;const ex=M[k].paq?' ('+qty[k]*5+' uds)':'';desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qty[k]} × ${M[k].l}${ex}</span><span class="d-res-row-val">${masa.toLocaleString('es-CL')} g</span></div>`;}});
+  const el=document.getElementById('res');
+  if(!tot){el.innerHTML='<div class="d-card"><div class="d-empty">Elegí al menos un molde para ver la receta</div></div>';return;}
+  const f=tot/1000,tandas=Math.round(tot/4600*10)/10;
+  const rHTML=REC.map(i=>`<tr><td>${i.n}</td><td class="r">${fmt(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`).join('');
+  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div>
+  <div class="d-res-total"><div><div class="d-res-lbl">Total mezcla</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''} de batidora</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
+  <div style="margin-bottom:14px">${desg}</div>
+  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rHTML}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">100%</td></tr></tbody></table></div>`;
+}
+
+
+
+, {"n": "Azúcar", "g": 233}, {"n": "Huevos extra", "g": 227}, {"n": "Aceite", "g": 131}, {"n": "Leche líquida Colun", "g": 95}, {"n": "Polvo de hornear", "g": 11}, {"n": "Vainilla blanca Levapan", "g": 5}, {"n": "Ralladura naranja/limón", "g": 0.7}, {"n": "Propianato", "g": 0.4}, {"n": "Enzima Frescura", "g": 0.3}]; }
+
+// ── CALCULADORA INVERSA ──────────────────────────
+
+
+
+
+
+function getRecetaBase(){ return [{"n": "Harina pastelera", "g": 297}, {"n": "Azúcar", "g": 233}, {"n": "Huevos extra", "g": 227}, {"n": "Aceite", "g": 131}, {"n": "Leche líquida Colun", "g": 95}, {"n": "Polvo de hornear", "g": 11}, {"n": "Vainilla blanca Levapan", "g": 5}, {"n": "Ralladura naranja/limón", "g": 0.7}, {"n": "Propianato", "g": 0.4}, {"n": "Enzima Frescura", "g": 0.3}]; }
+function calcInversa(){
+  var kg=parseFloat(document.getElementById('ci-kg').value);
+  var el=document.getElementById('ci-res');
+  if(!kg||kg<=0){el.innerHTML='';return;}
+  var receta=getRecetaBase();
+  var ESP=['esencia','vainilla','colorante','propianato','sorbato','glucosa','oxidasa','bicarbonato','frescura','ralladura','enzima'];
+  function fmt(n,v){
+    if(ESP.some(function(e){return n.toLowerCase().indexOf(e)>=0;})) return v.toFixed(1)+' g';
+    if(v>=1000) return Math.round(v/10)*10+' g';
+    if(v>=10) return Math.round(v)+' g';
+    return (Math.round(v*10)/10)+' g';
+  }
+  var html='<table style="width:100%;border-collapse:collapse;font-size:14px"><thead><tr><th style="text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Ingrediente</th><th style="text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Cantidad</th></tr></thead><tbody>';
+  var sep='';
+  receta.forEach(function(i){
+    if(i.sep&&i.sep!==sep){sep=i.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+i.sep+'</td></tr>';}
+    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+i.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(i.n,i.g*kg)+'</td></tr>';
+  });
+  var tot=receta.reduce(function(s,i){return s+i.g*kg;},0);
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  el.innerHTML=html;
+}
+
+function tog(){
+  var w=document.getElementById('rw'),l=document.getElementById('tl');
+  w.classList.toggle('open');
+  l.textContent=w.classList.contains('open')?'Ocultar receta base':'Ver receta base';
+}
+
+</script></div><a class="d-home" href="index.html">🏠 Inicio</a></body></html>

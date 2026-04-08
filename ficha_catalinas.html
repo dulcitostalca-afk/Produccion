@@ -167,78 +167,51 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Plástico prepicado entre cada capa</span></div>
 <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Etiquetado obligatorio antes de entrar al congelador</span></div>
 </div>
+</div><a class="d-home" href="index.html">🏠 Inicio</a></body></html>
 <script>
 const RC=[{n:'Harina',g:500,p:50.0,t:'s'},{n:'Bicarbonato de sodio',g:3.5,p:0.35,t:'s'},{n:'Polvo de hornear',g:3.5,p:0.35,t:'s'},{n:'Canela en polvo',g:3.5,p:0.35,t:'s'},{n:'Clavo de olor molido',g:2.5,p:0.25,t:'s'},{n:'Jengibre molido',g:2.5,p:0.25,t:'s'},{n:'Papelón líquido',g:370,p:37.0,t:'h'},{n:'Azúcar',g:45,p:4.5,t:'h'},{n:'Margarina Cordobesa',g:37,p:3.7,t:'h'},{n:'Huevo líquido',g:25,p:2.5,t:'h'},{n:'Caramelina',g:7.5,p:0.75,t:'h'}];
-const ESP=['caramelina','bicarbonato','canela','clavo','jengibre'];
+const ESPC=['caramelina','bicarbonato','canela','clavo','jengibre'];
 let pq=0;
 function cb(d){pq=Math.max(0,pq+d);document.getElementById('qb').textContent=pq;renderC();}
-function fmtC(n,v){if(ESP.some(e=>n.toLowerCase().includes(e)))return v.toFixed(1);return v>=10?Math.round(v).toString():(Math.round(v*10)/10).toString();}
+function fmtC(n,v){if(ESPC.some(e=>n.toLowerCase().includes(e)))return v.toFixed(1);return v>=10?Math.round(v).toString():(Math.round(v*10)/10).toString();}
 function renderC(){
   const el=document.getElementById('res');
   if(!pq){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá los paquetes para ver la receta ajustada</div></div>';return;}
   const tot=pq*450,f=tot/1000,tandas=Math.round(tot/8100*10)/10;
   let pt='',rH='';
   RC.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='s'?'Secos':'Húmedos'}</td></tr>`;pt=i.t;}rH+=`<tr><td>${i.n}</td><td class="r">${fmtC(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
-  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${pq} paquete${pq!==1?'s':''} · ${pq*5} Catalinas</div>
-  <div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''} · ${pq*5} uds</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
-  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table>
-  <div class="d-nota" style="margin-top:10px">Papelón líquido necesario: ${Math.round(370*f)} g</div></div>`;
+  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${pq} paquete${pq!==1?'s':''} · ${pq*5} Catalinas</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table><div class="d-nota" style="margin-top:10px">Papelón necesario: ${Math.round(370*f)} g</div></div>`;
 }
-
-
-
-// ── CALCULADORA INVERSA ──────────────────────────
-  let html = '<table style="width:100%;border-collapse:collapse;font-size:14px">';
-  html += '<thead><tr><th style="text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Ingrediente</th><th style="text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Cantidad</th></tr></thead><tbody>';
-  let sepActual = '';
-  receta.forEach(function(ing){
-    if(ing.sep && ing.sep !== sepActual){
-      sepActual = ing.sep;
-      html += '<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';
-    }
-    const cant = ing.g * factor;
-    html += '<tr><td style="padding:8px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,cant)+'</td></tr>';
-  });
-  const total = receta.reduce(function(s,i){return s+i.g*factor;},0);
-  html += '<tr><td style="padding:8px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px;font-weight:700;background:var(--crema);text-align:right">'+(Math.round(total*10)/10).toLocaleString('es-CL')+' g</td></tr>';
-  html += '</tbody></table>';
-  el.innerHTML = html;
-}
-
-
-, {"n": "Bicarbonato de sodio", "g": 3.5, "sep": "Secos"}, {"n": "Polvo de hornear", "g": 3.5, "sep": "Secos"}, {"n": "Canela en polvo", "g": 3.5, "sep": "Secos"}, {"n": "Clavo de olor molido", "g": 2.5, "sep": "Secos"}, {"n": "Jengibre molido", "g": 2.5, "sep": "Secos"}, {"n": "Papelón líquido", "g": 370, "sep": "Húmedos"}, {"n": "Azúcar", "g": 45, "sep": "Húmedos"}, {"n": "Margarina Cordobesa", "g": 37, "sep": "Húmedos"}, {"n": "Huevo líquido", "g": 25, "sep": "Húmedos"}, {"n": "Caramelina", "g": 7.5, "sep": "Húmedos"}]; }
-
-
-
-
 function getRecetaBase(){ return [{"n": "Harina", "g": 500, "sep": "Secos"}, {"n": "Bicarbonato de sodio", "g": 3.5, "sep": "Secos"}, {"n": "Polvo de hornear", "g": 3.5, "sep": "Secos"}, {"n": "Canela en polvo", "g": 3.5, "sep": "Secos"}, {"n": "Clavo de olor molido", "g": 2.5, "sep": "Secos"}, {"n": "Jengibre molido", "g": 2.5, "sep": "Secos"}, {"n": "Papelón líquido", "g": 370, "sep": "Húmedos"}, {"n": "Azúcar", "g": 45, "sep": "Húmedos"}, {"n": "Margarina Cordobesa", "g": 37, "sep": "Húmedos"}, {"n": "Huevo líquido", "g": 25, "sep": "Húmedos"}, {"n": "Caramelina", "g": 7.5, "sep": "Húmedos"}]; }
 function calcInversa(){
   var kg=parseFloat(document.getElementById('ci-kg').value);
   var el=document.getElementById('ci-res');
   if(!kg||kg<=0){el.innerHTML='';return;}
-  var receta=getRecetaBase();
+  var rec=getRecetaBase();
   var ESP=['esencia','vainilla','colorante','propianato','sorbato','glucosa','oxidasa','bicarbonato','frescura','ralladura','enzima'];
   function fmt(n,v){
-    if(ESP.some(function(e){return n.toLowerCase().indexOf(e)>=0;})) return v.toFixed(1)+' g';
-    if(v>=1000) return Math.round(v/10)*10+' g';
-    if(v>=10) return Math.round(v)+' g';
+    if(ESP.some(function(e){return n.toLowerCase().indexOf(e)>=0;}))return v.toFixed(1)+' g';
+    if(v>=1000)return Math.round(v/10)*10+' g';
+    if(v>=10)return Math.round(v)+' g';
     return (Math.round(v*10)/10)+' g';
   }
   var html='<table style="width:100%;border-collapse:collapse;font-size:14px"><thead><tr><th style="text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Ingrediente</th><th style="text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Cantidad</th></tr></thead><tbody>';
   var sep='';
-  receta.forEach(function(i){
-    if(i.sep&&i.sep!==sep){sep=i.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+i.sep+'</td></tr>';}
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+i.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(i.n,i.g*kg)+'</td></tr>';
-  });
-  var tot=receta.reduce(function(s,i){return s+i.g*kg;},0);
+  for(var i=0;i<rec.length;i++){
+    var ing=rec[i];
+    if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
+    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+  }
+  var tot=0;
+  for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
   html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
   el.innerHTML=html;
 }
-
 function tog(){
-  var w=document.getElementById('rw'),l=document.getElementById('tl');
+  var w=document.getElementById('rw');
+  var l=document.getElementById('tl');
+  if(!w||!l)return;
   w.classList.toggle('open');
   l.textContent=w.classList.contains('open')?'Ocultar receta base':'Ver receta base';
 }
-
-</script></div><a class="d-home" href="index.html">🏠 Inicio</a></body></html>
+</script>

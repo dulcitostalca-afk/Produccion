@@ -180,6 +180,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Aceite: menos de 160°C absorbe grasa · más de 180°C crudo por dentro</span></div>
 <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Rosca: atomizar y rebozar al momento, no en tanda</span></div>
 </div>
+</div><a class="d-home" href="index.html">🏠 Inicio</a></body></html>
 <script>
 const RBL=[{n:'Harina Puente Alto',g:592,p:59.2,t:'s'},{n:'Azúcar',g:62,p:6.2,t:'s'},{n:'Levadura instantánea',g:6,p:0.6,t:'s'},{n:'Mejorador Magimix',g:3,p:0.3,t:'s'},{n:'Sal',g:3,p:0.3,t:'s'},{n:'Mejorador Frescura',g:0.8,p:0.08,t:'s'},{n:'Leche líquida',g:165,p:16.5,t:'h'},{n:'Gramos de huevo',g:103,p:10.3,t:'h'},{n:'Margarina Cordobesa 16%',g:60,p:6.0,t:'h'},{n:'Vainilla blanca',g:5,p:0.5,t:'h'}];
 const ESPBL=['vainilla'];
@@ -193,67 +194,39 @@ function renderBL(){
   let desg='',pt='',rH='';
   if(qbl.b)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">Berlín · ${qbl.b} uds × 65g</span><span class="d-res-row-val">${qbl.b*65} g</span></div>`;
   if(qbl.r)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">Rosca · ${qbl.r} uds × 65g</span><span class="d-res-row-val">${qbl.r*65} g</span></div>`;
-  RBL.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='s'?'Secos':'Húmedos'}</td></tr>`;pt=i.t;}rH+=`<tr><td>${i.n}</td><td class="r">${fmtBL(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
-  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${qbl.b+qbl.r} unidades</div>
-  <div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''} de amasadora</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
-  <div style="margin-bottom:14px">${desg}</div>
-  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
+  RBL.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="4">${i.t==='s'?'Secos':'Húmedos'}</td></tr>`;pt=i.t;}rH+=`<tr><td></td><td>${i.n}</td><td class="r">${fmtBL(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${qbl.b+qbl.r} unidades</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th></th><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
-
-
-
-// ── CALCULADORA INVERSA ──────────────────────────
-  let html = '<table style="width:100%;border-collapse:collapse;font-size:14px">';
-  html += '<thead><tr><th style="text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Ingrediente</th><th style="text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Cantidad</th></tr></thead><tbody>';
-  let sepActual = '';
-  receta.forEach(function(ing){
-    if(ing.sep && ing.sep !== sepActual){
-      sepActual = ing.sep;
-      html += '<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';
-    }
-    const cant = ing.g * factor;
-    html += '<tr><td style="padding:8px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,cant)+'</td></tr>';
-  });
-  const total = receta.reduce(function(s,i){return s+i.g*factor;},0);
-  html += '<tr><td style="padding:8px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px;font-weight:700;background:var(--crema);text-align:right">'+(Math.round(total*10)/10).toLocaleString('es-CL')+' g</td></tr>';
-  html += '</tbody></table>';
-  el.innerHTML = html;
-}
-
-
-, {"n": "Azúcar", "g": 62, "sep": "Secos"}, {"n": "Levadura instantánea", "g": 6, "sep": "Secos"}, {"n": "Mejorador Magimix", "g": 3, "sep": "Secos"}, {"n": "Sal", "g": 3, "sep": "Secos"}, {"n": "Mejorador Frescura", "g": 0.8, "sep": "Secos"}, {"n": "Leche líquida", "g": 165, "sep": "Húmedos"}, {"n": "Gramos de huevo", "g": 103, "sep": "Húmedos"}, {"n": "Margarina Cordobesa 16%", "g": 60, "sep": "Húmedos"}, {"n": "Vainilla blanca", "g": 5, "sep": "Húmedos"}]; }
-
-
-
-
 function getRecetaBase(){ return [{"n": "Harina Puente Alto", "g": 592, "sep": "Secos"}, {"n": "Azúcar", "g": 62, "sep": "Secos"}, {"n": "Levadura instantánea", "g": 6, "sep": "Secos"}, {"n": "Mejorador Magimix", "g": 3, "sep": "Secos"}, {"n": "Sal", "g": 3, "sep": "Secos"}, {"n": "Mejorador Frescura", "g": 0.8, "sep": "Secos"}, {"n": "Leche líquida", "g": 165, "sep": "Húmedos"}, {"n": "Gramos de huevo", "g": 103, "sep": "Húmedos"}, {"n": "Margarina Cordobesa 16%", "g": 60, "sep": "Húmedos"}, {"n": "Vainilla blanca", "g": 5, "sep": "Húmedos"}]; }
 function calcInversa(){
   var kg=parseFloat(document.getElementById('ci-kg').value);
   var el=document.getElementById('ci-res');
   if(!kg||kg<=0){el.innerHTML='';return;}
-  var receta=getRecetaBase();
+  var rec=getRecetaBase();
   var ESP=['esencia','vainilla','colorante','propianato','sorbato','glucosa','oxidasa','bicarbonato','frescura','ralladura','enzima'];
   function fmt(n,v){
-    if(ESP.some(function(e){return n.toLowerCase().indexOf(e)>=0;})) return v.toFixed(1)+' g';
-    if(v>=1000) return Math.round(v/10)*10+' g';
-    if(v>=10) return Math.round(v)+' g';
+    if(ESP.some(function(e){return n.toLowerCase().indexOf(e)>=0;}))return v.toFixed(1)+' g';
+    if(v>=1000)return Math.round(v/10)*10+' g';
+    if(v>=10)return Math.round(v)+' g';
     return (Math.round(v*10)/10)+' g';
   }
   var html='<table style="width:100%;border-collapse:collapse;font-size:14px"><thead><tr><th style="text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Ingrediente</th><th style="text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Cantidad</th></tr></thead><tbody>';
   var sep='';
-  receta.forEach(function(i){
-    if(i.sep&&i.sep!==sep){sep=i.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+i.sep+'</td></tr>';}
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+i.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(i.n,i.g*kg)+'</td></tr>';
-  });
-  var tot=receta.reduce(function(s,i){return s+i.g*kg;},0);
+  for(var i=0;i<rec.length;i++){
+    var ing=rec[i];
+    if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
+    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+  }
+  var tot=0;
+  for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
   html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
   el.innerHTML=html;
 }
-
 function tog(){
-  var w=document.getElementById('rw'),l=document.getElementById('tl');
+  var w=document.getElementById('rw');
+  var l=document.getElementById('tl');
+  if(!w||!l)return;
   w.classList.toggle('open');
   l.textContent=w.classList.contains('open')?'Ocultar receta base':'Ver receta base';
 }
-
-</script></div><a class="d-home" href="index.html">🏠 Inicio</a></body></html>
+</script>

@@ -163,7 +163,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-card"><div class="d-card-title">Vista del panadero — lo que agrega al amasar</div>
 <table class="d-ing-table"><thead><tr><th>Paso</th><th>Acción / Ingrediente</th><th class="r">Cantidad</th></tr></thead><tbody>
 <tr><td>1</td><td>Volcar caja de mise en place en la amasadora</td><td class="r">—</td></tr>
-<tr><td>2</td><td>Agua fría + hielo (800 g hielo base, ajustar según clima)</td><td class="r">273 g total</td></tr>
+<tr><td>2</td><td>Agua fría + hielo (ver cantidad en la calculadora)</td><td class="r">273 g total</td></tr>
 <tr><td>3</td><td>Levadura fresca</td><td class="r">20 g</td></tr>
 <tr><td>4</td><td>Manteca La Granja</td><td class="r">25 g</td></tr>
 </tbody></table></div>
@@ -190,13 +190,23 @@ let qfp={pf:0,p30:0,p45:0};
 function cfp(k,d){var el=document.getElementById('q-'+k);qfp[k]=Math.max(0,(parseInt(el.value)||0)+d);el.value=qfp[k];renderFP();}
 function syncInput(el,key){qfp[key]=Math.max(0,parseInt(el.value)||0);renderFP();}
 function fmtFP(n,v){if(ESPFP.some(e=>n.toLowerCase().includes(e)))return v.toFixed(2);return v>=10?Math.round(v).toString():(Math.round(v*10)/10).toString();}
+const HIELO_PCT_FP = 900/19000;
 function renderFP(){
   let tot=0,desg='';
   Object.keys(qfp).forEach(k=>{if(qfp[k]>0){const m=qfp[k]*PFP[k].g;tot+=m;desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qfp[k]} × ${PFP[k].n} (${PFP[k].g}g)</span><span class="d-res-row-val">${m.toLocaleString('es-CL')} g</span></div>`;}});
   const el=document.getElementById('res');
   if(!tot){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div>';return;}
   const f=tot/1000;let pt='',rH='';
-  RFPP.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='m'?'Mise en place':'Al amasar'}</td></tr>`;pt=i.t;}rH+=`<tr><td>${i.n}</td><td class="r">${fmtFP(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  RFPP.forEach(i=>{
+    if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='m'?'Mise en place':'Al amasar'}</td></tr>`;pt=i.t;}
+    if(i.n==='Agua fría + hielo'){
+      const agua=Math.round(i.g*f);
+      const hielo=Math.round(tot*HIELO_PCT_FP);
+      rH+=`<tr><td>${i.n}</td><td class="r">${agua.toLocaleString('es-CL')} g <span style="font-size:11px;color:var(--azul);font-weight:600">(incluye ${hielo} g de hielo)</span></td><td class="pct">${i.p}%</td></tr>`;
+    } else {
+      rH+=`<tr><td>${i.n}</td><td class="r">${fmtFP(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;
+    }
+  });
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa necesaria</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
 function getRecetaBase(){ return [{"n": "Harina Verde", "g": 454, "sep": "Mise en place"}, {"n": "Harina SP2", "g": 195, "sep": "Mise en place"}, {"n": "Azúcar", "g": 25, "sep": "Mise en place"}, {"n": "Mejorador Puratos", "g": 12, "sep": "Mise en place"}, {"n": "Propianato", "g": 0.5, "sep": "Mise en place"}, {"n": "Sorbato de Potasio", "g": 0.25, "sep": "Mise en place"}, {"n": "Agua fría + hielo", "g": 273, "sep": "Al amasar"}, {"n": "Levadura fresca", "g": 20, "sep": "Al amasar"}, {"n": "Manteca La Granja", "g": 25, "sep": "Al amasar"}]; }
@@ -217,7 +227,12 @@ function calcInversa(){
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
     if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    if(ing.n.indexOf('Agua')>=0&&ing.n.indexOf('hielo')>=0){
+      var hielo=Math.round(kg*1000*HIELO_PCT_FP);
+      html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+' <span style="font-size:11px;color:#185FA5;font-weight:600">('+hielo+' g hielo)</span></td></tr>';
+    } else {
+      html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    }
   }
   var tot=0;
   for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;

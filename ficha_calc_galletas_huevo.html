@@ -119,7 +119,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 
 <div class="d-header"><span class="d-header-emoji">🥚</span><div class="d-header-title">Galletas de Huevo</div><div class="d-header-sub">Galleta mantecada venezolana · Paquetes de 5 uds · Stock en congelador</div><div class="d-header-tags"><span class="d-htag">Base 1.000 g</span><span class="d-htag">90 g cruda c/u</span><span class="d-htag">Congelador</span></div></div>
 <div class="d-card"><div class="d-card-title">Calculadora — por paquetes</div>
-<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Paquetes de Galletas de Huevo</div><div class="d-calc-peso">5 unidades × 90 g = 450 g por paquete</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cg(-1)">−</button><div class="d-qty-num" id="qg">0</div><button class="d-qty-btn" onclick="cg(1)">+</button></div></div></div>
+<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Paquetes de Galletas de Huevo</div><div class="d-calc-peso">5 unidades × 90 g = 450 g por paquete</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cg(-1)">−</button><input type="number" class="d-qty-num" id="qg" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInputById(this,'qg')"><button class="d-qty-btn" onclick="cg(1)">+</button></div></div></div>
 <div id="res"><div class="d-card"><div class="d-empty">Ingresá los paquetes para ver la receta ajustada</div></div></div>
 <div class="d-card"><button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button><div class="d-rec-wrap" id="rw">
 <table class="d-ing-table"><thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead><tbody>
@@ -163,7 +163,8 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 const RG=[{n:'Harina pastelera',g:489,p:48.9,t:'s'},{n:'Leche en polvo Colun',g:29,p:2.9,t:'s'},{n:'Polvo de hornear',g:12,p:1.2,t:'s'},{n:'Propianato',g:0.4,p:0.04,t:'s'},{n:'Sorbato de Potasio',g:0.2,p:0.02,t:'s'},{n:'Azúcar',g:244,p:24.4,t:'h'},{n:'Leche líquida',g:122,p:12.2,t:'h'},{n:'Huevos líquidos',g:49,p:4.9,t:'h'},{n:'Margarina Cordobesa',g:49,p:4.9,t:'h'},{n:'Esencia mantecado',g:5,p:0.5,t:'h'},{n:'Colorante amarillo',g:0.3,p:0.03,t:'h'}];
 const ESPG=['esencia','colorante','propianato','sorbato'];
 let pgq=0;
-function cg(d){pgq=Math.max(0,pgq+d);document.getElementById('qg').textContent=pgq;renderG();}
+function cg(d){var el=document.getElementById('qg');pgq=Math.max(0,(parseInt(el.value)||0)+d);el.value=pgq;renderG();}
+function syncInputById(el,id){pgq=Math.max(0,parseInt(el.value)||0);renderG();}
 function fmtG(n,v){if(ESPG.some(e=>n.toLowerCase().includes(e)))return v.toFixed(1);return v>=10?Math.round(v).toString():(Math.round(v*10)/10).toString();}
 function renderG(){
   const el=document.getElementById('res');

@@ -126,10 +126,10 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 </tbody></table></div>
 <div class="d-card"><div class="d-card-title">Calculadora — por unidades</div>
 <div class="d-grupo">🥖 Pan Francés</div>
-<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Pan Francés Venezolano</div><div class="d-calc-peso">95 g · 10 uds por bandeja · 150 uds por carro</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cfp('pf',-1)">−</button><div class="d-qty-num" id="q-pf">0</div><button class="d-qty-btn" onclick="cfp('pf',1)">+</button></div></div>
+<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Pan Francés Venezolano</div><div class="d-calc-peso">95 g · 10 uds por bandeja · 150 uds por carro</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cfp('pf',-1)">−</button><input type="number" class="d-qty-num" id="q-pf" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'pf')"><button class="d-qty-btn" onclick="cfp('pf',1)">+</button></div></div>
 <div class="d-grupo">🥖 Pepito / Sándwich</div>
-<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Pepito 30 cm</div><div class="d-calc-peso">190 g · 5 uds por bandeja · Bandeja perforada 58×68 cm</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cfp('p30',-1)">−</button><div class="d-qty-num" id="q-p30">0</div><button class="d-qty-btn" onclick="cfp('p30',1)">+</button></div></div>
-<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Pepito 45 cm</div><div class="d-calc-peso">280 g · 5 uds por bandeja · Bandeja perforada 58×68 cm</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cfp('p45',-1)">−</button><div class="d-qty-num" id="q-p45">0</div><button class="d-qty-btn" onclick="cfp('p45',1)">+</button></div></div>
+<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Pepito 30 cm</div><div class="d-calc-peso">190 g · 5 uds por bandeja · Bandeja perforada 58×68 cm</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cfp('p30',-1)">−</button><input type="number" class="d-qty-num" id="q-p30" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'p30')"><button class="d-qty-btn" onclick="cfp('p30',1)">+</button></div></div>
+<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Pepito 45 cm</div><div class="d-calc-peso">280 g · 5 uds por bandeja · Bandeja perforada 58×68 cm</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cfp('p45',-1)">−</button><input type="number" class="d-qty-num" id="q-p45" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'p45')"><button class="d-qty-btn" onclick="cfp('p45',1)">+</button></div></div>
 </div>
 <div id="res"><div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div></div>
 <div class="d-card"><button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button><div class="d-rec-wrap" id="rw">
@@ -187,7 +187,8 @@ const PFP={pf:{n:'Pan Francés',g:95},p30:{n:'Pepito 30cm',g:190},p45:{n:'Pepito
 const RFPP=[{n:'Harina Verde',g:454,p:45.4,t:'m'},{n:'Harina SP2',g:195,p:19.5,t:'m'},{n:'Azúcar',g:25,p:2.5,t:'m'},{n:'Mejorador Puratos',g:12,p:1.2,t:'m'},{n:'Propianato',g:0.5,p:0.05,t:'m'},{n:'Sorbato de Potasio',g:0.25,p:0.025,t:'m'},{n:'Agua fría + hielo',g:273,p:27.3,t:'a'},{n:'Levadura fresca',g:20,p:2.0,t:'a'},{n:'Manteca La Granja',g:25,p:2.5,t:'a'}];
 const ESPFP=['propianato','sorbato'];
 let qfp={pf:0,p30:0,p45:0};
-function cfp(k,d){qfp[k]=Math.max(0,qfp[k]+d);document.getElementById('q-'+k).textContent=qfp[k];renderFP();}
+function cfp(k,d){var el=document.getElementById('q-'+k);qfp[k]=Math.max(0,(parseInt(el.value)||0)+d);el.value=qfp[k];renderFP();}
+function syncInput(el,key){qfp[key]=Math.max(0,parseInt(el.value)||0);renderFP();}
 function fmtFP(n,v){if(ESPFP.some(e=>n.toLowerCase().includes(e)))return v.toFixed(2);return v>=10?Math.round(v).toString():(Math.round(v*10)/10).toString();}
 function renderFP(){
   let tot=0,desg='';

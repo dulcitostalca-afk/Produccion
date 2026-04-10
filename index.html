@@ -93,6 +93,7 @@
 
 <script>
 const TODAS=[
+  {n:'Cortadito · Pastica Roja',d:'Bizcocho venezolano · Cobertura roja · Paquetes 4 uds · 35 uds por bandeja',u:'ficha_cortadito.html',cat:'Pastelería',c:'#7F77DD',tags:'cortadito pastica roja bizcocho venezolano bandeja colorante'},
   {n:'Bizcocho Base',d:'158°C · Ventus N°4 · Circular y rectangular',u:'ficha_bizcocho_1kg_v3.html',cat:'Pastelería',c:'#7F77DD',tags:'bizcocho torta pastel molde huevo harina ponquesito'},
   {n:'Brownie Clásico',d:'Chocolate Caravella · 180°C · 15 uds por molde',u:'ficha_brownie.html',cat:'Pastelería',c:'#7F77DD',tags:'brownie chocolate caravella'},
   {n:'Pasta Seca · Galletas de Mantequilla',d:'PSC-001 · Por peso · 5 presentaciones · Merma 12,6%',u:'ficha_pasta_seca.html',cat:'Pastelería',c:'#7F77DD',tags:'pasta seca galletas mantequilla venezolana psc'},
@@ -111,7 +112,7 @@ const TODAS=[
 ];
 
 const CATS={
-  pasteleria:{t:'Pastelería',bg:'var(--purple-cl)',fg:'var(--purple-osc)',icbg:'#7F77DD',fichas:['Bizcocho Base','Brownie Clásico','Hojaldre Jamón y Queso Crema','Catalinas','Pasta Seca · Galletas de Mantequilla'],pend:['Galletas New York · Red Velvet y Chips']},
+  pasteleria:{t:'Pastelería',bg:'var(--purple-cl)',fg:'var(--purple-osc)',icbg:'#7F77DD',fichas:['Cortadito · Pastica Roja','Bizcocho Base','Brownie Clásico','Hojaldre Jamón y Queso Crema','Catalinas','Pasta Seca · Galletas de Mantequilla'],pend:['Galletas New York · Red Velvet y Chips']},
   panaderia:{t:'Panadería',bg:'var(--amber-cl)',fg:'var(--amber-osc)',icbg:'#EF9F27',fichas:['Pan Francés Venezolano y Pepito','Masa Clásica — Hamburguesa y Perro','Masa Cachito y Derivados'],pend:['Pan de Hamburguesa Golden / Brioche','Golfeado · Pan de Guayaba']},
   bolleria:{t:'Bollería y Galletas',bg:'var(--verde-cl)',fg:'var(--verde-osc)',icbg:'#1D9E75',fichas:['Berlín · Bomba · Rosca de Azúcar','Galletas de Huevo'],pend:['Palmeras y Croissant']},
   subingredientes:{t:'Sub-Ingredientes',bg:'var(--rojo-cl)',fg:'var(--rojo)',icbg:'#A32D2D',fichas:['Crema Pastelera','Papelón Líquido','Queso Crema Porcionado'],pend:[]},
@@ -119,7 +120,7 @@ const CATS={
 };
 
 const FREC={
-  Diego:['Bizcocho Base','Brownie Clásico','Hojaldre Jamón y Queso Crema','Catalinas','Galletas de Huevo','Berlín · Bomba · Rosca de Azúcar','Pasta Seca · Galletas de Mantequilla'],
+  Diego:['Cortadito · Pastica Roja','Bizcocho Base','Brownie Clásico','Hojaldre Jamón y Queso Crema','Catalinas','Galletas de Huevo','Berlín · Bomba · Rosca de Azúcar','Pasta Seca · Galletas de Mantequilla'],
   Gabriel:['Pan Francés Venezolano y Pepito','Masa Clásica — Hamburguesa y Perro','Masa Cachito y Derivados'],
   Eilyn:['Berlín · Bomba · Rosca de Azúcar','Bizcocho Base','Pan Francés Venezolano y Pepito','Catalinas'],
   Rosana:['Bizcocho Base','Berlín · Bomba · Rosca de Azúcar','Catalinas','Hojaldre Jamón y Queso Crema','Producción Diaria'],

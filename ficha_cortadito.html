@@ -115,7 +115,6 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 </style>
 </head>
 <body><div class="page">
-
 <div class="d-header">
   <div class="d-header-eyebrow">Pastelería · Cortadito venezolano</div>
   <div class="d-header-title">Cortadito<br>Pastica Roja</div>
@@ -130,7 +129,6 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
   </div>
 </div>
 
-<!-- CALCULADORA -->
 <div class="d-card">
   <div class="d-card-title">Calculadora — por bandejas</div>
   <div class="d-calc-item">
@@ -153,15 +151,14 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 
 <div id="res"><div class="d-card"><div class="d-empty">Ingresá las bandejas para ver la receta ajustada</div></div></div>
 
-<!-- RECETA BASE -->
 <div class="d-card">
   <button class="d-toggle" onclick="tog()"><span id="tl">Ver receta base</span></button>
   <div class="d-rec-wrap" id="rw">
     <table class="d-ing-table">
       <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
-      <tbody><tr><td>1</td><td>Harina pastelera</td><td class="r">446</td><td class="pct">44.6%</td></tr><tr><td>2</td><td>Azúcar</td><td class="r">223</td><td class="pct">22.3%</td></tr><tr><td>3</td><td>Agua</td><td class="r">150</td><td class="pct">15.0%</td></tr><tr><td>4</td><td>Leche líquida</td><td class="r">111</td><td class="pct">11.1%</td></tr><tr><td>5</td><td>Polvo de hornear</td><td class="r">12</td><td class="pct">1.2%</td></tr><tr><td>6</td><td>Margarina Cordobesa</td><td class="r">22</td><td class="pct">2.2%</td></tr><tr><td>7</td><td>Huevo líquido</td><td class="r">22</td><td class="pct">2.2%</td></tr><tr><td>8</td><td>Sal</td><td class="r">4</td><td class="pct">0.4%</td></tr><tr><td>9</td><td>Mantecado chilena</td><td class="r">2.2</td><td class="pct">0.22%</td></tr><tr><td>10</td><td>Esencia vainilla blanca</td><td class="r">2.2</td><td class="pct">0.22%</td></tr><tr><td>11</td><td>Levadura instantánea</td><td class="r">2.2</td><td class="pct">0.22%</td></tr><tr><td>12</td><td>Propianato</td><td class="r">0.7</td><td class="pct">0.067%</td></tr><tr><td>13</td><td>Colorante amarillo</td><td class="r">0.1</td><td class="pct">0.013%</td></tr><tr><td>14</td><td>Enzima Frescura Rapidox</td><td class="r">0.4</td><td class="pct">0.045%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">997.8000000000001</td><td class="pct">~100%</td></tr></tbody>
+      <tbody><tr><td>1</td><td>Harina pastelera</td><td class="r">448</td><td class="pct">44.8%</td></tr><tr><td>2</td><td>Azúcar</td><td class="r">223</td><td class="pct">22.3%</td></tr><tr><td>3</td><td>Agua</td><td class="r">150</td><td class="pct">15.0%</td></tr><tr><td>4</td><td>Leche líquida</td><td class="r">111</td><td class="pct">11.1%</td></tr><tr><td>5</td><td>Polvo de hornear</td><td class="r">12</td><td class="pct">1.2%</td></tr><tr><td>6</td><td>Margarina Cordobesa</td><td class="r">22</td><td class="pct">2.2%</td></tr><tr><td>7</td><td>Huevo líquido</td><td class="r">22</td><td class="pct">2.2%</td></tr><tr><td>8</td><td>Sal</td><td class="r">4</td><td class="pct">0.4%</td></tr><tr><td>9</td><td>Mantecado chilena</td><td class="r">2.2</td><td class="pct">0.22%</td></tr><tr><td>10</td><td>Esencia vainilla blanca</td><td class="r">2.2</td><td class="pct">0.22%</td></tr><tr><td>11</td><td>Levadura instantánea</td><td class="r">2.2</td><td class="pct">0.22%</td></tr><tr><td>12</td><td>Propianato</td><td class="r">0.7</td><td class="pct">0.07%</td></tr><tr><td>13</td><td>Colorante amarillo</td><td class="r">0.1</td><td class="pct">0.01%</td></tr><tr><td>14</td><td>Enzima Frescura Rapidox</td><td class="r">0.4</td><td class="pct">0.04%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">999,8</td><td class="pct">~100%</td></tr></tbody>
     </table>
-    <div class="d-nota" style="margin-top:10px">⚠ Balanza de GRAMAJE para Propianato, Enzima Frescura, colorantes, esencias y levadura.<br>⚠ Colorante rojo (0,3 g/kg base) es solo para cobertura — no va en la mezcla.</div>
+    <div class="d-nota" style="margin-top:10px">⚠ Balanza de GRAMAJE: Propianato · Enzima Frescura · Colorantes · Esencias · Levadura.<br>⚠ Colorante rojo solo para cobertura — no va en la mezcla.</div>
     <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
       <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--amber-osc);margin-bottom:12px">Calculadora por kilos de mezcla</div>
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
@@ -174,77 +171,21 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
   </div>
 </div>
 
-<!-- PROCESO -->
 <div class="d-card">
   <div class="d-card-title">Proceso de elaboración</div>
-
-  <div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body">
-    <div class="d-paso-title">Tramo húmedo — pesar y batir</div>
-    <div class="d-paso-desc">Pesar leche, azúcar, huevo líquido, agua, colorante amarillo y esencias. Batir hasta integrar.</div>
-  </div></div>
-
-  <div class="d-paso"><div class="d-paso-num">2</div><div class="d-paso-body">
-    <div class="d-paso-title">Derretir margarina</div>
-    <div class="d-paso-desc">Llevar la margarina al microondas hasta derretir. Incorporar a la mezcla húmeda y mezclar.</div>
-    <div class="d-badges"><span class="d-badge d-badge-a">Microondas · intervalos cortos</span></div>
-  </div></div>
-
-  <div class="d-paso"><div class="d-paso-num">3</div><div class="d-paso-body">
-    <div class="d-paso-title">Tramo seco — incorporar y batir</div>
-    <div class="d-paso-desc">Pesar harina, sal, polvo de hornear, levadura, propianato y enzima. Incorporar a la mezcla húmeda. Batir hasta que todo esté integrado y sin grumos.</div>
-    <div class="d-badges"><span class="d-badge d-badge-r">Balanza GRAMAJE: propianato · enzima · levadura</span></div>
-  </div></div>
-
-  <div class="d-paso"><div class="d-paso-num">4</div><div class="d-paso-body">
-    <div class="d-paso-title">Preparar bandeja y reposar</div>
-    <div class="d-paso-desc">Aplicar desmoldante en spray a la bandeja de aluminio, luego enharinar. Verter la mezcla y dejar reposar 15 minutos.</div>
-    <div class="d-badges"><span class="d-badge d-badge-a">Reposo 15 min</span></div>
-  </div></div>
-
-  <div class="d-paso"><div class="d-paso-num">5</div><div class="d-paso-body">
-    <div class="d-paso-title">Precalentar horno mientras reposa</div>
-    <div class="d-paso-desc">Encender horno de piso durante los 15 minutos de reposo para que alcance temperatura.</div>
-    <div class="d-badges"><span class="d-badge d-badge-r">180°C arriba · 180°C abajo</span></div>
-  </div></div>
-
-  <div class="d-paso"><div class="d-paso-num">6</div><div class="d-paso-body">
-    <div class="d-paso-title">Hornear</div>
-    <div class="d-paso-desc">Hornear 30 minutos. Verificar cocción con palillo de madera — si sale limpio está listo. Se pueden dar hasta 3 minutos adicionales si es necesario.</div>
-    <div class="d-badges"><span class="d-badge d-badge-r">30 min · hasta 3 min adicionales</span><span class="d-badge d-badge-a">Prueba palillo</span></div>
-  </div></div>
-
-  <div class="d-paso"><div class="d-paso-num">7</div><div class="d-paso-body">
-    <div class="d-paso-title">Enfriar completamente</div>
-    <div class="d-paso-desc">Dejar reposar en la bandeja hasta que enfríe por completo antes de aplicar cobertura.</div>
-    <div class="d-badges"><span class="d-badge d-badge-r">Enfriar completamente antes de continuar</span></div>
-  </div></div>
-
-  <div class="d-paso"><div class="d-paso-num">8</div><div class="d-paso-body">
-    <div class="d-paso-title">Aplicar colorante rojo</div>
-    <div class="d-paso-desc">Ligar colorante rojo con agua. Aplicar sobre la superficie con brocha específica. Dejar secar completamente.</div>
-    <div class="d-badges"><span class="d-badge d-badge-v">Brocha específica para colorante</span></div>
-  </div></div>
-
-  <div class="d-paso"><div class="d-paso-num">9</div><div class="d-paso-body">
-    <div class="d-paso-title">Cortar</div>
-    <div class="d-paso-desc">Tomar medidas y cortar en piezas de 7,5 × 8,3 cm. Rinde 35 unidades por bandeja completa.</div>
-    <div class="d-badges"><span class="d-badge d-badge-a">7,5 × 8,3 cm · 35 uds por bandeja</span></div>
-  </div></div>
-
-  <div class="d-paso"><div class="d-paso-num">10</div><div class="d-paso-body">
-    <div class="d-paso-title">Aplicar azúcar de cobertura</div>
-    <div class="d-paso-desc">Atomizar con agua la superficie y esparcir azúcar de cobertura uniformemente.</div>
-    <div class="d-badges"><span class="d-badge d-badge-v">Atomizador de agua · azúcar de cobertura</span></div>
-  </div></div>
-
-  <div class="d-paso"><div class="d-paso-num">11</div><div class="d-paso-body">
-    <div class="d-paso-title">Empacar</div>
-    <div class="d-paso-desc">Empacar en bolsas de 4 unidades.</div>
-    <div class="d-badges"><span class="d-badge d-badge-v">Paquetes de 4 unidades</span></div>
-  </div></div>
+  <div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body"><div class="d-paso-title">Tramo húmedo — pesar y batir</div><div class="d-paso-desc">Pesar leche, azúcar, huevo líquido, agua, colorante amarillo y esencias. Batir hasta integrar.</div></div></div>
+  <div class="d-paso"><div class="d-paso-num">2</div><div class="d-paso-body"><div class="d-paso-title">Derretir margarina</div><div class="d-paso-desc">Llevar la margarina al microondas hasta derretir. Incorporar a la mezcla húmeda y mezclar.</div><div class="d-badges"><span class="d-badge d-badge-a">Microondas · intervalos cortos</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">3</div><div class="d-paso-body"><div class="d-paso-title">Tramo seco — incorporar y batir</div><div class="d-paso-desc">Pesar harina, sal, polvo de hornear, levadura, propianato y enzima. Incorporar a la mezcla húmeda. Batir hasta integrar completamente.</div><div class="d-badges"><span class="d-badge d-badge-r">Balanza GRAMAJE: propianato · enzima · levadura</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">4</div><div class="d-paso-body"><div class="d-paso-title">Preparar bandeja y reposar</div><div class="d-paso-desc">Aplicar desmoldante en spray, luego enharinar. Verter la mezcla y dejar reposar 15 minutos.</div><div class="d-badges"><span class="d-badge d-badge-a">Reposo 15 min</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">5</div><div class="d-paso-body"><div class="d-paso-title">Precalentar horno mientras reposa</div><div class="d-paso-desc">Encender horno de piso durante los 15 minutos de reposo.</div><div class="d-badges"><span class="d-badge d-badge-r">180°C arriba · 180°C abajo</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">6</div><div class="d-paso-body"><div class="d-paso-title">Hornear</div><div class="d-paso-desc">Hornear 30 minutos. Verificar cocción con palillo de madera. Se pueden dar hasta 3 minutos adicionales.</div><div class="d-badges"><span class="d-badge d-badge-r">30 min · hasta 3 min adicionales</span><span class="d-badge d-badge-a">Prueba palillo</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">7</div><div class="d-paso-body"><div class="d-paso-title">Enfriar completamente</div><div class="d-paso-desc">Dejar reposar en la bandeja hasta enfriar por completo antes de aplicar cobertura.</div><div class="d-badges"><span class="d-badge d-badge-r">Enfriar completamente antes de continuar</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">8</div><div class="d-paso-body"><div class="d-paso-title">Aplicar colorante rojo</div><div class="d-paso-desc">Ligar colorante rojo con agua. Aplicar sobre la superficie con brocha específica. Dejar secar completamente.</div><div class="d-badges"><span class="d-badge d-badge-v">Brocha específica para colorante</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">9</div><div class="d-paso-body"><div class="d-paso-title">Cortar</div><div class="d-paso-desc">Tomar medidas y cortar en piezas de 7,5 × 8,3 cm. Rinde 35 unidades por bandeja completa.</div><div class="d-badges"><span class="d-badge d-badge-a">7,5 × 8,3 cm · 35 uds por bandeja</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">10</div><div class="d-paso-body"><div class="d-paso-title">Aplicar azúcar de cobertura</div><div class="d-paso-desc">Atomizar con agua la superficie y esparcir azúcar de cobertura uniformemente.</div><div class="d-badges"><span class="d-badge d-badge-v">Atomizador de agua · azúcar de cobertura</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">11</div><div class="d-paso-body"><div class="d-paso-title">Empacar</div><div class="d-paso-desc">Empacar en bolsas de 4 unidades.</div><div class="d-badges"><span class="d-badge d-badge-v">Paquetes de 4 unidades</span></div></div></div>
 </div>
 
-<!-- RENDIMIENTO -->
 <div class="d-card">
   <div class="d-card-title">Rendimiento y empaque</div>
   <table class="d-ing-table">
@@ -261,12 +202,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
   </table>
 </div>
 
-<!-- PUNTOS CRÍTICOS -->
 <div class="d-card">
   <div class="d-card-title">Puntos críticos</div>
-  <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Balanza de GRAMAJE obligatoria — propianato, enzima, colorantes, esencias y levadura</span></div>
+  <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Balanza de GRAMAJE — propianato, enzima, colorantes, esencias y levadura</span></div>
   <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Colorante rojo es solo para cobertura — no va en la mezcla</span></div>
-  <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Enfriar completamente antes de aplicar colorante rojo — caliente el colorante no adhiere bien</span></div>
+  <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Enfriar completamente antes de aplicar colorante rojo</span></div>
   <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Dejar secar el colorante antes de cortar — si se corta húmedo mancha las piezas</span></div>
   <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Desmoldante + harina en la bandeja — sin esto el bizcocho se pega</span></div>
   <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Precalentar horno durante el reposo de 15 min — no meter frío</span></div>
@@ -274,32 +214,33 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 
 <script>
 
-const RCORT=[{"n": "Harina pastelera", "g": 446, "p": 44.6}, {"n": "Azúcar", "g": 223, "p": 22.3}, {"n": "Agua", "g": 150, "p": 15.0}, {"n": "Leche líquida", "g": 111, "p": 11.1}, {"n": "Polvo de hornear", "g": 12, "p": 1.2}, {"n": "Margarina Cordobesa", "g": 22, "p": 2.2}, {"n": "Huevo líquido", "g": 22, "p": 2.2}, {"n": "Sal", "g": 4, "p": 0.4}, {"n": "Mantecado chilena", "g": 2.2, "p": 0.22}, {"n": "Esencia vainilla blanca", "g": 2.2, "p": 0.22}, {"n": "Levadura instantánea", "g": 2.2, "p": 0.22}, {"n": "Propianato", "g": 0.7, "p": 0.067}, {"n": "Colorante amarillo", "g": 0.1, "p": 0.013}, {"n": "Enzima Frescura Rapidox", "g": 0.4, "p": 0.045}];
+const RCORT=[{"n": "Harina pastelera", "g": 448, "p": 44.8}, {"n": "Azúcar", "g": 223, "p": 22.3}, {"n": "Agua", "g": 150, "p": 15.0}, {"n": "Leche líquida", "g": 111, "p": 11.1}, {"n": "Polvo de hornear", "g": 12, "p": 1.2}, {"n": "Margarina Cordobesa", "g": 22, "p": 2.2}, {"n": "Huevo líquido", "g": 22, "p": 2.2}, {"n": "Sal", "g": 4, "p": 0.4}, {"n": "Mantecado chilena", "g": 2.2, "p": 0.22}, {"n": "Esencia vainilla blanca", "g": 2.2, "p": 0.22}, {"n": "Levadura instantánea", "g": 2.2, "p": 0.22}, {"n": "Propianato", "g": 0.7, "p": 0.07}, {"n": "Colorante amarillo", "g": 0.1, "p": 0.01}, {"n": "Enzima Frescura Rapidox", "g": 0.4, "p": 0.04}];
 const ESPCORT=['mantecado','vainilla','propianato','colorante','enzima','levadura'];
 let qcort={b1:0,b05:0};
 function ccort(k,d){var el=document.getElementById('q-'+k);qcort[k]=Math.max(0,(parseInt(el.value)||0)+d);el.value=qcort[k];renderCORT();}
 function syncInput(el,key){qcort[key]=Math.max(0,parseInt(el.value)||0);renderCORT();}
 function fmtCort(n,v){if(ESPCORT.some(e=>n.toLowerCase().includes(e)))return v.toFixed(1);return v>=10?Math.round(v).toString():(Math.round(v*10)/10).toString();}
 function renderCORT(){
-  const tot=qcort.b1*4500+qcort.b05*2250;
-  const el=document.getElementById('res');
+  var tot=qcort.b1*4500+qcort.b05*2250;
+  var el=document.getElementById('res');
   if(!tot){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá las bandejas para ver la receta ajustada</div></div>';return;}
-  const f=tot/1000;
-  const uds=qcort.b1*35+qcort.b05*17;
-  const paq=Math.floor(uds/4);
-  let desg='';
+  var f=tot/1000;
+  var uds=qcort.b1*35+qcort.b05*17;
+  var paq=Math.floor(uds/4);
+  var sueltas=uds%4;
+  var desg='';
   if(qcort.b1)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qcort.b1} bandeja${qcort.b1>1?'s':''} completa${qcort.b1>1?'s':''} × 4.500 g · ${qcort.b1*35} uds</span><span class="d-res-row-val">${(qcort.b1*4500).toLocaleString('es-CL')} g</span></div>`;
   if(qcort.b05)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qcort.b05} media${qcort.b05>1?'s':''} bandeja${qcort.b05>1?'s':''} × 2.250 g · ${qcort.b05*17} uds</span><span class="d-res-row-val">${(qcort.b05*2250).toLocaleString('es-CL')} g</span></div>`;
-  let rH='';
+  var rH='';
   RCORT.forEach(i=>{rH+=`<tr><td>${i.n}</td><td class="r">${fmtCort(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div>
-  <div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${uds} uds · ${paq} paq completos de 4</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
+  <div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${uds} uds · ${paq} paq${sueltas>0?' + '+sueltas+' uds sueltas':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
   <div style="margin-bottom:12px">${desg}</div>
   <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table>
   <div class="d-nota" style="margin-top:12px">Colorante rojo para cobertura: mezclar con agua y aplicar con brocha después de enfriar.</div>
   </div>`;
 }
-function getRecetaBase(){ return [{"n": "Harina pastelera", "g": 446, "p": 44.6}, {"n": "Azúcar", "g": 223, "p": 22.3}, {"n": "Agua", "g": 150, "p": 15.0}, {"n": "Leche líquida", "g": 111, "p": 11.1}, {"n": "Polvo de hornear", "g": 12, "p": 1.2}, {"n": "Margarina Cordobesa", "g": 22, "p": 2.2}, {"n": "Huevo líquido", "g": 22, "p": 2.2}, {"n": "Sal", "g": 4, "p": 0.4}, {"n": "Mantecado chilena", "g": 2.2, "p": 0.22}, {"n": "Esencia vainilla blanca", "g": 2.2, "p": 0.22}, {"n": "Levadura instantánea", "g": 2.2, "p": 0.22}, {"n": "Propianato", "g": 0.7, "p": 0.067}, {"n": "Colorante amarillo", "g": 0.1, "p": 0.013}, {"n": "Enzima Frescura Rapidox", "g": 0.4, "p": 0.045}]; }
+function getRecetaBase(){ return [{"n": "Harina pastelera", "g": 448, "p": 44.8}, {"n": "Azúcar", "g": 223, "p": 22.3}, {"n": "Agua", "g": 150, "p": 15.0}, {"n": "Leche líquida", "g": 111, "p": 11.1}, {"n": "Polvo de hornear", "g": 12, "p": 1.2}, {"n": "Margarina Cordobesa", "g": 22, "p": 2.2}, {"n": "Huevo líquido", "g": 22, "p": 2.2}, {"n": "Sal", "g": 4, "p": 0.4}, {"n": "Mantecado chilena", "g": 2.2, "p": 0.22}, {"n": "Esencia vainilla blanca", "g": 2.2, "p": 0.22}, {"n": "Levadura instantánea", "g": 2.2, "p": 0.22}, {"n": "Propianato", "g": 0.7, "p": 0.07}, {"n": "Colorante amarillo", "g": 0.1, "p": 0.01}, {"n": "Enzima Frescura Rapidox", "g": 0.4, "p": 0.04}]; }
 function calcInversa(){
   var kg=parseFloat(document.getElementById('ci-kg').value);
   var el=document.getElementById('ci-res');

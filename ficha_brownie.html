@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Brownie Clásico Dulcitos · Dulcitos</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --amber:#EF9F27; --amber-osc:#633806; --amber-med:#854F0B; --amber-cl:#FAEEDA;
+  --verde:#1D9E75; --verde-osc:#085041; --verde-cl:#E1F5EE;
+  --purple:#7F77DD; --purple-osc:#26215C; --purple-cl:#EEEDFE;
+  --rojo:#A32D2D; --rojo-cl:#FCEBEB;
+  --azul:#185FA5; --azul-cl:#E6F1FB;
+  --crema:#F9F5ED; --crema-med:#F0E8D4; --crema-osc:#E8DCC4;
+  --gris:#F4F2ED; --borde:#DDD5C0; --texto:#1a1a18; --sub:#7A6F5A;
+  --r:12px; --r-sm:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:var(--texto);min-height:100vh;padding-bottom:80px}
+.page{max-width:680px;margin:0 auto;padding:1.25rem}
+
+/* HEADER — crema editorial */
+.d-header{background:var(--crema-med);border-radius:var(--r);padding:1.5rem;margin-bottom:1.25rem;border-top:3px solid #1a1a18;position:relative}
+.d-header-eyebrow{font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--sub);margin-bottom:8px}
+.d-header-title{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:#1a1a18;line-height:1.2}
+.d-header-line{width:40px;height:3px;background:var(--amber);margin-top:10px;border-radius:2px}
+.d-header-sub{font-size:13px;color:var(--sub);margin-top:8px;line-height:1.6}
+.d-header-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.d-htag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(0,0,0,.06);color:var(--sub);border:1px solid var(--borde)}
+
+/* CARD */
+.d-card{background:#fff;border-radius:var(--r);border:1px solid var(--borde);padding:1.1rem 1.25rem;margin-bottom:12px}
+.d-card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--amber-osc);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.d-card-title::after{content:'';flex:1;height:1px;background:var(--crema-osc)}
+
+/* TABLA */
+.d-ing-table{width:100%;border-collapse:collapse;font-size:14px}
+.d-ing-table th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);padding:6px 10px;border-bottom:2px solid var(--crema-osc)}
+.d-ing-table th.r{text-align:right}
+.d-ing-table td{padding:9px 10px;border-bottom:1px solid var(--crema-med);vertical-align:middle}
+.d-ing-table td.r{text-align:right;font-weight:600;min-width:68px}
+.d-ing-table td.pct{text-align:right;color:#bbb;font-size:12px;min-width:46px}
+.d-ing-table tr.d-sep td{background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--amber-med);padding:5px 10px}
+.d-ing-table tr.d-tot td{border-top:2px solid var(--borde);font-weight:700;background:var(--crema);border-bottom:none}
+
+/* CALCULADORA */
+.d-calc-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--crema-osc)}
+.d-calc-item:last-child{border-bottom:none}
+.d-calc-info{flex:1}
+.d-calc-name{font-size:15px;font-weight:600;line-height:1.3;color:var(--texto)}
+.d-calc-peso{font-size:12px;color:var(--sub);margin-top:2px}
+.d-qty{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.d-qty-btn{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--borde);background:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--sub);font-weight:600;transition:all .12s}
+.d-qty-btn:active{background:var(--amber-cl);border-color:var(--amber);color:var(--amber-osc);transform:scale(.93)}
+.d-qty-num{font-size:22px;font-weight:700;min-width:36px;text-align:center;color:var(--texto)}
+
+/* RESULTADO */
+.d-res-total{background:#1a1a18;border-radius:var(--r-sm);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.d-res-lbl{font-size:12px;font-weight:600;color:rgba(255,255,255,.6)}
+.d-res-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
+.d-res-val{font-family:'Fraunces',serif;font-size:32px;font-weight:700;color:#EF9F27;line-height:1}
+.d-res-unit{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px;text-align:right}
+.d-res-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid var(--crema-med)}
+.d-res-row:last-child{border-bottom:none}
+.d-res-row-lbl{color:var(--sub)}
+.d-res-row-val{font-weight:600}
+
+/* TOGGLE */
+.d-toggle{width:100%;padding:12px 16px;background:var(--crema);border:1px solid var(--borde);border-radius:var(--r-sm);font-size:13px;font-weight:600;color:var(--amber-osc);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;transition:all .15s}
+.d-toggle:active{background:var(--amber-cl);border-color:var(--amber)}
+.d-rec-wrap{overflow:hidden;max-height:0;transition:max-height .4s ease}
+.d-rec-wrap.open{max-height:5000px}
+
+/* PASOS */
+.d-paso{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--crema-med)}
+.d-paso:last-child{border-bottom:none}
+.d-paso-num{width:26px;height:26px;border-radius:50%;background:var(--crema-osc);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--amber-osc);flex-shrink:0;margin-top:1px}
+.d-paso-body{flex:1}
+.d-paso-title{font-size:14px;font-weight:600;margin-bottom:3px;color:var(--texto)}
+.d-paso-desc{font-size:13px;color:var(--sub);line-height:1.6}
+.d-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.d-badge{font-size:11px;font-weight:600;padding:2px 9px;border-radius:100px}
+.d-badge-r{background:var(--rojo-cl);color:var(--rojo)}
+.d-badge-a{background:var(--amber-cl);color:var(--amber-osc)}
+.d-badge-v{background:var(--verde-cl);color:var(--verde-osc)}
+
+/* CRÍTICOS */
+.d-crit{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--crema-med);font-size:13px;line-height:1.6;color:var(--sub)}
+.d-crit:last-child{border-bottom:none}
+.d-crit-icon{color:var(--amber);flex-shrink:0;font-size:15px;margin-top:1px}
+
+/* NOTAS */
+.d-nota{border-radius:var(--r-sm);padding:10px 14px;font-size:13px;border-left:3px solid var(--amber);line-height:1.6;margin-top:10px;background:var(--amber-cl);color:var(--amber-osc)}
+.d-nota-v{background:var(--verde-cl);color:var(--verde-osc);border-left-color:var(--verde)}
+.d-nota-r{background:var(--rojo-cl);color:var(--rojo);border-left-color:var(--rojo)}
+
+/* GRUPO */
+.d-grupo{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--sub);margin:1.25rem 0 8px;display:flex;align-items:center;gap:8px}
+.d-grupo::after{content:'';flex:1;height:1px;background:var(--borde)}
+
+/* HORNO */
+.d-horno-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.d-horno-box{background:var(--crema);border-radius:var(--r-sm);padding:12px;border:1px solid var(--crema-osc)}
+.d-horno-lbl{font-size:10px;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.d-horno-val{font-size:20px;font-weight:700;color:var(--rojo);font-family:'Fraunces',serif}
+.d-horno-desc{font-size:11px;color:var(--sub);margin-top:3px;line-height:1.4}
+
+/* HOME BTN */
+.d-home{position:fixed;bottom:20px;right:20px;z-index:999;display:flex;align-items:center;gap:8px;background:#1a1a18;color:#fff;text-decoration:none;padding:12px 20px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+
+.d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
+.d-card{animation:fadeUp .2s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body><div class="page">
+
+<div class="d-header">
+  <div class="d-header-eyebrow">BRW-001 · Pastelería</div>
+  <div class="d-header-title">Brownie Clásico Dulcitos</div>
+  <div class="d-header-line"></div>
+  <div class="d-header-sub">Chocolate Caravella Dark · Horno Ventus N°4 · 180°C · 15 unidades por molde</div>
+  <div class='d-header-tags'><span class="d-htag">Base 1.000 g</span><span class="d-htag">180°C sin convector</span><span class="d-htag">Molde 41×30×10 cm</span></div>
+</div>
+
+<div class="d-card">
+  <div class="d-card-title">Calculadora — por moldes y unidades</div>
+  <div class="d-calc-item">
+  <div class="d-calc-info"><div class="d-calc-name">Moldes completos</div><div class="d-calc-peso">41×30×10 cm · 2.100 g por molde · 15 uds por molde</div></div>
+  <div class="d-qty"><button class="d-qty-btn" onclick="c('molde',-1)">−</button><input type="number" class="d-qty-num" id="q-molde" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'molde')"><button class="d-qty-btn" onclick="c('molde',1)">+</button></div>
+</div>
+  <div class="d-calc-item">
+  <div class="d-calc-info"><div class="d-calc-name">Unidades sueltas</div><div class="d-calc-peso">131 g por unidad (peso horneado)</div></div>
+  <div class="d-qty"><button class="d-qty-btn" onclick="c('ud',-1)">−</button><input type="number" class="d-qty-num" id="q-ud" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'ud')"><button class="d-qty-btn" onclick="c('ud',1)">+</button></div>
+</div>
+</div>
+<div id="res"><div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div></div>
+
+<div class="d-card">
+  <button class="d-toggle" onclick="tog()"><span id="tl">Ver receta base</span></button>
+  <div class="d-rec-wrap" id="rw">
+    <table class="d-ing-table">
+      <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
+      <tbody><tr class="d-sep"><td colspan="4">Ingredientes — orden descendente</td></tr><tr><td>1</td><td>Chocolate Caravella Dark (botones)</td><td class="r">238</td><td class="pct">23,8%%</td></tr><tr><td>2</td><td>Azúcar blanca</td><td class="r">213</td><td class="pct">21,3%%</td></tr><tr><td>3</td><td>Huevo entero</td><td class="r">210</td><td class="pct">21,0%%</td></tr><tr><td>4</td><td>Margarina Cordobesa 16%</td><td class="r">188</td><td class="pct">18,8%%</td></tr><tr><td>5</td><td>Harina pastelera</td><td class="r">112</td><td class="pct">11,2%%</td></tr><tr><td>6</td><td>Cacao natural en polvo</td><td class="r">24</td><td class="pct">2,4%%</td></tr><tr><td>7</td><td>Polvo de hornear</td><td class="r">5</td><td class="pct">0,5%%</td></tr><tr><td>8</td><td>Sal fina</td><td class="r">4</td><td class="pct">0,4%%</td></tr><tr><td>9</td><td>Esencia de vainilla blanca</td><td class="r">5</td><td class="pct">0,5%%</td></tr><tr><td>10</td><td>Bicarbonato de sodio</td><td class="r">1</td><td class="pct">0,1%%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000</td><td class="pct">~100%</td></tr></tbody>
+    </table>
+    <div class='d-nota' style='margin-top:10px'>⚠ Balanza de GRAMAJE para esencia de vainilla y bicarbonato.
+    <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--amber-osc);margin-bottom:12px">Calculadora por kilos de mezcla</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <input type="number" id="ci-kg" min="0.1" step="0.1" placeholder="ej: 4.5" oninput="calcInversa()" style="width:110px;height:46px;border:1.5px solid var(--borde);border-radius:8px;padding:0 12px;font-size:20px;font-weight:600;color:var(--texto);background:white;outline:none;font-family:inherit">
+        <span style="font-size:15px;color:var(--sub);font-weight:600">kg de mezcla</span>
+        <button onclick="document.getElementById('ci-kg').value='';document.getElementById('ci-res').innerHTML=''" style="background:none;border:1px solid var(--borde);border-radius:6px;color:var(--sub);font-size:13px;cursor:pointer;padding:6px 12px;font-family:inherit">Limpiar</button>
+      </div>
+      <div id="ci-res" style="margin-top:12px"></div>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="d-card">
+  <div class="d-card-title">Utensilios necesarios</div>
+  <div style="font-size:14px;color:var(--sub);line-height:1.9">Tasa o envase que entre en el microondas · Batidora con lira · Espátula larga flexible · Molde 41×30×10 cm forrado con papel mantequilla del barato · Araña de ruedas inoxidable · Balanza digital · Bolsas plásticas individuales · Selladora térmica</div>
+</div>
+
+<div class="d-card">
+  <div class="d-card-title">Proceso</div>
+  <div class="d-paso">
+  <div class="d-paso-num">1</div>
+  <div class="d-paso-body">
+    <div class="d-paso-title">Derretir chocolate + margarina en el microondas</div>
+    <div class='d-paso-desc'>Intervalos de 30 seg. Revisar y revolver cada vez. Repetir hasta que esté completamente derretido y liso. Mientras se derrite, continuar con los pasos siguientes.</div>
+  </div>
+</div>
+  <div class="d-paso">
+  <div class="d-paso-num">2</div>
+  <div class="d-paso-body">
+    <div class="d-paso-title">Pesar y mezclar secos aparte</div>
+    <div class='d-paso-desc'>Harina + cacao + polvo de hornear + sal + bicarbonato.</div>
+  </div>
+</div>
+  <div class="d-paso">
+  <div class="d-paso-num">3</div>
+  <div class="d-paso-body">
+    <div class="d-paso-title">Batir huevo + azúcar</div>
+    <div class='d-paso-desc'>Hasta integrar bien.</div>
+    <div class='d-badges'><span class="d-badge d-badge-a">Lira</span></div>
+  </div>
+</div>
+  <div class="d-paso">
+  <div class="d-paso-num">4</div>
+  <div class="d-paso-body">
+    <div class="d-paso-title">Incorporar chocolate derretido</div>
+    <div class='d-paso-desc'>Agregar de a poco revolviendo suavemente.</div>
+  </div>
+</div>
+  <div class="d-paso">
+  <div class="d-paso-num">5</div>
+  <div class="d-paso-body">
+    <div class="d-paso-title">Agregar esencia de vainilla</div>
+    <div class='d-badges'><span class="d-badge d-badge-a">Revolver</span></div>
+  </div>
+</div>
+  <div class="d-paso">
+  <div class="d-paso-num">6</div>
+  <div class="d-paso-body">
+    <div class="d-paso-title">Incorporar secos en 2–3 tandas</div>
+    <div class='d-paso-desc'>Movimientos envolventes. No batir. Masa debe quedar densa y brillante.</div>
+  </div>
+</div>
+  <div class="d-paso">
+  <div class="d-paso-num">7</div>
+  <div class="d-paso-body">
+    <div class="d-paso-title">Forrar molde con papel mantequilla del barato</div>
+    <div class='d-paso-desc'>Fondo y paredes completas.</div>
+  </div>
+</div>
+  <div class="d-paso">
+  <div class="d-paso-num">8</div>
+  <div class="d-paso-body">
+    <div class="d-paso-title">Dispensar en molde</div>
+    <div class='d-paso-desc'>Distribuir parejo con espátula.</div>
+  </div>
+</div>
+  <div class="d-paso">
+  <div class="d-paso-num">9</div>
+  <div class="d-paso-body">
+    <div class="d-paso-title">Hornear — Horno Ventus N°4 · Sin convector · Puerta cerrada</div>
+    <div class='d-badges'><span class="d-badge d-badge-r">180°C · 45 min</span></div>
+  </div>
+</div>
+  <div class="d-paso">
+  <div class="d-paso-num">10</div>
+  <div class="d-paso-body">
+    <div class="d-paso-title">Prueba de cocción</div>
+    <div class='d-paso-desc'>Presionar el centro con el dorso de la mano — debe rebotar sin hundirse.</div>
+  </div>
+</div>
+  <div class="d-paso">
+  <div class="d-paso-num">11</div>
+  <div class="d-paso-body">
+    <div class="d-paso-title">Enfriar en el molde</div>
+    <div class='d-badges'><span class="d-badge d-badge-r">Mínimo 30 min</span></div>
+  </div>
+</div>
+  <div class="d-paso">
+  <div class="d-paso-num">12</div>
+  <div class="d-paso-body">
+    <div class="d-paso-title">Desmoldar · Cortar · Empacar</div>
+    <div class='d-paso-desc'>Araña de ruedas inoxidable · Patrón 3×5 · Pieza 8×9,5 cm · Bolsa plástica individual · Selladora térmica · Sticker con info nutricional.</div>
+  </div>
+</div>
+</div>
+
+<div class="d-card">
+  <div class="d-card-title" style="font-size:15px">Horneado — Horno Ventus N°4</div>
+  <div class="d-horno-grid">
+    <div class="d-horno-box"><div class="d-horno-lbl">Temperatura</div><div class="d-horno-val">180°C</div><div class="d-horno-desc">Sin convector · Cerrado</div></div>
+    <div class="d-horno-box"><div class="d-horno-lbl">Tiempo</div><div class="d-horno-val" style="color:var(--texto)">45 min</div><div class="d-horno-desc">Verificar con prueba manual</div></div>
+    <div class="d-horno-box"><div class="d-horno-lbl">Prueba cocción</div><div class="d-horno-val" style="font-size:14px;color:var(--texto)">Dorso mano</div><div class="d-horno-desc">Rebota sin hundirse</div></div>
+    <div class="d-horno-box"><div class="d-horno-lbl">Molde</div><div class="d-horno-val" style="font-size:14px;color:var(--texto)">41×30×10</div><div class="d-horno-desc">Forrado con papel mantequilla</div></div>
+  </div>
+</div>
+
+<div class="d-card">
+  <div class="d-card-title">Rendimiento y empaque</div>
+  <table class="d-ing-table">
+    <tbody>
+      <tr><td>Masa cruda por molde</td><td class="r">2.100 g</td></tr>
+      <tr><td>Peso horneado</td><td class="r">1.960 g</td></tr>
+      <tr><td>Merma cocción</td><td class="r">6,7%</td></tr>
+      <tr><td>Unidades por molde</td><td class="r">15 uds</td></tr>
+      <tr><td>Peso por unidad horneada</td><td class="r">~131 g</td></tr>
+      <tr><td>Corte</td><td class="r">8 × 9,5 cm · patrón 3×5</td></tr>
+      <tr><td>Vida útil</td><td class="r">15 días · temperatura ambiente</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="d-card">
+  <div class="d-card-title">Puntos críticos</div>
+  <div class="d-crit"><span class="d-crit-icon">—</span><span>Chocolate y margarina deben enfriarse antes de incorporar al huevo — si están muy calientes cocinan el huevo</span></div>
+  <div class="d-crit"><span class="d-crit-icon">—</span><span>Movimientos envolventes al incorporar secos — batir activa el gluten y endurece el brownie</span></div>
+  <div class="d-crit"><span class="d-crit-icon">—</span><span>No sobrebatir en ningún paso</span></div>
+  <div class="d-crit"><span class="d-crit-icon">—</span><span>Prueba de cocción con dorso de la mano — varilla no aplica para brownie (queda húmedo por naturaleza)</span></div>
+  <div class="d-crit"><span class="d-crit-icon">—</span><span>Enfriar mínimo 30 min antes de desmoldar — caliente se rompe</span></div>
+  <div class="d-crit"><span class="d-crit-icon">—</span><span>Araña de ruedas inoxidable para corte limpio — cuchillo comprime y aplasta</span></div>
+</div>
+
+
+</div><a class="d-home" href="index.html">Inicio</a></body></html>
+<script>
+const PROD={molde:{n:'Molde completo',g:2100},ud:{n:'Unidad suelta',g:131}};
+const RECB=[{n:'Chocolate Caravella Dark',g:238,p:23.8},{n:'Azúcar blanca',g:213,p:21.3},{n:'Huevo entero',g:210,p:21.0},{n:'Margarina Cordobesa',g:188,p:18.8},{n:'Harina pastelera',g:112,p:11.2},{n:'Cacao natural en polvo',g:24,p:2.4},{n:'Polvo de hornear',g:5,p:0.5},{n:'Sal fina',g:4,p:0.4},{n:'Esencia vainilla blanca',g:5,p:0.5},{n:'Bicarbonato de sodio',g:1,p:0.1}];
+const ESPB=['esencia','bicarbonato'];
+let qty={molde:0,ud:0};
+function c(k,d){var el=document.getElementById('q-'+k);qty[k]=Math.max(0,(parseInt(el.value)||0)+d);el.value=qty[k];render();}
+function syncInput(el,key){qty[key]=Math.max(0,parseInt(el.value)||0);render();}
+function fmt(n,v){if(ESPB.some(e=>n.toLowerCase().includes(e)))return v.toFixed(1);return v>=10?Math.round(v).toString():(Math.round(v*10)/10).toString();}
+function render(){
+  const el=document.getElementById('res');
+  const tot=qty.molde*2100+qty.ud*131;
+  if(!tot){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div>';return;}
+  const f=tot/1000;
+  let desg='',rH='';
+  if(qty.molde)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qty.molde} molde${qty.molde>1?'s':''} × 2.100 g · ${qty.molde*15} uds</span><span class="d-res-row-val">${(qty.molde*2100).toLocaleString('es-CL')} g</span></div>`;
+  if(qty.ud)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qty.ud} unidad${qty.ud>1?'es':''} × 131 g</span><span class="d-res-row-val">${(qty.ud*131).toLocaleString('es-CL')} g</span></div>`;
+  RECB.forEach(i=>{rH+=`<tr><td>${i.n}</td><td class="r">${fmt(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
+}
+function getRecetaBase(){ return [{"n": "Chocolate Caravella Dark", "g": 238}, {"n": "Azúcar blanca", "g": 213}, {"n": "Huevo entero", "g": 210}, {"n": "Margarina Cordobesa", "g": 188}, {"n": "Harina pastelera", "g": 112}, {"n": "Cacao natural en polvo", "g": 24}, {"n": "Polvo de hornear", "g": 5}, {"n": "Sal fina", "g": 4}, {"n": "Esencia vainilla blanca", "g": 5}, {"n": "Bicarbonato de sodio", "g": 1}]; }
+function calcInversa(){
+  var kg=parseFloat(document.getElementById('ci-kg').value);
+  var el=document.getElementById('ci-res');
+  if(!kg||kg<=0){el.innerHTML='';return;}
+  var rec=getRecetaBase();
+  var ESP=['esencia','vainilla','colorante','propianato','sorbato','glucosa','oxidasa','bicarbonato','frescura','ralladura','enzima'];
+  function fmt(n,v){
+    if(ESP.some(function(e){return n.toLowerCase().indexOf(e)>=0;}))return v.toFixed(1)+' g';
+    if(v>=1000)return Math.round(v/10)*10+' g';
+    if(v>=10)return Math.round(v)+' g';
+    return (Math.round(v*10)/10)+' g';
+  }
+  var html='<table style="width:100%;border-collapse:collapse;font-size:14px"><thead><tr><th style="text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Ingrediente</th><th style="text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Cantidad</th></tr></thead><tbody>';
+  var sep='';
+  for(var i=0;i<rec.length;i++){
+    var ing=rec[i];
+    if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
+    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+  }
+  var tot=0;
+  for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  el.innerHTML=html;
+}
+function tog(){
+  var w=document.getElementById('rw');
+  var l=document.getElementById('tl');
+  if(!w||!l)return;
+  w.classList.toggle('open');
+  l.textContent=w.classList.contains('open')?'Ocultar receta base':'Ver receta base';
+}
+</script>

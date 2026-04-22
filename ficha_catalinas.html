@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Catalinas · Dulcitos</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --amber:#EF9F27; --amber-osc:#633806; --amber-med:#854F0B; --amber-cl:#FAEEDA;
+  --verde:#1D9E75; --verde-osc:#085041; --verde-cl:#E1F5EE;
+  --purple:#7F77DD; --purple-osc:#26215C; --purple-cl:#EEEDFE;
+  --rojo:#A32D2D; --rojo-cl:#FCEBEB;
+  --azul:#185FA5; --azul-cl:#E6F1FB;
+  --crema:#F9F5ED; --crema-med:#F0E8D4; --crema-osc:#E8DCC4;
+  --gris:#F4F2ED; --borde:#DDD5C0; --texto:#1a1a18; --sub:#7A6F5A;
+  --r:12px; --r-sm:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:var(--texto);min-height:100vh;padding-bottom:80px}
+.page{max-width:680px;margin:0 auto;padding:1.25rem}
+
+/* HEADER — crema editorial */
+.d-header{background:var(--crema-med);border-radius:var(--r);padding:1.5rem;margin-bottom:1.25rem;border-top:3px solid #1a1a18;position:relative}
+.d-header-eyebrow{font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--sub);margin-bottom:8px}
+.d-header-title{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:#1a1a18;line-height:1.2}
+.d-header-line{width:40px;height:3px;background:var(--amber);margin-top:10px;border-radius:2px}
+.d-header-sub{font-size:13px;color:var(--sub);margin-top:8px;line-height:1.6}
+.d-header-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.d-htag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(0,0,0,.06);color:var(--sub);border:1px solid var(--borde)}
+
+/* CARD */
+.d-card{background:#fff;border-radius:var(--r);border:1px solid var(--borde);padding:1.1rem 1.25rem;margin-bottom:12px}
+.d-card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--amber-osc);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.d-card-title::after{content:'';flex:1;height:1px;background:var(--crema-osc)}
+
+/* TABLA */
+.d-ing-table{width:100%;border-collapse:collapse;font-size:14px}
+.d-ing-table th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);padding:6px 10px;border-bottom:2px solid var(--crema-osc)}
+.d-ing-table th.r{text-align:right}
+.d-ing-table td{padding:9px 10px;border-bottom:1px solid var(--crema-med);vertical-align:middle}
+.d-ing-table td.r{text-align:right;font-weight:600;min-width:68px}
+.d-ing-table td.pct{text-align:right;color:#bbb;font-size:12px;min-width:46px}
+.d-ing-table tr.d-sep td{background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--amber-med);padding:5px 10px}
+.d-ing-table tr.d-tot td{border-top:2px solid var(--borde);font-weight:700;background:var(--crema);border-bottom:none}
+
+/* CALCULADORA */
+.d-calc-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--crema-osc)}
+.d-calc-item:last-child{border-bottom:none}
+.d-calc-info{flex:1}
+.d-calc-name{font-size:15px;font-weight:600;line-height:1.3;color:var(--texto)}
+.d-calc-peso{font-size:12px;color:var(--sub);margin-top:2px}
+.d-qty{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.d-qty-btn{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--borde);background:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--sub);font-weight:600;transition:all .12s}
+.d-qty-btn:active{background:var(--amber-cl);border-color:var(--amber);color:var(--amber-osc);transform:scale(.93)}
+.d-qty-num{font-size:22px;font-weight:700;min-width:36px;text-align:center;color:var(--texto)}
+
+/* RESULTADO */
+.d-res-total{background:#1a1a18;border-radius:var(--r-sm);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.d-res-lbl{font-size:12px;font-weight:600;color:rgba(255,255,255,.6)}
+.d-res-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
+.d-res-val{font-family:'Fraunces',serif;font-size:32px;font-weight:700;color:#EF9F27;line-height:1}
+.d-res-unit{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px;text-align:right}
+.d-res-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid var(--crema-med)}
+.d-res-row:last-child{border-bottom:none}
+.d-res-row-lbl{color:var(--sub)}
+.d-res-row-val{font-weight:600}
+
+/* TOGGLE */
+.d-toggle{width:100%;padding:12px 16px;background:var(--crema);border:1px solid var(--borde);border-radius:var(--r-sm);font-size:13px;font-weight:600;color:var(--amber-osc);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;transition:all .15s}
+.d-toggle:active{background:var(--amber-cl);border-color:var(--amber)}
+.d-rec-wrap{overflow:hidden;max-height:0;transition:max-height .4s ease}
+.d-rec-wrap.open{max-height:5000px}
+
+/* PASOS */
+.d-paso{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--crema-med)}
+.d-paso:last-child{border-bottom:none}
+.d-paso-num{width:26px;height:26px;border-radius:50%;background:var(--crema-osc);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--amber-osc);flex-shrink:0;margin-top:1px}
+.d-paso-body{flex:1}
+.d-paso-title{font-size:14px;font-weight:600;margin-bottom:3px;color:var(--texto)}
+.d-paso-desc{font-size:13px;color:var(--sub);line-height:1.6}
+.d-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.d-badge{font-size:11px;font-weight:600;padding:2px 9px;border-radius:100px}
+.d-badge-r{background:var(--rojo-cl);color:var(--rojo)}
+.d-badge-a{background:var(--amber-cl);color:var(--amber-osc)}
+.d-badge-v{background:var(--verde-cl);color:var(--verde-osc)}
+
+/* CRÍTICOS */
+.d-crit{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--crema-med);font-size:13px;line-height:1.6;color:var(--sub)}
+.d-crit:last-child{border-bottom:none}
+.d-crit-icon{color:var(--amber);flex-shrink:0;font-size:15px;margin-top:1px}
+
+/* NOTAS */
+.d-nota{border-radius:var(--r-sm);padding:10px 14px;font-size:13px;border-left:3px solid var(--amber);line-height:1.6;margin-top:10px;background:var(--amber-cl);color:var(--amber-osc)}
+.d-nota-v{background:var(--verde-cl);color:var(--verde-osc);border-left-color:var(--verde)}
+.d-nota-r{background:var(--rojo-cl);color:var(--rojo);border-left-color:var(--rojo)}
+
+/* GRUPO */
+.d-grupo{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--sub);margin:1.25rem 0 8px;display:flex;align-items:center;gap:8px}
+.d-grupo::after{content:'';flex:1;height:1px;background:var(--borde)}
+
+/* HORNO */
+.d-horno-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.d-horno-box{background:var(--crema);border-radius:var(--r-sm);padding:12px;border:1px solid var(--crema-osc)}
+.d-horno-lbl{font-size:10px;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.d-horno-val{font-size:20px;font-weight:700;color:var(--rojo);font-family:'Fraunces',serif}
+.d-horno-desc{font-size:11px;color:var(--sub);margin-top:3px;line-height:1.4}
+
+/* HOME BTN */
+.d-home{position:fixed;bottom:20px;right:20px;z-index:999;display:flex;align-items:center;gap:8px;background:#1a1a18;color:#fff;text-decoration:none;padding:12px 20px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+
+.d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
+.d-card{animation:fadeUp .2s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body><div class="page">
+
+<div class="d-header"><span class="d-header-emoji">🍪</span><div class="d-header-title">Catalinas</div><div class="d-header-sub">Galleta venezolana de papelón · Paquetes de 5 uds · Stock en congelador</div><div class="d-header-tags"><span class="d-htag">Base 1.000 g</span><span class="d-htag">90 g cruda c/u</span><span class="d-htag">Congelador</span></div></div>
+<div class="d-card"><div class="d-card-title">Calculadora — por paquetes</div>
+<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Paquetes de Catalinas</div><div class="d-calc-peso">5 unidades × 90 g = 450 g de masa por paquete</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cb(-1)">−</button><input type="number" class="d-qty-num" id="qb" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInputById(this,'qb')"><button class="d-qty-btn" onclick="cb(1)">+</button></div></div></div>
+<div id="res"><div class="d-card"><div class="d-empty">Ingresá los paquetes para ver la receta ajustada</div></div></div>
+<div class="d-card"><button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button><div class="d-rec-wrap" id="rw">
+<table class="d-ing-table"><thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead><tbody>
+<tr class="d-sep"><td colspan="4">Secos — mise en place previo</td></tr>
+<tr><td>1</td><td>Harina</td><td class="r">500</td><td class="pct">50,0%</td></tr>
+<tr><td>2</td><td>Bicarbonato de sodio</td><td class="r">3,5</td><td class="pct">0,35%</td></tr>
+<tr><td>3</td><td>Polvo de hornear</td><td class="r">3,5</td><td class="pct">0,35%</td></tr>
+<tr><td>4</td><td>Canela en polvo</td><td class="r">3,5</td><td class="pct">0,35%</td></tr>
+<tr><td>5</td><td>Clavo de olor molido</td><td class="r">2,5</td><td class="pct">0,25%</td></tr>
+<tr><td>6</td><td>Jengibre molido</td><td class="r">2,5</td><td class="pct">0,25%</td></tr>
+<tr class="d-sep"><td colspan="4">Húmedos — incorporar al mezclar</td></tr>
+<tr><td>7</td><td>Papelón líquido</td><td class="r">370</td><td class="pct">37,0%</td></tr>
+<tr><td>8</td><td>Azúcar</td><td class="r">45</td><td class="pct">4,5%</td></tr>
+<tr><td>9</td><td>Margarina Cordobesa</td><td class="r">37</td><td class="pct">3,7%</td></tr>
+<tr><td>10</td><td>Huevo líquido</td><td class="r">25</td><td class="pct">2,5%</td></tr>
+<tr><td>11</td><td>Caramelina</td><td class="r">7,5</td><td class="pct">0,75%</td></tr>
+<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000</td><td class="pct">~100%</td></tr>
+</tbody></table>
+<div class="d-nota" style="margin-top:10px">⚠ Tener papelón líquido frío y colado antes de arrancar.
+
+    <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--amber-osc);margin-bottom:12px">Calculadora por kilos de mezcla</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <input type="number" id="ci-kg" min="0.1" step="0.1" placeholder="ej: 4.5" oninput="calcInversa()" style="width:110px;height:46px;border:1.5px solid var(--borde);border-radius:8px;padding:0 12px;font-size:20px;font-weight:600;color:var(--texto);background:white;outline:none;font-family:inherit">
+        <span style="font-size:15px;color:var(--sub);font-weight:600">kg de mezcla</span>
+        <button onclick="document.getElementById('ci-kg').value='';document.getElementById('ci-res').innerHTML=''" style="background:none;border:1px solid var(--borde);border-radius:6px;color:var(--sub);font-size:13px;cursor:pointer;padding:6px 12px;font-family:inherit">Limpiar</button>
+      </div>
+      <div id="ci-res" style="margin-top:12px"></div>
+    </div>
+</div>
+</div></div>
+<div class="d-card"><div class="d-card-title">Proceso — mezcla (~15 min) + formado (~50 min)</div>
+<div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body"><div class="d-paso-title">Mise en place secos</div><div class="d-paso-desc">Pesar y mezclar todos los secos en envase etiquetado. Reservar.</div></div></div>
+<div class="d-paso"><div class="d-paso-num">2</div><div class="d-paso-body"><div class="d-paso-title">Derretir margarina</div><div class="d-paso-desc">Microondas ~1 min.</div></div></div>
+<div class="d-paso"><div class="d-paso-num">3</div><div class="d-paso-body"><div class="d-paso-title">Mezclar húmedos</div><div class="d-paso-desc">Papelón, azúcar, huevo, margarina y caramelina en bowl.</div><div class="d-badges"><span class="d-badge d-badge-a">Lira · Vel 2</span></div></div></div>
+<div class="d-paso"><div class="d-paso-num">4</div><div class="d-paso-body"><div class="d-paso-title">Incorporar secos</div><div class="d-paso-desc">Poco a poco. Masa suave y pastosa.</div><div class="d-badges"><span class="d-badge d-badge-a">Lira · Vel 1</span></div></div></div>
+<div class="d-paso"><div class="d-paso-num">5</div><div class="d-paso-body"><div class="d-paso-title">Reposo</div><div class="d-badges"><span class="d-badge d-badge-r">⏱ 30 minutos</span></div></div></div>
+<div class="d-paso"><div class="d-paso-num">6</div><div class="d-paso-body"><div class="d-paso-title">Porcionar 90 g · bolear · aplastar a 10 cm</div><div class="d-paso-desc">Balanza aceitada. Guantes. Manos aceitadas. 3 capas × 15 uds = 45 por bandeja. Plástico prepicado entre capas.</div><div class="d-badges"><span class="d-badge d-badge-v">10 cm diámetro</span><span class="d-badge d-badge-a">45 uds/bandeja</span></div></div></div>
+<div class="d-paso"><div class="d-paso-num">7</div><div class="d-paso-body"><div class="d-paso-title">Envolver · Etiquetar · Congelador</div><div class="d-paso-desc">Film plástico. Etiqueta: nombre + fecha elaboración + fecha caducidad.</div><div class="d-badges"><span class="d-badge d-badge-r">Etiquetado obligatorio</span></div></div></div>
+</div>
+<div class="d-card"><div class="d-card-title">Puntos críticos</div>
+<div class="d-crit"><span class="d-crit-icon">⚠</span><span>Papelón líquido frío y colado antes de empezar</span></div>
+<div class="d-crit"><span class="d-crit-icon">⚠</span><span>Guantes y manos aceitadas — masa pastosa</span></div>
+<div class="d-crit"><span class="d-crit-icon">⚠</span><span>Reposo 30 min antes de porcionar</span></div>
+<div class="d-crit"><span class="d-crit-icon">⚠</span><span>Plástico prepicado entre cada capa</span></div>
+<div class="d-crit"><span class="d-crit-icon">⚠</span><span>Etiquetado obligatorio antes de entrar al congelador</span></div>
+</div>
+</div><a class="d-home" href="index.html">🏠 Inicio</a></body></html>
+<script>
+const RC=[{n:'Harina',g:500,p:50.0,t:'s'},{n:'Bicarbonato de sodio',g:3.5,p:0.35,t:'s'},{n:'Polvo de hornear',g:3.5,p:0.35,t:'s'},{n:'Canela en polvo',g:3.5,p:0.35,t:'s'},{n:'Clavo de olor molido',g:2.5,p:0.25,t:'s'},{n:'Jengibre molido',g:2.5,p:0.25,t:'s'},{n:'Papelón líquido',g:370,p:37.0,t:'h'},{n:'Azúcar',g:45,p:4.5,t:'h'},{n:'Margarina Cordobesa',g:37,p:3.7,t:'h'},{n:'Huevo líquido',g:25,p:2.5,t:'h'},{n:'Caramelina',g:7.5,p:0.75,t:'h'}];
+const ESPC=['caramelina','bicarbonato','canela','clavo','jengibre'];
+let pq=0;
+function cb(d){var el=document.getElementById('qb');pq=Math.max(0,(parseInt(el.value)||0)+d);el.value=pq;renderC();}
+function syncInputById(el,id){pq=Math.max(0,parseInt(el.value)||0);renderC();}
+function fmtC(n,v){if(ESPC.some(e=>n.toLowerCase().includes(e)))return v.toFixed(1);return v>=10?Math.round(v).toString():(Math.round(v*10)/10).toString();}
+function renderC(){
+  const el=document.getElementById('res');
+  if(!pq){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá los paquetes para ver la receta ajustada</div></div>';return;}
+  const tot=pq*450,f=tot/1000,tandas=Math.round(tot/8100*10)/10;
+  let pt='',rH='';
+  RC.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='s'?'Secos':'Húmedos'}</td></tr>`;pt=i.t;}rH+=`<tr><td>${i.n}</td><td class="r">${fmtC(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${pq} paquete${pq!==1?'s':''} · ${pq*5} Catalinas</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table><div class="d-nota" style="margin-top:10px">Papelón necesario: ${Math.round(370*f)} g</div></div>`;
+}
+function getRecetaBase(){ return [{"n": "Harina", "g": 500, "sep": "Secos"}, {"n": "Bicarbonato de sodio", "g": 3.5, "sep": "Secos"}, {"n": "Polvo de hornear", "g": 3.5, "sep": "Secos"}, {"n": "Canela en polvo", "g": 3.5, "sep": "Secos"}, {"n": "Clavo de olor molido", "g": 2.5, "sep": "Secos"}, {"n": "Jengibre molido", "g": 2.5, "sep": "Secos"}, {"n": "Papelón líquido", "g": 370, "sep": "Húmedos"}, {"n": "Azúcar", "g": 45, "sep": "Húmedos"}, {"n": "Margarina Cordobesa", "g": 37, "sep": "Húmedos"}, {"n": "Huevo líquido", "g": 25, "sep": "Húmedos"}, {"n": "Caramelina", "g": 7.5, "sep": "Húmedos"}]; }
+function calcInversa(){
+  var kg=parseFloat(document.getElementById('ci-kg').value);
+  var el=document.getElementById('ci-res');
+  if(!kg||kg<=0){el.innerHTML='';return;}
+  var rec=getRecetaBase();
+  var ESP=['esencia','vainilla','colorante','propianato','sorbato','glucosa','oxidasa','bicarbonato','frescura','ralladura','enzima'];
+  function fmt(n,v){
+    if(ESP.some(function(e){return n.toLowerCase().indexOf(e)>=0;}))return v.toFixed(1)+' g';
+    if(v>=1000)return Math.round(v/10)*10+' g';
+    if(v>=10)return Math.round(v)+' g';
+    return (Math.round(v*10)/10)+' g';
+  }
+  var html='<table style="width:100%;border-collapse:collapse;font-size:14px"><thead><tr><th style="text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Ingrediente</th><th style="text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Cantidad</th></tr></thead><tbody>';
+  var sep='';
+  for(var i=0;i<rec.length;i++){
+    var ing=rec[i];
+    if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
+    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+  }
+  var tot=0;
+  for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  el.innerHTML=html;
+}
+function tog(){
+  var w=document.getElementById('rw');
+  var l=document.getElementById('tl');
+  if(!w||!l)return;
+  w.classList.toggle('open');
+  l.textContent=w.classList.contains('open')?'Ocultar receta base':'Ver receta base';
+}
+</script>

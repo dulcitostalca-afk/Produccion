@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Pan Francés Venezolano y Pepito · Dulcitos</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --amber:#EF9F27; --amber-osc:#633806; --amber-med:#854F0B; --amber-cl:#FAEEDA;
+  --verde:#1D9E75; --verde-osc:#085041; --verde-cl:#E1F5EE;
+  --purple:#7F77DD; --purple-osc:#26215C; --purple-cl:#EEEDFE;
+  --rojo:#A32D2D; --rojo-cl:#FCEBEB;
+  --azul:#185FA5; --azul-cl:#E6F1FB;
+  --crema:#F9F5ED; --crema-med:#F0E8D4; --crema-osc:#E8DCC4;
+  --gris:#F4F2ED; --borde:#DDD5C0; --texto:#1a1a18; --sub:#7A6F5A;
+  --r:12px; --r-sm:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:var(--texto);min-height:100vh;padding-bottom:80px}
+.page{max-width:680px;margin:0 auto;padding:1.25rem}
+
+/* HEADER — crema editorial */
+.d-header{background:var(--crema-med);border-radius:var(--r);padding:1.5rem;margin-bottom:1.25rem;border-top:3px solid #1a1a18;position:relative}
+.d-header-eyebrow{font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--sub);margin-bottom:8px}
+.d-header-title{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:#1a1a18;line-height:1.2}
+.d-header-line{width:40px;height:3px;background:var(--amber);margin-top:10px;border-radius:2px}
+.d-header-sub{font-size:13px;color:var(--sub);margin-top:8px;line-height:1.6}
+.d-header-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.d-htag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(0,0,0,.06);color:var(--sub);border:1px solid var(--borde)}
+
+/* CARD */
+.d-card{background:#fff;border-radius:var(--r);border:1px solid var(--borde);padding:1.1rem 1.25rem;margin-bottom:12px}
+.d-card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--amber-osc);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.d-card-title::after{content:'';flex:1;height:1px;background:var(--crema-osc)}
+
+/* TABLA */
+.d-ing-table{width:100%;border-collapse:collapse;font-size:14px}
+.d-ing-table th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);padding:6px 10px;border-bottom:2px solid var(--crema-osc)}
+.d-ing-table th.r{text-align:right}
+.d-ing-table td{padding:9px 10px;border-bottom:1px solid var(--crema-med);vertical-align:middle}
+.d-ing-table td.r{text-align:right;font-weight:600;min-width:68px}
+.d-ing-table td.pct{text-align:right;color:#bbb;font-size:12px;min-width:46px}
+.d-ing-table tr.d-sep td{background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--amber-med);padding:5px 10px}
+.d-ing-table tr.d-tot td{border-top:2px solid var(--borde);font-weight:700;background:var(--crema);border-bottom:none}
+
+/* CALCULADORA */
+.d-calc-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--crema-osc)}
+.d-calc-item:last-child{border-bottom:none}
+.d-calc-info{flex:1}
+.d-calc-name{font-size:15px;font-weight:600;line-height:1.3;color:var(--texto)}
+.d-calc-peso{font-size:12px;color:var(--sub);margin-top:2px}
+.d-qty{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.d-qty-btn{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--borde);background:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--sub);font-weight:600;transition:all .12s}
+.d-qty-btn:active{background:var(--amber-cl);border-color:var(--amber);color:var(--amber-osc);transform:scale(.93)}
+.d-qty-num{font-size:22px;font-weight:700;min-width:36px;text-align:center;color:var(--texto)}
+
+/* RESULTADO */
+.d-res-total{background:#1a1a18;border-radius:var(--r-sm);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.d-res-lbl{font-size:12px;font-weight:600;color:rgba(255,255,255,.6)}
+.d-res-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
+.d-res-val{font-family:'Fraunces',serif;font-size:32px;font-weight:700;color:#EF9F27;line-height:1}
+.d-res-unit{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px;text-align:right}
+.d-res-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid var(--crema-med)}
+.d-res-row:last-child{border-bottom:none}
+.d-res-row-lbl{color:var(--sub)}
+.d-res-row-val{font-weight:600}
+
+/* TOGGLE */
+.d-toggle{width:100%;padding:12px 16px;background:var(--crema);border:1px solid var(--borde);border-radius:var(--r-sm);font-size:13px;font-weight:600;color:var(--amber-osc);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;transition:all .15s}
+.d-toggle:active{background:var(--amber-cl);border-color:var(--amber)}
+.d-rec-wrap{overflow:hidden;max-height:0;transition:max-height .4s ease}
+.d-rec-wrap.open{max-height:5000px}
+
+/* PASOS */
+.d-paso{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--crema-med)}
+.d-paso:last-child{border-bottom:none}
+.d-paso-num{width:26px;height:26px;border-radius:50%;background:var(--crema-osc);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--amber-osc);flex-shrink:0;margin-top:1px}
+.d-paso-body{flex:1}
+.d-paso-title{font-size:14px;font-weight:600;margin-bottom:3px;color:var(--texto)}
+.d-paso-desc{font-size:13px;color:var(--sub);line-height:1.6}
+.d-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.d-badge{font-size:11px;font-weight:600;padding:2px 9px;border-radius:100px}
+.d-badge-r{background:var(--rojo-cl);color:var(--rojo)}
+.d-badge-a{background:var(--amber-cl);color:var(--amber-osc)}
+.d-badge-v{background:var(--verde-cl);color:var(--verde-osc)}
+
+/* CRÍTICOS */
+.d-crit{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--crema-med);font-size:13px;line-height:1.6;color:var(--sub)}
+.d-crit:last-child{border-bottom:none}
+.d-crit-icon{color:var(--amber);flex-shrink:0;font-size:15px;margin-top:1px}
+
+/* NOTAS */
+.d-nota{border-radius:var(--r-sm);padding:10px 14px;font-size:13px;border-left:3px solid var(--amber);line-height:1.6;margin-top:10px;background:var(--amber-cl);color:var(--amber-osc)}
+.d-nota-v{background:var(--verde-cl);color:var(--verde-osc);border-left-color:var(--verde)}
+.d-nota-r{background:var(--rojo-cl);color:var(--rojo);border-left-color:var(--rojo)}
+
+/* GRUPO */
+.d-grupo{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--sub);margin:1.25rem 0 8px;display:flex;align-items:center;gap:8px}
+.d-grupo::after{content:'';flex:1;height:1px;background:var(--borde)}
+
+/* HORNO */
+.d-horno-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.d-horno-box{background:var(--crema);border-radius:var(--r-sm);padding:12px;border:1px solid var(--crema-osc)}
+.d-horno-lbl{font-size:10px;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.d-horno-val{font-size:20px;font-weight:700;color:var(--rojo);font-family:'Fraunces',serif}
+.d-horno-desc{font-size:11px;color:var(--sub);margin-top:3px;line-height:1.4}
+
+/* HOME BTN */
+.d-home{position:fixed;bottom:20px;right:20px;z-index:999;display:flex;align-items:center;gap:8px;background:#1a1a18;color:#fff;text-decoration:none;padding:12px 20px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+
+.d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
+.d-card{animation:fadeUp .2s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body><div class="page">
+
+<div class="d-header"><span class="d-header-emoji">🍞</span><div class="d-header-title">Pan Francés Venezolano y Pepito</div><div class="d-header-sub">Masa base compartida · Francés 95 g · Pepito 30 cm (190 g) y 45 cm (280 g) · Sin premezclas</div><div class="d-header-tags"><span class="d-htag">Base 1.000 g</span><span class="d-htag">Hornos de piso · Ventus</span><span class="d-htag">Panadería</span></div></div>
+<div class="d-card"><div class="d-card-title">Pesos por producto</div>
+<table class="d-ing-table"><thead><tr><th>Producto</th><th class="r">Masa cruda</th><th>Empaque</th></tr></thead><tbody>
+<tr><td>Pan francés venezolano</td><td class="r">95 g</td><td style="font-size:12px;color:var(--sub)">10 uds detal / suelto mayor</td></tr>
+<tr><td>Pepito 30 cm</td><td class="r">190 g</td><td style="font-size:12px;color:var(--sub)">5 uds</td></tr>
+<tr><td>Pepito 45 cm</td><td class="r">280 g</td><td style="font-size:12px;color:var(--sub)">5 uds</td></tr>
+</tbody></table></div>
+<div class="d-card"><div class="d-card-title">Calculadora — por unidades</div>
+<div class="d-grupo">🥖 Pan Francés</div>
+<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Pan Francés Venezolano</div><div class="d-calc-peso">95 g · 10 uds por bandeja · 150 uds por carro</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cfp('pf',-1)">−</button><input type="number" class="d-qty-num" id="q-pf" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'pf')"><button class="d-qty-btn" onclick="cfp('pf',1)">+</button></div></div>
+<div class="d-grupo">🥖 Pepito / Sándwich</div>
+<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Pepito 30 cm</div><div class="d-calc-peso">190 g · 5 uds por bandeja · Bandeja perforada 58×68 cm</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cfp('p30',-1)">−</button><input type="number" class="d-qty-num" id="q-p30" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'p30')"><button class="d-qty-btn" onclick="cfp('p30',1)">+</button></div></div>
+<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Pepito 45 cm</div><div class="d-calc-peso">280 g · 5 uds por bandeja · Bandeja perforada 58×68 cm</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cfp('p45',-1)">−</button><input type="number" class="d-qty-num" id="q-p45" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'p45')"><button class="d-qty-btn" onclick="cfp('p45',1)">+</button></div></div>
+</div>
+<div id="res"><div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div></div>
+<div class="d-card"><button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button><div class="d-rec-wrap" id="rw">
+<table class="d-ing-table"><thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead><tbody>
+<tr class="d-sep"><td colspan="4">Tramo 1 — Mise en place · caja plástica pre-pesada</td></tr>
+<tr><td>1</td><td>Harina Verde</td><td class="r">454</td><td class="pct">45,4%</td></tr>
+<tr><td>2</td><td>Harina SP2</td><td class="r">195</td><td class="pct">19,5%</td></tr>
+<tr><td>3</td><td>Azúcar</td><td class="r">25</td><td class="pct">2,5%</td></tr>
+<tr><td>4</td><td>Mejorador Puratos</td><td class="r">12</td><td class="pct">1,2%</td></tr>
+<tr><td>5</td><td>Propianato (0,15–0,2%)</td><td class="r">0,5</td><td class="pct">0,05%</td></tr>
+<tr><td>6</td><td>Sorbato de Potasio</td><td class="r">0,25</td><td class="pct">0,025%</td></tr>
+<tr class="d-sep"><td colspan="4">Tramo 2 — Al amasar · lo agrega el panadero</td></tr>
+<tr><td>7</td><td>Agua fría + hielo</td><td class="r">273</td><td class="pct">27,3%</td></tr>
+<tr><td>8</td><td>Levadura fresca</td><td class="r">20</td><td class="pct">2,0%</td></tr>
+<tr><td>9</td><td>Manteca La Granja</td><td class="r">25</td><td class="pct">2,5%</td></tr>
+<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.004,75</td><td class="pct">~100%</td></tr>
+</tbody></table>
+<div class="d-nota" style="margin-top:10px">⚠ Balanza de GRAMAJE para Propianato y Sorbato. Hielo base 800 g — ajustar según clima.
+
+    <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--amber-osc);margin-bottom:12px">Calculadora por kilos de mezcla</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <input type="number" id="ci-kg" min="0.1" step="0.1" placeholder="ej: 4.5" oninput="calcInversa()" style="width:110px;height:46px;border:1.5px solid var(--borde);border-radius:8px;padding:0 12px;font-size:20px;font-weight:600;color:var(--texto);background:white;outline:none;font-family:inherit">
+        <span style="font-size:15px;color:var(--sub);font-weight:600">kg de mezcla</span>
+        <button onclick="document.getElementById('ci-kg').value='';document.getElementById('ci-res').innerHTML=''" style="background:none;border:1px solid var(--borde);border-radius:6px;color:var(--sub);font-size:13px;cursor:pointer;padding:6px 12px;font-family:inherit">Limpiar</button>
+      </div>
+      <div id="ci-res" style="margin-top:12px"></div>
+    </div>
+</div>
+</div></div>
+<div class="d-card"><div class="d-card-title">Vista del panadero — lo que agrega al amasar</div>
+<table class="d-ing-table"><thead><tr><th>Paso</th><th>Acción / Ingrediente</th><th class="r">Cantidad</th></tr></thead><tbody>
+<tr><td>1</td><td>Volcar caja de mise en place en la amasadora</td><td class="r">—</td></tr>
+<tr><td>2</td><td>Agua fría + hielo (ver cantidad en la calculadora)</td><td class="r">273 g total</td></tr>
+<tr><td>3</td><td>Levadura fresca</td><td class="r">20 g</td></tr>
+<tr><td>4</td><td>Manteca La Granja</td><td class="r">25 g</td></tr>
+</tbody></table></div>
+<div class="d-card"><div class="d-card-title">Proceso — Pan Francés</div>
+<div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body"><div class="d-paso-title">Amasado 15 min · Sobado ~15 pasadas</div></div></div>
+<div class="d-paso"><div class="d-paso-num">2</div><div class="d-paso-body"><div class="d-paso-title">Porcionar bloques de 2.850 g</div><div class="d-paso-desc">Cada bloque rinde 30 panes de 95 g.</div></div></div>
+<div class="d-paso"><div class="d-paso-num">3</div><div class="d-paso-body"><div class="d-paso-title">Ovilladora → Formadora → 16 cm a mano</div><div class="d-paso-desc">10 uds por bandeja · 15 bandejas por carro.</div></div></div>
+<div class="d-paso"><div class="d-paso-num">4</div><div class="d-paso-body"><div class="d-paso-title">Fermentadora 1 hora base</div><div class="d-paso-desc">Ajustar según tamaño visual.</div></div></div>
+<div class="d-paso"><div class="d-paso-num">5</div><div class="d-paso-body"><div class="d-paso-title">Greñar antes de entrar al horno</div></div></div>
+<div class="d-paso"><div class="d-paso-num">6</div><div class="d-paso-body"><div class="d-paso-title">Hornos de piso — 20 min de calentamiento previo</div></div></div>
+</div>
+<div class="d-card"><div class="d-card-title">Proceso — Pepito / Sándwich</div>
+<div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body"><div class="d-paso-title">Corte rectangular · Formadora Gpaniz · 40 cm a mano</div><div class="d-paso-desc">5 uds por bandeja perforada 58×68 cm.</div></div></div>
+<div class="d-paso"><div class="d-paso-num">2</div><div class="d-paso-body"><div class="d-paso-title">Fermentadora N°3 — 2 horas base</div><div class="d-badges"><span class="d-badge d-badge-r">⏱ 2 horas base</span></div></div></div>
+<div class="d-paso"><div class="d-paso-num">3</div><div class="d-paso-body"><div class="d-paso-title">Greñar al completar 1 hora de fermentación</div><div class="d-paso-desc">La masa es más manejable y se espicha menos.</div><div class="d-badges"><span class="d-badge d-badge-r">Al completar 1h</span></div></div></div>
+<div class="d-paso"><div class="d-paso-num">4</div><div class="d-paso-body"><div class="d-paso-title">Hornos Ventus 4 y 5 — convectores</div></div></div>
+</div>
+</div><a class="d-home" href="index.html">🏠 Inicio</a></body></html>
+<script>
+const PFP={pf:{n:'Pan Francés',g:95},p30:{n:'Pepito 30cm',g:190},p45:{n:'Pepito 45cm',g:280}};
+const RFPP=[{n:'Harina Verde',g:454,p:45.4,t:'m'},{n:'Harina SP2',g:195,p:19.5,t:'m'},{n:'Azúcar',g:25,p:2.5,t:'m'},{n:'Mejorador Puratos',g:12,p:1.2,t:'m'},{n:'Propianato',g:0.5,p:0.05,t:'m'},{n:'Sorbato de Potasio',g:0.25,p:0.025,t:'m'},{n:'Agua fría + hielo',g:273,p:27.3,t:'a'},{n:'Levadura fresca',g:20,p:2.0,t:'a'},{n:'Manteca La Granja',g:25,p:2.5,t:'a'}];
+const ESPFP=['propianato','sorbato'];
+let qfp={pf:0,p30:0,p45:0};
+function cfp(k,d){var el=document.getElementById('q-'+k);qfp[k]=Math.max(0,(parseInt(el.value)||0)+d);el.value=qfp[k];renderFP();}
+function syncInput(el,key){qfp[key]=Math.max(0,parseInt(el.value)||0);renderFP();}
+function fmtFP(n,v){if(ESPFP.some(e=>n.toLowerCase().includes(e)))return v.toFixed(2);return v>=10?Math.round(v).toString():(Math.round(v*10)/10).toString();}
+const HIELO_PCT_FP = 900/19000;
+function renderFP(){
+  let tot=0,desg='';
+  Object.keys(qfp).forEach(k=>{if(qfp[k]>0){const m=qfp[k]*PFP[k].g;tot+=m;desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qfp[k]} × ${PFP[k].n} (${PFP[k].g}g)</span><span class="d-res-row-val">${m.toLocaleString('es-CL')} g</span></div>`;}});
+  const el=document.getElementById('res');
+  if(!tot){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div>';return;}
+  const f=tot/1000;let pt='',rH='';
+  RFPP.forEach(i=>{
+    if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='m'?'Mise en place':'Al amasar'}</td></tr>`;pt=i.t;}
+    if(i.n==='Agua fría + hielo'){
+      const agua=Math.round(i.g*f);
+      const hielo=Math.round(tot*HIELO_PCT_FP);
+      rH+=`<tr><td>${i.n}</td><td class="r">${agua.toLocaleString('es-CL')} g <span style="font-size:11px;color:var(--azul);font-weight:600">(incluye ${hielo} g de hielo)</span></td><td class="pct">${i.p}%</td></tr>`;
+    } else {
+      rH+=`<tr><td>${i.n}</td><td class="r">${fmtFP(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;
+    }
+  });
+  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa necesaria</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
+}
+function getRecetaBase(){ return [{"n": "Harina Verde", "g": 454, "sep": "Mise en place"}, {"n": "Harina SP2", "g": 195, "sep": "Mise en place"}, {"n": "Azúcar", "g": 25, "sep": "Mise en place"}, {"n": "Mejorador Puratos", "g": 12, "sep": "Mise en place"}, {"n": "Propianato", "g": 0.5, "sep": "Mise en place"}, {"n": "Sorbato de Potasio", "g": 0.25, "sep": "Mise en place"}, {"n": "Agua fría + hielo", "g": 273, "sep": "Al amasar"}, {"n": "Levadura fresca", "g": 20, "sep": "Al amasar"}, {"n": "Manteca La Granja", "g": 25, "sep": "Al amasar"}]; }
+function calcInversa(){
+  var kg=parseFloat(document.getElementById('ci-kg').value);
+  var el=document.getElementById('ci-res');
+  if(!kg||kg<=0){el.innerHTML='';return;}
+  var rec=getRecetaBase();
+  var ESP=['esencia','vainilla','colorante','propianato','sorbato','glucosa','oxidasa','bicarbonato','frescura','ralladura','enzima'];
+  function fmt(n,v){
+    if(ESP.some(function(e){return n.toLowerCase().indexOf(e)>=0;}))return v.toFixed(1)+' g';
+    if(v>=1000)return Math.round(v/10)*10+' g';
+    if(v>=10)return Math.round(v)+' g';
+    return (Math.round(v*10)/10)+' g';
+  }
+  var html='<table style="width:100%;border-collapse:collapse;font-size:14px"><thead><tr><th style="text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Ingrediente</th><th style="text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Cantidad</th></tr></thead><tbody>';
+  var sep='';
+  for(var i=0;i<rec.length;i++){
+    var ing=rec[i];
+    if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
+    if(ing.n.indexOf('Agua')>=0&&ing.n.indexOf('hielo')>=0){
+      var hielo=Math.round(kg*1000*HIELO_PCT_FP);
+      html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+' <span style="font-size:11px;color:#185FA5;font-weight:600">('+hielo+' g hielo)</span></td></tr>';
+    } else {
+      html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    }
+  }
+  var tot=0;
+  for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  el.innerHTML=html;
+}
+function tog(){
+  var w=document.getElementById('rw');
+  var l=document.getElementById('tl');
+  if(!w||!l)return;
+  w.classList.toggle('open');
+  l.textContent=w.classList.contains('open')?'Ocultar receta base':'Ver receta base';
+}
+</script>

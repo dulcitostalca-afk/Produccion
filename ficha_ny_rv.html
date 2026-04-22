@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Galleta New York
+Red Velvet Cookie · Dulcitos</title>
+<style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --amber:#EF9F27; --amber-osc:#633806; --amber-med:#854F0B; --amber-cl:#FAEEDA;
+  --verde:#1D9E75; --verde-osc:#085041; --verde-cl:#E1F5EE;
+  --purple:#7F77DD; --purple-osc:#26215C; --purple-cl:#EEEDFE;
+  --rojo:#A32D2D; --rojo-cl:#FCEBEB;
+  --azul:#185FA5; --azul-cl:#E6F1FB;
+  --crema:#F9F5ED; --crema-med:#F0E8D4; --crema-osc:#E8DCC4;
+  --gris:#F4F2ED; --borde:#DDD5C0; --texto:#1a1a18; --sub:#7A6F5A;
+  --r:12px; --r-sm:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:var(--texto);min-height:100vh;padding-bottom:80px}
+.page{max-width:680px;margin:0 auto;padding:1.25rem}
+
+/* HEADER — crema editorial */
+.d-header{background:var(--crema-med);border-radius:var(--r);padding:1.5rem;margin-bottom:1.25rem;border-top:3px solid #1a1a18;position:relative}
+.d-header-eyebrow{font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--sub);margin-bottom:8px}
+.d-header-title{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:#1a1a18;line-height:1.2}
+.d-header-line{width:40px;height:3px;background:var(--amber);margin-top:10px;border-radius:2px}
+.d-header-sub{font-size:13px;color:var(--sub);margin-top:8px;line-height:1.6}
+.d-header-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.d-htag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(0,0,0,.06);color:var(--sub);border:1px solid var(--borde)}
+
+/* CARD */
+.d-card{background:#fff;border-radius:var(--r);border:1px solid var(--borde);padding:1.1rem 1.25rem;margin-bottom:12px}
+.d-card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--amber-osc);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.d-card-title::after{content:'';flex:1;height:1px;background:var(--crema-osc)}
+
+/* TABLA */
+.d-ing-table{width:100%;border-collapse:collapse;font-size:14px}
+.d-ing-table th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);padding:6px 10px;border-bottom:2px solid var(--crema-osc)}
+.d-ing-table th.r{text-align:right}
+.d-ing-table td{padding:9px 10px;border-bottom:1px solid var(--crema-med);vertical-align:middle}
+.d-ing-table td.r{text-align:right;font-weight:600;min-width:68px}
+.d-ing-table td.pct{text-align:right;color:#bbb;font-size:12px;min-width:46px}
+.d-ing-table tr.d-sep td{background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--amber-med);padding:5px 10px}
+.d-ing-table tr.d-tot td{border-top:2px solid var(--borde);font-weight:700;background:var(--crema);border-bottom:none}
+
+/* CALCULADORA */
+.d-calc-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--crema-osc)}
+.d-calc-item:last-child{border-bottom:none}
+.d-calc-info{flex:1}
+.d-calc-name{font-size:15px;font-weight:600;line-height:1.3;color:var(--texto)}
+.d-calc-peso{font-size:12px;color:var(--sub);margin-top:2px}
+.d-qty{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.d-qty-btn{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--borde);background:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--sub);font-weight:600;transition:all .12s}
+.d-qty-btn:active{background:var(--amber-cl);border-color:var(--amber);color:var(--amber-osc);transform:scale(.93)}
+.d-qty-num{font-size:22px;font-weight:700;min-width:36px;text-align:center;color:var(--texto)}
+
+/* RESULTADO */
+.d-res-total{background:#1a1a18;border-radius:var(--r-sm);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.d-res-lbl{font-size:12px;font-weight:600;color:rgba(255,255,255,.6)}
+.d-res-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
+.d-res-val{font-family:'Fraunces',serif;font-size:32px;font-weight:700;color:#EF9F27;line-height:1}
+.d-res-unit{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px;text-align:right}
+.d-res-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid var(--crema-med)}
+.d-res-row:last-child{border-bottom:none}
+.d-res-row-lbl{color:var(--sub)}
+.d-res-row-val{font-weight:600}
+
+/* TOGGLE */
+.d-toggle{width:100%;padding:12px 16px;background:var(--crema);border:1px solid var(--borde);border-radius:var(--r-sm);font-size:13px;font-weight:600;color:var(--amber-osc);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;transition:all .15s}
+.d-toggle:active{background:var(--amber-cl);border-color:var(--amber)}
+.d-rec-wrap{overflow:hidden;max-height:0;transition:max-height .4s ease}
+.d-rec-wrap.open{max-height:5000px}
+
+/* PASOS */
+.d-paso{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--crema-med)}
+.d-paso:last-child{border-bottom:none}
+.d-paso-num{width:26px;height:26px;border-radius:50%;background:var(--crema-osc);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--amber-osc);flex-shrink:0;margin-top:1px}
+.d-paso-body{flex:1}
+.d-paso-title{font-size:14px;font-weight:600;margin-bottom:3px;color:var(--texto)}
+.d-paso-desc{font-size:13px;color:var(--sub);line-height:1.6}
+.d-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.d-badge{font-size:11px;font-weight:600;padding:2px 9px;border-radius:100px}
+.d-badge-r{background:var(--rojo-cl);color:var(--rojo)}
+.d-badge-a{background:var(--amber-cl);color:var(--amber-osc)}
+.d-badge-v{background:var(--verde-cl);color:var(--verde-osc)}
+
+/* CRÍTICOS */
+.d-crit{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--crema-med);font-size:13px;line-height:1.6;color:var(--sub)}
+.d-crit:last-child{border-bottom:none}
+.d-crit-icon{color:var(--amber);flex-shrink:0;font-size:15px;margin-top:1px}
+
+/* NOTAS */
+.d-nota{border-radius:var(--r-sm);padding:10px 14px;font-size:13px;border-left:3px solid var(--amber);line-height:1.6;margin-top:10px;background:var(--amber-cl);color:var(--amber-osc)}
+.d-nota-v{background:var(--verde-cl);color:var(--verde-osc);border-left-color:var(--verde)}
+.d-nota-r{background:var(--rojo-cl);color:var(--rojo);border-left-color:var(--rojo)}
+
+/* GRUPO */
+.d-grupo{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--sub);margin:1.25rem 0 8px;display:flex;align-items:center;gap:8px}
+.d-grupo::after{content:'';flex:1;height:1px;background:var(--borde)}
+
+/* HORNO */
+.d-horno-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.d-horno-box{background:var(--crema);border-radius:var(--r-sm);padding:12px;border:1px solid var(--crema-osc)}
+.d-horno-lbl{font-size:10px;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.d-horno-val{font-size:20px;font-weight:700;color:var(--rojo);font-family:'Fraunces',serif}
+.d-horno-desc{font-size:11px;color:var(--sub);margin-top:3px;line-height:1.4}
+
+/* HOME BTN */
+.d-home{position:fixed;bottom:20px;right:20px;z-index:999;display:flex;align-items:center;gap:8px;background:#1a1a18;color:#fff;text-decoration:none;padding:12px 20px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+
+.d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
+.d-card{animation:fadeUp .2s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body><div class="page">
+<div class="d-header">
+  <div class="d-header-eyebrow">Pastelería · Cookie Red Velvet</div>
+  <div class="d-header-title">Galleta New York
+Red Velvet Cookie</div>
+  <div class="d-header-line"></div>
+  <div class="d-header-sub">Masa base Red Velvet con chispa blanca · Se congela cruda en bolitas · 4 tamaños · Horno de piso</div>
+  <div class="d-header-tags"><span class="d-htag">Base 1.000 g</span><span class="d-htag">4 tamaños</span><span class="d-htag">Stock congelador</span><span class="d-htag">Chispa blanca</span></div>
+</div>
+
+<div class="d-card">
+  <div class="d-card-title">Calculadora — por unidades</div>
+  <div class="d-calc-item">
+  <div class="d-calc-info">
+    <div class="d-calc-name">Galleta 150 g</div>
+    <div class="d-calc-peso">210°C / 190°C · 12–15 min</div>
+  </div>
+  <div class="d-qty">
+    <button class="d-qty-btn" onclick="cny('t150',-1)">−</button>
+    <input type="number" class="d-qty-num" id="q-t150" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'t150')">
+    <button class="d-qty-btn" onclick="cny('t150',1)">+</button>
+  </div>
+</div><div class="d-calc-item">
+  <div class="d-calc-info">
+    <div class="d-calc-name">Galleta 100 g</div>
+    <div class="d-calc-peso">200°C / 190°C · 12–15 min</div>
+  </div>
+  <div class="d-qty">
+    <button class="d-qty-btn" onclick="cny('t100',-1)">−</button>
+    <input type="number" class="d-qty-num" id="q-t100" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'t100')">
+    <button class="d-qty-btn" onclick="cny('t100',1)">+</button>
+  </div>
+</div><div class="d-calc-item">
+  <div class="d-calc-info">
+    <div class="d-calc-name">Galleta 25 g</div>
+    <div class="d-calc-peso">190°C / 180°C · ~10 min</div>
+  </div>
+  <div class="d-qty">
+    <button class="d-qty-btn" onclick="cny('t25',-1)">−</button>
+    <input type="number" class="d-qty-num" id="q-t25" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'t25')">
+    <button class="d-qty-btn" onclick="cny('t25',1)">+</button>
+  </div>
+</div><div class="d-calc-item">
+  <div class="d-calc-info">
+    <div class="d-calc-name">Galleta 11 g</div>
+    <div class="d-calc-peso">190°C / 180°C · ~7 min</div>
+  </div>
+  <div class="d-qty">
+    <button class="d-qty-btn" onclick="cny('t11',-1)">−</button>
+    <input type="number" class="d-qty-num" id="q-t11" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'t11')">
+    <button class="d-qty-btn" onclick="cny('t11',1)">+</button>
+  </div>
+</div>
+</div>
+
+<div id="res"><div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div></div>
+
+<div class="d-card">
+  <button class="d-toggle" onclick="tog()"><span id="tl">Ver receta base</span></button>
+  <div class="d-rec-wrap" id="rw">
+    <table class="d-ing-table">
+      <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
+      <tbody><tr><td>1</td><td>Mantequilla + Margarina</td><td class="r">195</td><td class="pct">19.5%</td></tr><tr><td>2</td><td>Azúcar blanco</td><td class="r">78</td><td class="pct">7.8%</td></tr><tr><td>3</td><td>Azúcar moreno</td><td class="r">112</td><td class="pct">11.2%</td></tr><tr><td>4</td><td>Huevo</td><td class="r">88</td><td class="pct">8.8%</td></tr><tr><td>5</td><td>Vainilla blanca</td><td class="r">2.9</td><td class="pct">0.29%</td></tr><tr><td>6</td><td>Harina pastelera</td><td class="r">390</td><td class="pct">38.4%</td></tr><tr><td>7</td><td>Polvo de hornear</td><td class="r">4.9</td><td class="pct">0.49%</td></tr><tr><td>8</td><td>Soda (Bicarbonato)</td><td class="r">4.9</td><td class="pct">0.49%</td></tr><tr><td>9</td><td>Sal</td><td class="r">2.9</td><td class="pct">0.29%</td></tr><tr><td>10</td><td>Chispa chocolate blanco</td><td class="r">97</td><td class="pct">9.7%</td></tr><tr><td>11</td><td>Cacao</td><td class="r">11.7</td><td class="pct">1.17%</td></tr><tr><td>12</td><td>Maicena</td><td class="r">11.7</td><td class="pct">1.17%</td></tr><tr><td>13</td><td>Colorante rojo en polvo</td><td class="r">1.4</td><td class="pct">0.14%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">994</td><td class="pct">~100%</td></tr></tbody>
+    </table>
+    <div class="d-nota" style="margin-top:10px">⚠ Mantequilla y margarina a temperatura ambiente antes de comenzar.<br>⚠ Colorante rojo en polvo — balanza GRAMAJE.</div>
+    <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--amber-osc);margin-bottom:12px">Calculadora por kilos de mezcla</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <input type="number" id="ci-kg" min="0.1" step="0.5" placeholder="ej: 5" oninput="calcInversa()" style="width:110px;height:46px;border:1.5px solid var(--borde);border-radius:8px;padding:0 12px;font-size:20px;font-weight:600;color:var(--texto);background:white;outline:none;font-family:inherit">
+        <span style="font-size:15px;color:var(--sub);font-weight:600">kg</span>
+        <button onclick="document.getElementById('ci-kg').value='';document.getElementById('ci-res').innerHTML=''" style="background:none;border:1px solid var(--borde);border-radius:6px;color:var(--sub);font-size:13px;cursor:pointer;padding:6px 12px;font-family:inherit">Limpiar</button>
+      </div>
+      <div id="ci-res" style="margin-top:12px"></div>
+    </div>
+  </div>
+</div>
+
+<div class="d-card">
+  <div class="d-card-title">Proceso de elaboración</div>
+  
+  <div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body"><div class="d-paso-title">Preparación previa</div><div class="d-paso-desc">Sacar mantequilla y margarina de la nevera con anticipación. Deben estar a temperatura ambiente.</div><div class="d-badges"><span class="d-badge d-badge-r">Crítico — no usar frías</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">2</div><div class="d-paso-body"><div class="d-paso-title">Procesar azúcar moreno si es necesario</div><div class="d-paso-desc">Si está muy compacto, triturarlo en el procesador de alimentos antes de usar.</div><div class="d-badges"><span class="d-badge d-badge-a">Solo si está muy compacto</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">3</div><div class="d-paso-body"><div class="d-paso-title">Cremar mantequilla + margarina con azúcares</div><div class="d-paso-desc">Pesar mantequilla y margarina en cubos. Integrar con azúcar blanco y azúcar moreno. Batir hasta mezcla cremosa.</div><div class="d-badges"><span class="d-badge d-badge-a">Batidora</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">4</div><div class="d-paso-body"><div class="d-paso-title">Incorporar huevos</div><div class="d-paso-desc">Agregar los huevos uno a uno mientras se bate.</div></div></div>
+  <div class="d-paso"><div class="d-paso-num">5</div><div class="d-paso-body"><div class="d-paso-title">Agregar Vainilla blanca</div><div class="d-paso-desc">Incorporar la esencia y mezclar.</div><div class="d-badges"><span class="d-badge d-badge-a">Balanza GRAMAJE</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">6</div><div class="d-paso-body"><div class="d-paso-title">Mezclar secos aparte</div><div class="d-paso-desc">Pesar y mezclar harina pastelera, polvo de hornear, soda (bicarbonato), sal · Cacao · Maicena · Colorante rojo en polvo.</div><div class="d-badges"><span class="d-badge d-badge-a">Balanza GRAMAJE: polvo hornear · soda · sal</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">7</div><div class="d-paso-body"><div class="d-paso-title">Incorporar Chispa chocolate blanco</div><div class="d-paso-desc">Integrar chispas de chocolate blanco con movimientos envolventes.</div></div></div>
+  <div class="d-paso"><div class="d-paso-num">8</div><div class="d-paso-body"><div class="d-paso-title">Porcionar en bolitas</div><div class="d-paso-desc">Armar bolitas según el tamaño: 11 g · 25 g · 100 g · 150 g. Usar balanza para exactitud.</div><div class="d-badges"><span class="d-badge d-badge-v">Balanza digital por unidad</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">9</div><div class="d-paso-body"><div class="d-paso-title">Congelar en bandeja</div><div class="d-paso-desc">Colocar mat o bolsa sobre bandeja 60×40 cm. Disponer bolitas (máx. 50 uds de 100 g). Cubrir con dos bolsas grandes. Etiquetar con información y fecha.</div><div class="d-badges"><span class="d-badge d-badge-v">Etiqueta obligatoria · máx. 50 uds/bandeja</span></div></div></div>
+  <div class="d-paso"><div class="d-paso-num">10</div><div class="d-paso-body"><div class="d-paso-title">Hornear según pedido</div><div class="d-paso-desc">Sacar del congelador según necesidad y hornear en horno de piso según tamaño.</div><div class="d-badges"><span class="d-badge d-badge-a">Ver tabla de temperaturas</span></div></div></div>
+</div>
+
+<div class="d-card">
+  <div class="d-card-title">Temperaturas y tiempos por tamaño</div>
+  <table class="d-ing-table">
+    <thead><tr><th>Tamaño</th><th class="r">Temp. arriba/abajo</th><th class="r">Tiempo</th><th class="r">—</th></tr></thead>
+    <tbody><tr><td>Galleta 150 g</td><td class="r">210°C / 190°C</td><td class="r">12–15 min</td><td class="r">—</td></tr><tr><td>Galleta 100 g</td><td class="r">200°C / 190°C</td><td class="r">12–15 min</td><td class="r">—</td></tr><tr><td>Galleta 25 g</td><td class="r">190°C / 180°C</td><td class="r">~10 min</td><td class="r">—</td></tr><tr><td>Galleta 11 g</td><td class="r">190°C / 180°C</td><td class="r">~7 min</td><td class="r">—</td></tr></tbody>
+  </table>
+</div>
+
+<div class="d-card">
+  <div class="d-card-title">Rendimiento y almacenaje</div>
+  <table class="d-ing-table">
+    <tbody>
+      <tr><td>Uds por bandeja (100 g)</td><td class="r">~50 uds</td></tr>
+      <tr><td>Masa por bandeja (100 g)</td><td class="r">~5.000 g</td></tr>
+      <tr><td>Almacenaje masa cruda</td><td class="r">Congelador · bandeja aluminio 60×40</td></tr>
+      <tr><td>Vida útil masa congelada</td><td class="r" style="color:var(--amber-osc);font-style:italic">Pendiente confirmar</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="d-card">
+  <div class="d-card-title">Puntos críticos</div>
+  <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Mantequilla y margarina a temperatura ambiente — frías no creman bien</span></div>
+  <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Balanza de GRAMAJE para vainilla, polvo de hornear, soda y sal</span></div>
+  <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Etiquetar bandeja obligatoriamente antes de congelar</span></div>
+  <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Cada tamaño tiene temperatura y tiempo diferente — no mezclar en el horno</span></div>
+  <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Colorante rojo en polvo — usar balanza GRAMAJE, poca cantidad tiñe mucho</span></div>
+</div>
+
+<script>
+
+const REC_NY=[{"n": "Mantequilla + Margarina", "g": 195, "p": 19.5}, {"n": "Azúcar blanco", "g": 78, "p": 7.8}, {"n": "Azúcar moreno", "g": 112, "p": 11.2}, {"n": "Huevo", "g": 88, "p": 8.8}, {"n": "Vainilla blanca", "g": 2.9, "p": 0.29}, {"n": "Harina pastelera", "g": 390, "p": 38.4}, {"n": "Polvo de hornear", "g": 4.9, "p": 0.49}, {"n": "Soda (Bicarbonato)", "g": 4.9, "p": 0.49}, {"n": "Sal", "g": 2.9, "p": 0.29}, {"n": "Chispa chocolate blanco", "g": 97, "p": 9.7}, {"n": "Cacao", "g": 11.7, "p": 1.17}, {"n": "Maicena", "g": 11.7, "p": 1.17}, {"n": "Colorante rojo en polvo", "g": 1.4, "p": 0.14}];
+const REC_NY_SN=null;
+const TIENE_NUEZ=false;
+const TAM={
+  t150:{n:'Galleta 150 g',g:150,horno:'210°C / 190°C',tiempo:'12–15 min'},
+  t100:{n:'Galleta 100 g',g:100,horno:'200°C / 190°C',tiempo:'12–15 min'},
+  t25:{n:'Galleta 25 g',g:25,horno:'190°C / 180°C',tiempo:'~10 min'},
+  t11:{n:'Galleta 11 g',g:11,horno:'190°C / 180°C',tiempo:'~7 min'},
+};
+const ESPNY=['vainilla','polvo','soda','sal','colorante','cacao','maicena'];
+let qny={t150:0,t100:0,t25:0,t11:0};
+function cny(k,d){var el=document.getElementById('q-'+k);qny[k]=Math.max(0,(parseInt(el.value)||0)+d);el.value=qny[k];renderNY();}
+function syncInput(el,key){qny[key]=Math.max(0,parseInt(el.value)||0);renderNY();}
+function fmtNY(n,v){if(ESPNY.some(e=>n.toLowerCase().includes(e)))return v.toFixed(1);return v>=10?Math.round(v).toString():(Math.round(v*10)/10).toString();}
+function renderNY(){
+  var totCN=0,totSN=0,desg='';
+  Object.keys(qny).forEach(k=>{
+    if(qny[k]>0){
+      var m=qny[k]*TAM[k].g;
+      var esSinNuez=TIENE_NUEZ&&k==='t150';
+      if(esSinNuez)totSN+=m; else totCN+=m;
+      desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qny[k]} × ${TAM[k].n} · ${TAM[k].horno} · ${TAM[k].tiempo}${esSinNuez?' · <span style="color:var(--rojo);font-weight:700">Sin nueces</span>':""}</span><span class="d-res-row-val">${m.toLocaleString('es-CL')} g</span></div>`;
+    }
+  });
+  var el=document.getElementById('res');
+  if(!totCN&&!totSN){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div>';return;}
+  var html='<div class="d-card"><div class="d-card-title">Receta ajustada</div><div style="margin-bottom:12px">'+desg+'</div>';
+  if(totCN>0){
+    var f=totCN/1000;var rH='';
+    REC_NY.forEach(i=>{rH+=`<tr><td>${i.n}</td><td class="r">${fmtNY(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+    html+=`<div class="d-res-total" style="margin-bottom:8px"><div><div class="d-res-lbl">Masa</div></div><div style="text-align:right"><div class="d-res-val">${totCN.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><table class="d-ing-table" style="margin-bottom:16px"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${totCN.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table>`;
+  }
+  if(totSN>0&&REC_NY_SN){
+    var f2=totSN/1000;var rH2='';
+    REC_NY_SN.forEach(i=>{rH2+=`<tr><td>${i.n}</td><td class="r">${fmtNY(i.n,i.g*f2)} g</td><td class="pct">${i.p}%</td></tr>`;});
+    html+=`<div class="d-res-total" style="margin-bottom:8px;background:var(--rojo-claro)"><div><div class="d-res-lbl" style="color:var(--rojo)">Masa SIN nueces (150 g)</div></div><div style="text-align:right"><div class="d-res-val" style="color:var(--rojo)">${totSN.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH2}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${totSN.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table>`;
+  }
+  html+='</div>';
+  el.innerHTML=html;
+}
+function getRecetaBase(){ return [{"n": "Mantequilla + Margarina", "g": 195, "p": 19.5}, {"n": "Azúcar blanco", "g": 78, "p": 7.8}, {"n": "Azúcar moreno", "g": 112, "p": 11.2}, {"n": "Huevo", "g": 88, "p": 8.8}, {"n": "Vainilla blanca", "g": 2.9, "p": 0.29}, {"n": "Harina pastelera", "g": 390, "p": 38.4}, {"n": "Polvo de hornear", "g": 4.9, "p": 0.49}, {"n": "Soda (Bicarbonato)", "g": 4.9, "p": 0.49}, {"n": "Sal", "g": 2.9, "p": 0.29}, {"n": "Chispa chocolate blanco", "g": 97, "p": 9.7}, {"n": "Cacao", "g": 11.7, "p": 1.17}, {"n": "Maicena", "g": 11.7, "p": 1.17}, {"n": "Colorante rojo en polvo", "g": 1.4, "p": 0.14}]; }
+function calcInversa(){
+  var kg=parseFloat(document.getElementById('ci-kg').value);
+  var el=document.getElementById('ci-res');
+  if(!kg||kg<=0){el.innerHTML='';return;}
+  var rec=getRecetaBase();
+  var ESP=['vainilla','polvo','soda','sal','colorante','cacao','maicena'];
+  function fmt(n,v){
+    if(ESP.some(function(e){return n.toLowerCase().indexOf(e)>=0;}))return v.toFixed(1)+' g';
+    if(v>=10)return Math.round(v)+' g';
+    return (Math.round(v*10)/10)+' g';
+  }
+  var html='<table style="width:100%;border-collapse:collapse;font-size:14px"><thead><tr><th style="text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Ingrediente</th><th style="text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Cantidad</th></tr></thead><tbody>';
+  var tot=0;
+  for(var i=0;i<rec.length;i++){
+    var ing=rec[i];
+    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    tot+=ing.g*kg;
+  }
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  el.innerHTML=html;
+}
+function tog(){
+  var w=document.getElementById('rw');
+  var l=document.getElementById('tl');
+  if(!w||!l)return;
+  w.classList.toggle('open');
+  l.textContent=w.classList.contains('open')?'Ocultar receta base':'Ver receta base';
+}
+</script>
+</div><a class="d-home" href="index.html">Inicio</a></body></html>

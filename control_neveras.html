@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control de Neveras · Dulcitos</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, sans-serif; background: #f5f5f0; color: #1a1a1a; }
+.app { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px; }
+.title { font-size: 20px; font-weight: 600; color: #1a1a1a; }
+.sub { font-size: 13px; color: #888; margin-top: 3px; }
+.btn { padding: 7px 14px; font-size: 13px; border: 1.5px solid #ddd; border-radius: 8px; background: white; color: #1a1a1a; cursor: pointer; }
+.btn:hover { background: #f5f5f0; }
+.btn-green { background: #1D9E75; border-color: #1D9E75; color: white; }
+.btn-green:hover { background: #0F6E56; }
+.summary-bar { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 1.5rem; }
+.sum-box { background: white; border-radius: 10px; padding: 10px 14px; border: 1.5px solid #eee; }
+.sum-lbl { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.04em; }
+.sum-val { font-size: 22px; font-weight: 700; margin-top: 2px; }
+.sum-ok { color: #1D9E75; }
+.sum-med { color: #EF9F27; }
+.sum-low { color: #E24B4A; }
+.sum-total { color: #1a1a1a; }
+.nevera-section { margin-bottom: 1.5rem; }
+.nevera-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.nevera-title { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.nevera-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.icon-nevera1 { background: #E1F5EE; }
+.icon-nevera2 { background: #EEEDFE; }
+.icon-congelador { background: #E6F1FB; }
+.nevera-count { font-size: 12px; color: #888; }
+.items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+.item-card { background: white; border-radius: 10px; border: 1.5px solid #eee; padding: 10px 12px; position: relative; }
+.item-card.ok { border-left: 4px solid #1D9E75; }
+.item-card.medio { border-left: 4px solid #EF9F27; }
+.item-card.bajo { border-left: 4px solid #E24B4A; }
+.item-name { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; padding-right: 24px; }
+.item-detalle { font-size: 11px; color: #888; margin-bottom: 8px; }
+.stock-row { display: flex; align-items: center; gap: 8px; }
+.stock-bar-bg { flex: 1; height: 6px; background: #f0f0f0; border-radius: 100px; overflow: hidden; }
+.stock-bar { height: 100%; border-radius: 100px; transition: width 0.3s; }
+.bar-ok { background: #1D9E75; }
+.bar-medio { background: #EF9F27; }
+.bar-bajo { background: #E24B4A; }
+.stock-pct { font-size: 11px; font-weight: 600; min-width: 32px; text-align: right; }
+.pct-ok { color: #1D9E75; }
+.pct-medio { color: #EF9F27; }
+.pct-bajo { color: #E24B4A; }
+.item-fecha { font-size: 10px; color: #aaa; margin-top: 6px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.dot-ok { background: #1D9E75; }
+.dot-medio { background: #EF9F27; }
+.dot-bajo { background: #E24B4A; }
+.edit-btn { position: absolute; top: 8px; right: 8px; width: 22px; height: 22px; border: none; background: none; cursor: pointer; color: #ccc; font-size: 14px; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+.edit-btn:hover { background: #f5f5f0; color: #888; }
+.add-btn { border: 1.5px dashed #ccc; border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; color: #aaa; cursor: pointer; background: none; width: 100%; }
+.add-btn:hover { border-color: #1D9E75; color: #1D9E75; background: #f0fdf8; }
+/* Modal */
+.overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 100; align-items: center; justify-content: center; padding: 1rem; }
+.overlay.open { display: flex; }
+.modal { background: white; border-radius: 12px; padding: 1.5rem; width: 100%; max-width: 400px; }
+.modal-title { font-size: 16px; font-weight: 600; margin-bottom: 1rem; }
+.field { margin-bottom: 12px; }
+.field label { display: block; font-size: 12px; font-weight: 600; color: #555; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+.field input, .field select { width: 100%; height: 36px; border: 1.5px solid #ddd; border-radius: 8px; padding: 0 10px; font-size: 13px; color: #1a1a1a; background: white; }
+.field input:focus, .field select:focus { outline: none; border-color: #1D9E75; }
+.modal-btns { display: flex; gap: 8px; margin-top: 1rem; }
+.modal-btns button { flex: 1; }
+.btn-danger { background: #FCEBEB; border-color: #F09595; color: #A32D2D; }
+.btn-danger:hover { background: #F7C1C1; }
+.leyenda { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 1rem; }
+.ley-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #555; }
+.alerta-banner { background: #FCEBEB; border: 1.5px solid #F09595; border-radius: 10px; padding: 10px 14px; margin-bottom: 1rem; font-size: 13px; color: #A32D2D; display: none; }
+.alerta-banner.visible { display: block; }
+.dulcitos { text-align: center; font-size: 11px; color: #aaa; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #eee; }
+</style>
+<link rel="stylesheet" href="dulcitos.css">
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <div>
+      <div class="title">Control de Neveras y Congelador</div>
+      <div class="sub" id="fecha-actual"></div>
+    </div>
+    <button class="btn btn-green" onclick="abrirModal()">+ Agregar ítem</button>
+  </div>
+
+  <div class="summary-bar">
+    <div class="sum-box"><div class="sum-lbl">Total ítems</div><div class="sum-val sum-total" id="cnt-total">0</div></div>
+    <div class="sum-box"><div class="sum-lbl">Stock ok</div><div class="sum-val sum-ok" id="cnt-ok">0</div></div>
+    <div class="sum-box"><div class="sum-lbl">Stock medio</div><div class="sum-val sum-med" id="cnt-med">0</div></div>
+    <div class="sum-box"><div class="sum-lbl">Stock bajo</div><div class="sum-val sum-low" id="cnt-low">0</div></div>
+  </div>
+
+  <div class="alerta-banner" id="alerta-banner"></div>
+
+  <div class="leyenda">
+    <div class="ley-item"><div class="dot dot-ok"></div> Stock suficiente (>50%)</div>
+    <div class="ley-item"><div class="dot dot-medio"></div> Stock medio (25–50%)</div>
+    <div class="ley-item"><div class="dot dot-bajo"></div> Stock bajo — reponer (&lt;25%)</div>
+  </div>
+
+  <div id="nevera1-section" class="nevera-section">
+    <div class="nevera-header">
+      <div class="nevera-title"><div class="nevera-icon icon-nevera1">❄</div> Nevera 1 — Pastelería</div>
+      <div class="nevera-count" id="cnt-nevera1"></div>
+    </div>
+    <div class="items-grid" id="grid-nevera1"></div>
+  </div>
+
+  <div id="nevera2-section" class="nevera-section">
+    <div class="nevera-header">
+      <div class="nevera-title"><div class="nevera-icon icon-nevera2">❄</div> Nevera 2 — Panadería</div>
+      <div class="nevera-count" id="cnt-nevera2"></div>
+    </div>
+    <div class="items-grid" id="grid-nevera2"></div>
+  </div>
+
+  <div id="congelador-section" class="nevera-section">
+    <div class="nevera-header">
+      <div class="nevera-title"><div class="nevera-icon icon-congelador">🧊</div> Congelador</div>
+      <div class="nevera-count" id="cnt-congelador"></div>
+    </div>
+    <div class="items-grid" id="grid-congelador"></div>
+  </div>
+
+  <div class="dulcitos">Dulcitos · Talca · Control de Frío · <span id="version-date"></span></div>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay" onclick="cerrarOverlay(event)">
+  <div class="modal">
+    <div class="modal-title" id="modal-title">Agregar ítem</div>
+    <div class="field">
+      <label>Nombre del producto / insumo</label>
+      <input type="text" id="inp-nombre" placeholder="Ej: Queso crema porcionado 30g">
+    </div>
+    <div class="field">
+      <label>Ubicación</label>
+      <select id="inp-ubicacion">
+        <option value="nevera1">Nevera 1 — Pastelería</option>
+        <option value="nevera2">Nevera 2 — Panadería</option>
+        <option value="congelador">Congelador</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Unidad de medida</label>
+      <input type="text" id="inp-unidad" placeholder="Ej: porciones, kg, bandejas, litros">
+    </div>
+    <div class="field">
+      <label>Stock máximo (capacidad total)</label>
+      <input type="number" id="inp-max" placeholder="Ej: 100" min="1">
+    </div>
+    <div class="field">
+      <label>Stock actual</label>
+      <input type="number" id="inp-actual" placeholder="Ej: 45" min="0">
+    </div>
+    <div class="field">
+      <label>Fecha elaboración</label>
+      <input type="date" id="inp-fecha-elab">
+    </div>
+    <div class="field">
+      <label>Fecha caducidad</label>
+      <input type="date" id="inp-fecha-cad">
+    </div>
+    <div class="modal-btns">
+      <button class="btn btn-danger" id="btn-eliminar" onclick="eliminarItem()" style="display:none">Eliminar</button>
+      <button class="btn" onclick="cerrarModal()">Cancelar</button>
+      <button class="btn btn-green" onclick="guardarItem()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let items = [
+  { id: 1, nombre: 'Queso crema porcionado 30g', ubicacion: 'nevera1', unidad: 'porciones', max: 90, actual: 60, fechaElab: '', fechaCad: '' },
+  { id: 2, nombre: 'Queso crema porcionado 10g', ubicacion: 'nevera1', unidad: 'porciones', max: 200, actual: 80, fechaElab: '', fechaCad: '' },
+  { id: 3, nombre: 'Crema pastelera', ubicacion: 'nevera1', unidad: 'kg', max: 5, actual: 2, fechaElab: '', fechaCad: '' },
+  { id: 4, nombre: 'Papelón líquido', ubicacion: 'nevera1', unidad: 'litros', max: 3, actual: 1, fechaElab: '', fechaCad: '' },
+  { id: 5, nombre: 'Manjar Los Alerces', ubicacion: 'nevera1', unidad: 'kg', max: 4, actual: 3, fechaElab: '', fechaCad: '' },
+  { id: 6, nombre: 'Cachitos armados', ubicacion: 'nevera1', unidad: 'uds', max: 60, actual: 20, fechaElab: '', fechaCad: '' },
+  { id: 7, nombre: 'Pasteles hojaldre armados', ubicacion: 'nevera1', unidad: 'uds', max: 40, actual: 15, fechaElab: '', fechaCad: '' },
+  { id: 8, nombre: 'Masa hojaldre cruda', ubicacion: 'nevera2', unidad: 'kg', max: 5, actual: 4, fechaElab: '', fechaCad: '' },
+  { id: 9, nombre: 'Jamón de pierna (lonjas)', ubicacion: 'nevera2', unidad: 'kg', max: 3, actual: 1, fechaElab: '', fechaCad: '' },
+  { id: 10, nombre: 'Huevos extra', ubicacion: 'nevera2', unidad: 'uds', max: 180, actual: 120, fechaElab: '', fechaCad: '' },
+  { id: 11, nombre: 'Pasteles hojaldre congelados', ubicacion: 'congelador', unidad: 'uds', max: 60, actual: 18, fechaElab: '', fechaCad: '' },
+  { id: 12, nombre: 'Masa bollería lista', ubicacion: 'congelador', unidad: 'kg', max: 4, actual: 0, fechaElab: '', fechaCad: '' },
+];
+
+let editId = null;
+let nextId = 20;
+
+const hoy = new Date();
+document.getElementById('fecha-actual').textContent = hoy.toLocaleDateString('es-CL', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+document.getElementById('version-date').textContent = hoy.toLocaleDateString('es-CL');
+document.getElementById('inp-fecha-elab').value = hoy.toISOString().split('T')[0];
+
+function nivel(item) {
+  const pct = item.actual / item.max;
+  if (pct > 0.5) return 'ok';
+  if (pct > 0.25) return 'medio';
+  return 'bajo';
+}
+
+function pctVal(item) { return Math.round((item.actual / item.max) * 100); }
+
+function render() {
+  const ubicaciones = ['nevera1', 'nevera2', 'congelador'];
+  let cntOk = 0, cntMed = 0, cntLow = 0;
+  let alertas = [];
+
+  ubicaciones.forEach(ub => {
+    const grid = document.getElementById('grid-' + ub);
+    const its = items.filter(i => i.ubicacion === ub);
+    document.getElementById('cnt-' + ub).textContent = its.length + ' ítems';
+
+    grid.innerHTML = its.map(item => {
+      const niv = nivel(item);
+      const pct = pctVal(item);
+      if (niv === 'ok') cntOk++;
+      else if (niv === 'medio') cntMed++;
+      else { cntLow++; alertas.push(item.nombre); }
+
+      const fechaStr = item.fechaCad ? `<div class="item-fecha">Cad: ${item.fechaCad}</div>` : '';
+      return `<div class="item-card ${niv}">
+        <button class="edit-btn" onclick="editarItem(${item.id})">✏</button>
+        <div class="item-name">${item.nombre}</div>
+        <div class="item-detalle">${item.actual} / ${item.max} ${item.unidad}</div>
+        <div class="stock-row">
+          <div class="stock-bar-bg"><div class="stock-bar bar-${niv}" style="width:${pct}%"></div></div>
+          <div class="stock-pct pct-${niv}">${pct}%</div>
+        </div>
+        ${fechaStr}
+      </div>`;
+    }).join('') + `<button class="add-btn" onclick="abrirModal('${ub}')">+ Agregar</button>`;
+  });
+
+  document.getElementById('cnt-total').textContent = items.length;
+  document.getElementById('cnt-ok').textContent = cntOk;
+  document.getElementById('cnt-med').textContent = cntMed;
+  document.getElementById('cnt-low').textContent = cntLow;
+
+  const banner = document.getElementById('alerta-banner');
+  if (alertas.length > 0) {
+    banner.textContent = '⚠ Stock bajo — reponer urgente: ' + alertas.join(' · ');
+    banner.classList.add('visible');
+  } else {
+    banner.classList.remove('visible');
+  }
+}
+
+function abrirModal(ub) {
+  editId = null;
+  document.getElementById('modal-title').textContent = 'Agregar ítem';
+  document.getElementById('inp-nombre').value = '';
+  document.getElementById('inp-ubicacion').value = ub || 'nevera1';
+  document.getElementById('inp-unidad').value = '';
+  document.getElementById('inp-max').value = '';
+  document.getElementById('inp-actual').value = '';
+  document.getElementById('inp-fecha-elab').value = new Date().toISOString().split('T')[0];
+  document.getElementById('inp-fecha-cad').value = '';
+  document.getElementById('btn-eliminar').style.display = 'none';
+  document.getElementById('overlay').classList.add('open');
+}
+
+function editarItem(id) {
+  const item = items.find(i => i.id === id);
+  if (!item) return;
+  editId = id;
+  document.getElementById('modal-title').textContent = 'Editar ítem';
+  document.getElementById('inp-nombre').value = item.nombre;
+  document.getElementById('inp-ubicacion').value = item.ubicacion;
+  document.getElementById('inp-unidad').value = item.unidad;
+  document.getElementById('inp-max').value = item.max;
+  document.getElementById('inp-actual').value = item.actual;
+  document.getElementById('inp-fecha-elab').value = item.fechaElab || '';
+  document.getElementById('inp-fecha-cad').value = item.fechaCad || '';
+  document.getElementById('btn-eliminar').style.display = 'block';
+  document.getElementById('overlay').classList.add('open');
+}
+
+function guardarItem() {
+  const nombre = document.getElementById('inp-nombre').value.trim();
+  const ubicacion = document.getElementById('inp-ubicacion').value;
+  const unidad = document.getElementById('inp-unidad').value.trim();
+  const max = parseInt(document.getElementById('inp-max').value);
+  const actual = parseInt(document.getElementById('inp-actual').value);
+  const fechaElab = document.getElementById('inp-fecha-elab').value;
+  const fechaCad = document.getElementById('inp-fecha-cad').value;
+
+  if (!nombre || !unidad || !max || isNaN(actual)) { alert('Completá todos los campos obligatorios'); return; }
+
+  if (editId) {
+    const idx = items.findIndex(i => i.id === editId);
+    items[idx] = { id: editId, nombre, ubicacion, unidad, max, actual, fechaElab, fechaCad };
+  } else {
+    items.push({ id: nextId++, nombre, ubicacion, unidad, max, actual, fechaElab, fechaCad });
+  }
+  cerrarModal();
+  render();
+}
+
+function eliminarItem() {
+  if (!editId) return;
+  if (!confirm('¿Eliminar este ítem?')) return;
+  items = items.filter(i => i.id !== editId);
+  cerrarModal();
+  render();
+}
+
+function cerrarModal() { document.getElementById('overlay').classList.remove('open'); }
+function cerrarOverlay(e) { if (e.target === document.getElementById('overlay')) cerrarModal(); }
+
+render();
+</script>
+<div style="position:fixed;bottom:20px;right:20px;z-index:999"><a href="index.html" style="display:flex;align-items:center;gap:8px;background:#085041;color:white;text-decoration:none;padding:12px 18px;border-radius:100px;font-family:system-ui,sans-serif;font-size:14px;font-weight:600;box-shadow:0 4px 12px rgba(0,0,0,0.2)">🏠 Inicio</a></div>
+</body>
+</html>

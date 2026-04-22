@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Dulcitos — Producción</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="dulcitos.css">
+<style>
+#ls{position:fixed;inset:0;background:#085041;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;z-index:200;overflow-y:auto}
+.ls-logo{font-family:'Fraunces',serif;font-size:2.4rem;font-weight:700;color:white;margin-bottom:4px;text-align:center}
+.ls-sub{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:2.5rem;text-align:center}
+.ls-lbl{font-size:14px;font-weight:600;color:rgba(255,255,255,0.75);margin-bottom:1rem}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:340px}
+.pbtn{background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.15);border-radius:14px;padding:1.1rem 1rem;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer}
+.pbtn:active{transform:scale(.96);background:rgba(255,255,255,.18)}
+.pav{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:white}
+.pname{font-size:14px;font-weight:600;color:white}
+.prol{font-size:11px;color:rgba(255,255,255,.45)}
+.topbar{background:#1a1a18;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;margin:-1.25rem -1.25rem 1.25rem;position:sticky;top:0;z-index:50}
+.tbav{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white}
+.tb-btn{background:rgba(255,255,255,.1);border:none;border-radius:6px;padding:6px 12px;font-size:12px;font-weight:600;color:rgba(255,255,255,.6);cursor:pointer;font-family:inherit}
+.search-wrap{margin-bottom:1.25rem}
+.search-box{background:white;border-radius:10px;border:1.5px solid var(--borde);display:flex;align-items:center;gap:10px;padding:0 14px;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+.search-inp{flex:1;height:48px;border:none;font-size:15px;color:var(--texto);background:none;outline:none;font-family:'DM Sans',sans-serif}
+.search-inp::placeholder{color:#bbb}
+.search-x{background:none;border:none;color:#bbb;font-size:20px;cursor:pointer;padding:0;line-height:1;display:none}
+.sec-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--sub);margin-bottom:10px}
+.frec-item{background:white;border-radius:10px;border:1px solid var(--borde);padding:.85rem 1.1rem;display:flex;align-items:center;gap:12px;text-decoration:none;margin-bottom:8px;min-height:60px}
+.frec-item:active{transform:scale(.98)}
+.frec-ic{width:36px;height:36px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.cats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
+.cat-btn{border-radius:12px;border:1px solid var(--borde);padding:1rem;display:flex;flex-direction:column;align-items:flex-start;gap:4px;cursor:pointer;text-align:left;min-height:84px;font-family:inherit}
+.cat-btn:active{transform:scale(.97)}
+.cat-ic{width:26px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-bottom:3px}
+.back-btn{background:none;border:none;font-size:14px;font-weight:600;color:#085041;cursor:pointer;padding:4px 0;margin-bottom:1rem;display:flex;align-items:center;gap:6px;font-family:inherit}
+.ficha-item{background:white;border-radius:10px;border:1px solid var(--borde);padding:.85rem 1.1rem;display:flex;align-items:center;gap:12px;margin-bottom:8px;text-decoration:none;min-height:60px}
+.ficha-item:active{transform:scale(.98)}
+.sr-item{background:white;border-radius:10px;border:1px solid var(--borde);padding:.85rem 1.1rem;display:flex;align-items:center;gap:12px;margin-bottom:8px;text-decoration:none}
+.sr-item:active{transform:scale(.98)}
+</style>
+</head>
+<body>
+
+<div id="ls">
+  <div class="ls-logo">Dulcitos</div>
+  <div class="ls-sub">Panadería y Pastelería Venezolana · Talca</div>
+  <div class="ls-lbl">¿Quién sos hoy?</div>
+  <div class="pgrid" id="pgrid"></div>
+</div>
+
+<div id="app" style="display:none">
+<div class="page">
+
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="tbav" id="tbav"></div>
+      <div>
+        <div style="font-size:14px;font-weight:600;color:white;line-height:1.2" id="tbname"></div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4)" id="tbfecha"></div>
+      </div>
+    </div>
+    <button class="tb-btn" onclick="salir()">Cambiar</button>
+  </div>
+
+  <div class="search-wrap">
+    <div class="search-box">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0"><circle cx="6.5" cy="6.5" r="4.5" stroke="#bbb" stroke-width="1.5"/><path d="M10 10l3 3" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-inp" id="sinp" type="text" placeholder="Buscar receta, producto, ingrediente..." oninput="buscar(this.value)" autocomplete="off" autocorrect="off" autocapitalize="off">
+      <button class="search-x" id="sx" onclick="clearS()">×</button>
+    </div>
+  </div>
+
+  <div id="sres" style="display:none"></div>
+
+  <div id="hv">
+    <div id="fsec" style="margin-bottom:1.5rem">
+      <div class="sec-lbl">Mis recetas frecuentes</div>
+      <div id="fgrid"></div>
+    </div>
+    <div class="sec-lbl">Todas las categorías</div>
+    <div class="cats-grid" id="cgrid"></div>
+  </div>
+
+  <div id="fv" style="display:none">
+    <button class="back-btn" onclick="back()">← Volver</button>
+    <div id="ftit" style="font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;margin-bottom:1rem"></div>
+    <div id="flista"></div>
+  </div>
+
+</div>
+</div>
+
+<script>
+const TODAS=[
+  {n:'Panelitas de San Joaquín',d:'Bizcocho tostado venezolano · Doble cocción · Paquetes 180g',u:'ficha_panelitas.html',cat:'Pastelería',c:'#7F77DD',tags:'panelitas san joaquin bizcocho tostado doble coccion venezolano'},
+  {n:'Cortadito · Pastica Roja',d:'Bizcocho venezolano · Cobertura roja · Paquetes 4 uds · 35 uds por bandeja',u:'ficha_cortadito.html',cat:'Pastelería',c:'#7F77DD',tags:'cortadito pastica roja bizcocho venezolano bandeja colorante'},
+  {n:'Bizcocho Base',d:'158°C · Ventus N°4 · Circular y rectangular',u:'ficha_bizcocho_1kg_v3.html',cat:'Pastelería',c:'#7F77DD',tags:'bizcocho torta pastel molde huevo harina ponquesito'},
+  {n:'Brownie Clásico',d:'Chocolate Caravella · 180°C · 15 uds por molde',u:'ficha_brownie.html',cat:'Pastelería',c:'#7F77DD',tags:'brownie chocolate caravella'},
+  {n:'Pasta Seca · Galletas de Mantequilla',d:'PSC-001 · Por peso · 5 presentaciones · Merma 12,6%',u:'ficha_pasta_seca.html',cat:'Pastelería',c:'#7F77DD',tags:'pasta seca galletas mantequilla venezolana psc'},
+  {n:'Hojaldre Jamón y Queso Crema',d:'13×9,5cm detal · 12×6cm coctelerías · 3 tiempos',u:'ficha_hojaldre_jamon_queso.html',cat:'Pastelería',c:'#7F77DD',tags:'hojaldre jamon queso pastel cocteleria'},
+  {n:'Catalinas',d:'90g cruda · Paquetes 5 uds · Congelador',u:'ficha_catalinas.html',cat:'Pastelería',c:'#7F77DD',tags:'catalinas papelon galleta congelador'},
+  {n:'Pan Francés Venezolano y Pepito',d:'Francés 95g · Pepito 30cm y 45cm',u:'ficha_frances_pepito.html',cat:'Panadería',c:'#EF9F27',tags:'frances pepito sandwich pan baguette'},
+  {n:'Masa Clásica — Hamburguesa y Perro',d:'Tapadito · Mini · Clásica · XL · Sombrero · Perro',u:'ficha_calc_masa_clasica.html',cat:'Panadería',c:'#EF9F27',tags:'hamburguesa perro caliente sombrero coctel comida rapida'},
+  {n:'Masa Cachito y Derivados',d:'Cachito · Jamón · Queso Tocineta',u:'ficha_calc_cachito.html',cat:'Panadería',c:'#EF9F27',tags:'cachito jamon tocineta queso'},
+  {n:'Galleta New York Cookie',d:'Chocolate Chip · 4 tamaños · Stock congelador · 150g sin nueces',u:'ficha_ny_cookie.html',cat:'Bollería',c:'#1D9E75',tags:'galleta new york cookie chocolate chip nueces congelador'},
+  {n:'Galleta New York Red Velvet',d:'Red Velvet · Chispa blanca · 4 tamaños · Stock congelador',u:'ficha_ny_rv.html',cat:'Bollería',c:'#1D9E75',tags:'galleta new york red velvet cookie chispa blanca congelador'},
+  {n:'Galleta New York Cookie',d:'Chocolate Chip · 4 tamaños · Stock congelador · 150g sin nueces',u:'ficha_ny_cookie.html',cat:'Bollería',c:'#1D9E75',tags:'galleta new york cookie chocolate chip nueces congelador'},
+  {n:'Berlín · Bomba · Rosca de Azúcar',d:'65g · Bollería base Pavitas · Aceite 170°C',u:'ficha_berlin_rosca.html',cat:'Bollería',c:'#1D9E75',tags:'berlin bomba rosca bolleria pavita frita'},
+  {n:'Galletas de Huevo',d:'90g cruda · Paquetes 5 uds · Congelador',u:'ficha_calc_galletas_huevo.html',cat:'Bollería',c:'#1D9E75',tags:'galletas huevo mantecada congelador'},
+  {n:'Crema Pastelera',d:'Sub-ingrediente · Base Berlín y Bomba · Nevera',u:'ficha_crema_pastelera.html',cat:'Sub-Ingredientes',c:'#A32D2D',tags:'crema pastelera berlin bomba relleno nevera'},
+  {n:'Insert Queso Crema Red Velvet',d:'Sub-ingrediente · 15g chico · 25g grande · Congelador',u:'ficha_insert_rv.html',cat:'Sub-Ingredientes',c:'#A32D2D',tags:'insert queso crema red velvet new york galleta congelador'},
+  {n:'Papelón Líquido',d:'Base Catalinas y Golfeados · 2.550g · Nevera',u:'ficha_papelon_liquido.html',cat:'Sub-Ingredientes',c:'#A32D2D',tags:'papelon liquido base catalinas'},
+  {n:'Queso Crema Porcionado',d:'30g detal · 10g coctelerías · Nevera',u:'ficha_queso_crema_porcionado.html',cat:'Sub-Ingredientes',c:'#A32D2D',tags:'queso crema porcionado hojaldre'},
+  {n:'Control de Neveras y Congelador',d:'Semáforo de stock · Alertas',u:'control_neveras.html',cat:'Gestión',c:'#555',tags:'nevera congelador stock inventario'},
+  {n:'Producción Diaria',d:'Programar tareas · Cronómetros · Seguimiento',u:'produccion_diaria.html',cat:'Gestión',c:'#555',tags:'produccion tareas cronometro'},
+];
+
+const CATS={
+  pasteleria:{t:'Pastelería',bg:'var(--purple-cl)',fg:'var(--purple-osc)',icbg:'#7F77DD',fichas:['Panelitas de San Joaquín','Cortadito · Pastica Roja','Bizcocho Base','Brownie Clásico','Hojaldre Jamón y Queso Crema','Catalinas','Pasta Seca · Galletas de Mantequilla'],pend:['Galletas New York · Red Velvet y Chips']},
+  panaderia:{t:'Panadería',bg:'var(--amber-cl)',fg:'var(--amber-osc)',icbg:'#EF9F27',fichas:['Pan Francés Venezolano y Pepito','Masa Clásica — Hamburguesa y Perro','Masa Cachito y Derivados'],pend:['Pan de Hamburguesa Golden / Brioche','Golfeado · Pan de Guayaba']},
+  bolleria:{t:'Bollería y Galletas',bg:'var(--verde-cl)',fg:'var(--verde-osc)',icbg:'#1D9E75',fichas:['Galleta New York Cookie','Galleta New York Red Velvet','Berlín · Bomba · Rosca de Azúcar','Galletas de Huevo'],pend:['Palmeras y Croissant']},
+  subingredientes:{t:'Sub-Ingredientes',bg:'var(--rojo-cl)',fg:'var(--rojo)',icbg:'#A32D2D',fichas:['Crema Pastelera','Insert Queso Crema Red Velvet','Papelón Líquido','Queso Crema Porcionado'],pend:[]},
+  gestion:{t:'Gestión',bg:'#F0EDE8',fg:'#444',icbg:'#555',fichas:['Control de Neveras y Congelador','Producción Diaria'],pend:[],full:true},
+};
+
+const FREC={
+  Diego:['Panelitas de San Joaquín','Cortadito · Pastica Roja','Galleta New York Cookie','Galleta New York Red Velvet','Insert Queso Crema Red Velvet','Bizcocho Base','Brownie Clásico','Hojaldre Jamón y Queso Crema','Catalinas','Galletas de Huevo','Berlín · Bomba · Rosca de Azúcar','Pasta Seca · Galletas de Mantequilla'],
+  Gabriel:['Pan Francés Venezolano y Pepito','Masa Clásica — Hamburguesa y Perro','Masa Cachito y Derivados'],
+  Eilyn:['Berlín · Bomba · Rosca de Azúcar','Bizcocho Base','Pan Francés Venezolano y Pepito','Catalinas'],
+  Rosana:['Bizcocho Base','Berlín · Bomba · Rosca de Azúcar','Catalinas','Hojaldre Jamón y Queso Crema','Producción Diaria'],
+  Eibar:['Producción Diaria','Control de Neveras y Congelador','Bizcocho Base','Brownie Clásico'],
+};
+
+const PERSONAS=[
+  {n:'Diego',r:'Pastelería',i:'DI',c:'#7F77DD'},
+  {n:'Gabriel',r:'Panadería',i:'GA',c:'#EF9F27'},
+  {n:'Eilyn',r:'Pastelería · Pan',i:'EI',c:'#1D9E75'},
+  {n:'Rosana',r:'Producción',i:'RO',c:'#085041'},
+  {n:'Eibar',r:'Gerencia',i:'EB',c:'#185FA5',full:true},
+];
+
+document.getElementById('pgrid').innerHTML=PERSONAS.map(p=>`
+  <div class="pbtn" onclick="entrar('${p.n}','${p.r}','${p.i}','${p.c}')" style="${p.full?'grid-column:1/-1':''}">
+    <div class="pav" style="background:${p.c}">${p.i}</div>
+    <div class="pname">${p.n}</div><div class="prol">${p.r}</div>
+  </div>`).join('');
+
+document.getElementById('cgrid').innerHTML=Object.keys(CATS).map(k=>{
+  const d=CATS[k];
+  return `<button class="cat-btn" style="background:${d.bg};color:${d.fg};${d.full?'grid-column:1/-1':''}" onclick="verCat('${k}')">
+    <div class="cat-ic" style="background:rgba(0,0,0,.1);color:${d.fg}">${d.t.slice(0,2)}</div>
+    <span style="font-size:14px;font-weight:600">${d.t}</span>
+    <span style="font-size:11px;opacity:.65">${d.fichas.length} ficha${d.fichas.length!==1?'s':''}</span>
+  </button>`;
+}).join('');
+
+function entrar(n,r,i,c){
+  localStorage.setItem('dulcitos_user', n);
+  document.getElementById('ls').style.display='none';
+  document.getElementById('app').style.display='block';
+  const av=document.getElementById('tbav');av.textContent=i;av.style.background=c;
+  document.getElementById('tbname').textContent=n+' · '+r;
+  document.getElementById('tbfecha').textContent=new Date().toLocaleDateString('es-CL',{weekday:'long',day:'numeric',month:'long'});
+  renderFrec(n);
+}
+
+function salir(){
+  localStorage.removeItem('dulcitos_user');
+  document.getElementById('ls').style.display='flex';
+  document.getElementById('app').style.display='none';
+  clearS();back();
+}
+
+function renderFrec(n){
+  const nms=FREC[n]||[];
+  const sec=document.getElementById('fsec');
+  if(!nms.length){sec.style.display='none';return;}
+  sec.style.display='block';
+  document.getElementById('fgrid').innerHTML=nms.map(nm=>{
+    const f=TODAS.find(x=>x.n===nm);if(!f)return'';
+    return `<a class="frec-item" href="${f.u}">
+      <div class="frec-ic" style="background:${f.c}22;color:${f.c};font-size:11px;font-weight:700">${f.cat.slice(0,2)}</div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:600;color:var(--texto)">${f.n}</div><div style="font-size:12px;color:var(--sub);margin-top:2px">${f.d}</div></div>
+      <span style="font-size:18px;color:#ccc">›</span>
+    </a>`;
+  }).join('');
+}
+
+function buscar(q){
+  const el=document.getElementById('sres'),hv=document.getElementById('hv'),sx=document.getElementById('sx');
+  q=q.trim().toLowerCase();
+  sx.style.display=q?'block':'none';
+  if(!q){el.style.display='none';hv.style.display='block';return;}
+  hv.style.display='none';el.style.display='block';
+  const res=TODAS.filter(f=>
+    f.n.toLowerCase().includes(q)||f.d.toLowerCase().includes(q)||
+    f.cat.toLowerCase().includes(q)||f.tags.toLowerCase().includes(q)
+  );
+  if(!res.length){el.innerHTML='<div style="text-align:center;padding:2rem;color:var(--sub);font-size:14px">Sin resultados para "'+q+'"</div>';return;}
+  el.innerHTML=res.map(f=>`
+    <a class="sr-item" href="${f.u}">
+      <div style="width:8px;height:8px;border-radius:50%;background:${f.c};flex-shrink:0"></div>
+      <div style="flex:1">
+        <div style="font-size:14px;font-weight:600;color:var(--texto)">${f.n}</div>
+        <div style="font-size:12px;color:var(--sub);margin-top:2px">${f.cat} · ${f.d}</div>
+      </div>
+      <span style="font-size:18px;color:#ccc">›</span>
+    </a>`).join('');
+}
+
+function clearS(){
+  document.getElementById('sinp').value='';
+  document.getElementById('sres').style.display='none';
+  document.getElementById('sx').style.display='none';
+  document.getElementById('hv').style.display='block';
+}
+
+function verCat(k){
+  const d=CATS[k];
+  document.getElementById('hv').style.display='none';
+  document.getElementById('fv').style.display='block';
+  document.getElementById('ftit').textContent=d.t;
+  const f=d.fichas.map(nm=>{
+    const fi=TODAS.find(x=>x.n===nm);if(!fi)return'';
+    return `<a class="ficha-item" href="${fi.u}">
+      <div style="width:8px;height:8px;border-radius:50%;background:${fi.c};flex-shrink:0"></div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:600;color:var(--texto)">${fi.n}</div><div style="font-size:12px;color:var(--sub);margin-top:2px">${fi.d}</div></div>
+      <span style="font-size:18px;color:#ccc">›</span>
+    </a>`;
+  }).join('');
+  const p=(d.pend||[]).map(nm=>`
+    <div style="background:white;border-radius:10px;border:1px solid var(--borde);padding:.85rem 1.1rem;display:flex;align-items:center;gap:12px;margin-bottom:8px;opacity:.4">
+      <div style="width:8px;height:8px;border-radius:50%;background:#ccc;flex-shrink:0"></div>
+      <div style="flex:1"><div style="font-size:14px;font-weight:600;color:var(--texto)">${nm} <span style="font-size:10px;background:#f0f0f0;color:#aaa;padding:2px 8px;border-radius:100px">Próximamente</span></div></div>
+    </div>`).join('');
+  document.getElementById('flista').innerHTML=f+p;
+}
+
+function back(){
+  document.getElementById('hv').style.display='block';
+  document.getElementById('fv').style.display='none';
+}
+</script>
+</body>
+</html>

@@ -233,11 +233,27 @@ function renderCORT(){
   if(qcort.b05)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qcort.b05} media${qcort.b05>1?'s':''} bandeja${qcort.b05>1?'s':''} × 2.250 g · ${qcort.b05*17} uds</span><span class="d-res-row-val">${(qcort.b05*2250).toLocaleString('es-CL')} g</span></div>`;
   var rH='';
   RCORT.forEach(i=>{rH+=`<tr><td>${i.n}</td><td class="r">${fmtCort(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  var totalBandejas = qcort.b1 + qcort.b05;
+  var aguaCob = totalBandejas * 30;
+  var colorCob = totalBandejas * 1;
+  var cobHTML = `<div style="background:var(--amber-cl);border-radius:var(--r);border:1px solid var(--amber);padding:12px 14px;margin-top:14px">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--amber-osc);margin-bottom:4px">Cobertura roja — ${totalBandejas} bandeja${totalBandejas>1?'s':''}</div>
+    <div style="font-size:11px;color:var(--amber-med);font-style:italic;margin-bottom:10px">Aplicar sobre bizcocho frío · No va en la mezcla principal</div>
+    <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--amber)">
+      <span style="font-size:14px;font-weight:600;color:var(--amber-osc)">Agua</span>
+      <span style="font-size:15px;font-weight:700;color:var(--amber-osc)">${aguaCob} g</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:6px 0">
+      <span style="font-size:14px;font-weight:600;color:var(--amber-osc)">Colorante rojo en polvo</span>
+      <span style="font-size:15px;font-weight:700;color:var(--amber-osc)">${colorCob} g</span>
+    </div>
+    <div style="font-size:11px;color:var(--amber-med);font-style:italic;margin-top:8px">Mezclar agua + colorante · Aplicar con brocha · Dejar secar antes de cortar</div>
+  </div>`;
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div>
   <div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${uds} uds · ${paq} paq${sueltas>0?' + '+sueltas+' uds sueltas':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
   <div style="margin-bottom:12px">${desg}</div>
   <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table>
-  <div class="d-nota" style="margin-top:12px">Colorante rojo para cobertura: mezclar con agua y aplicar con brocha después de enfriar.</div>
+  ${cobHTML}
   </div>`;
 }
 function getRecetaBase(){ return [{"n": "Harina pastelera", "g": 448, "p": 44.8}, {"n": "Azúcar", "g": 223, "p": 22.3}, {"n": "Agua", "g": 150, "p": 15.0}, {"n": "Leche líquida", "g": 111, "p": 11.1}, {"n": "Polvo de hornear", "g": 12, "p": 1.2}, {"n": "Margarina Cordobesa", "g": 22, "p": 2.2}, {"n": "Huevo líquido", "g": 22, "p": 2.2}, {"n": "Sal", "g": 4, "p": 0.4}, {"n": "Mantecado chilena", "g": 2.2, "p": 0.22}, {"n": "Esencia vainilla blanca", "g": 2.2, "p": 0.22}, {"n": "Levadura instantánea", "g": 2.2, "p": 0.22}, {"n": "Propianato", "g": 0.7, "p": 0.07}, {"n": "Colorante amarillo", "g": 0.1, "p": 0.01}, {"n": "Enzima Frescura Rapidox", "g": 0.4, "p": 0.04}]; }

@@ -132,7 +132,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-card">
   <div class="d-card-title">Calculadora — por bandejas</div>
   <div class="d-calc-item">
-    <div class="d-calc-info"><div class="d-calc-name">Bandeja completa</div><div class="d-calc-peso">60×40 cm · 4.500 g de mezcla · 35 unidades</div></div>
+    <div class="d-calc-info"><div class="d-calc-name">Bandeja completa</div><div class="d-calc-peso">60×40 cm · 4.200 g de mezcla · 35 unidades</div></div>
     <div class="d-qty">
       <button class="d-qty-btn" onclick="ccort('b1',-1)">−</button>
       <input type="number" class="d-qty-num" id="q-b1" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'b1')">
@@ -140,7 +140,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
     </div>
   </div>
   <div class="d-calc-item">
-    <div class="d-calc-info"><div class="d-calc-name">Media bandeja</div><div class="d-calc-peso">60×20 cm · 2.250 g de mezcla · ~17 unidades</div></div>
+    <div class="d-calc-info"><div class="d-calc-name">Media bandeja</div><div class="d-calc-peso">60×20 cm · 2.100 g de mezcla · ~17 unidades</div></div>
     <div class="d-qty">
       <button class="d-qty-btn" onclick="ccort('b05',-1)">−</button>
       <input type="number" class="d-qty-num" id="q-b05" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'b05')">
@@ -191,7 +191,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
   <table class="d-ing-table">
     <tbody>
       <tr><td>Masa por bandeja completa</td><td class="r">4.500 g</td></tr>
-      <tr><td>Masa por media bandeja</td><td class="r">2.250 g</td></tr>
+      <tr><td>Masa por media bandeja</td><td class="r">2.100 g</td></tr>
       <tr><td>Unidades por bandeja completa</td><td class="r">35 uds</td></tr>
       <tr><td>Unidades por media bandeja</td><td class="r">~17 uds</td></tr>
       <tr><td>Paquetes por bandeja completa</td><td class="r">8 paquetes + 3 uds sueltas</td></tr>
@@ -221,7 +221,7 @@ function ccort(k,d){var el=document.getElementById('q-'+k);qcort[k]=Math.max(0,(
 function syncInput(el,key){qcort[key]=Math.max(0,parseInt(el.value)||0);renderCORT();}
 function fmtCort(n,v){if(ESPCORT.some(e=>n.toLowerCase().includes(e)))return v.toFixed(1);return v>=10?Math.round(v).toString():(Math.round(v*10)/10).toString();}
 function renderCORT(){
-  var tot=qcort.b1*4500+qcort.b05*2250;
+  var tot=qcort.b1*4200+qcort.b05*2100;
   var el=document.getElementById('res');
   if(!tot){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá las bandejas para ver la receta ajustada</div></div>';return;}
   var f=tot/1000;
@@ -229,8 +229,8 @@ function renderCORT(){
   var paq=Math.floor(uds/4);
   var sueltas=uds%4;
   var desg='';
-  if(qcort.b1)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qcort.b1} bandeja${qcort.b1>1?'s':''} completa${qcort.b1>1?'s':''} × 4.500 g · ${qcort.b1*35} uds</span><span class="d-res-row-val">${(qcort.b1*4500).toLocaleString('es-CL')} g</span></div>`;
-  if(qcort.b05)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qcort.b05} media${qcort.b05>1?'s':''} bandeja${qcort.b05>1?'s':''} × 2.250 g · ${qcort.b05*17} uds</span><span class="d-res-row-val">${(qcort.b05*2250).toLocaleString('es-CL')} g</span></div>`;
+  if(qcort.b1)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qcort.b1} bandeja${qcort.b1>1?'s':''} completa${qcort.b1>1?'s':''} × 4.200 g · ${qcort.b1*35} uds</span><span class="d-res-row-val">${(qcort.b1*4200).toLocaleString('es-CL')} g</span></div>`;
+  if(qcort.b05)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qcort.b05} media${qcort.b05>1?'s':''} bandeja${qcort.b05>1?'s':''} × 2.100 g · ${qcort.b05*17} uds</span><span class="d-res-row-val">${(qcort.b05*2100).toLocaleString('es-CL')} g</span></div>`;
   var rH='';
   RCORT.forEach(i=>{rH+=`<tr><td>${i.n}</td><td class="r">${fmtCort(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
   var totalBandejas = qcort.b1 + qcort.b05;

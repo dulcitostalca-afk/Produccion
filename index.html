@@ -101,6 +101,7 @@ const TODAS=[
   {n:'Hojaldre Jamón y Queso Crema',d:'13×9,5cm detal · 12×6cm coctelerías · 3 tiempos',u:'ficha_hojaldre_jamon_queso.html',cat:'Pastelería',c:'#7F77DD',tags:'hojaldre jamon queso pastel cocteleria'},
   {n:'Catalinas',d:'90g cruda · Paquetes 5 uds · Congelador',u:'ficha_catalinas.html',cat:'Pastelería',c:'#7F77DD',tags:'catalinas papelon galleta congelador'},
   {n:'Pan de Papa',d:'Masa con papa en escamas · 10 cm y 12 cm · Horno de piso',u:'ficha_pan_papa.html',cat:'Panadería',c:'#EF9F27',tags:'pan papa escamas panaderia'},
+  {n:'Pan Golden · Brioche',d:'Masa brioche · Mini · 12 cm · XL · 165–180°C · 10 días',u:'ficha_pan_golden.html',cat:'Panadería',c:'#EF9F27',tags:'golden brioche pan hamburguesa panaderia'},
   {n:'Pan Francés Venezolano y Pepito',d:'Francés 95g · Pepito 30cm y 45cm',u:'ficha_frances_pepito.html',cat:'Panadería',c:'#EF9F27',tags:'frances pepito sandwich pan baguette'},
   {n:'Masa Clásica — Hamburguesa y Perro',d:'Tapadito · Mini · Clásica · XL · Sombrero · Perro',u:'ficha_masa_clasica.html',cat:'Panadería',c:'#EF9F27',tags:'hamburguesa perro caliente sombrero coctel comida rapida'},
   {n:'Masa Cachito y Derivados',d:'Cachito · Jamón · Queso Tocineta',u:'ficha_calc_cachito.html',cat:'Panadería',c:'#EF9F27',tags:'cachito jamon tocineta queso'},
@@ -119,7 +120,7 @@ const TODAS=[
 
 const CATS={
   pasteleria:{t:'Pastelería',bg:'var(--purple-cl)',fg:'var(--purple-osc)',icbg:'#7F77DD',fichas:['Panelitas de San Joaquín','Cortadito · Pastica Roja','Bizcocho Base','Brownie Clásico','Hojaldre Jamón y Queso Crema','Catalinas','Pasta Seca · Galletas de Mantequilla'],pend:['Galletas New York · Red Velvet y Chips']},
-  panaderia:{t:'Panadería',bg:'var(--amber-cl)',fg:'var(--amber-osc)',icbg:'#EF9F27',fichas:['Pan Francés Venezolano y Pepito','Masa Clásica — Hamburguesa y Perro','Masa Cachito y Derivados','Pan de Papa'],pend:['Pan de Hamburguesa Golden / Brioche','Golfeado · Pan de Guayaba']},
+  panaderia:{t:'Panadería',bg:'var(--amber-cl)',fg:'var(--amber-osc)',icbg:'#EF9F27',fichas:['Pan Francés Venezolano y Pepito','Pan Golden · Brioche','Masa Clásica — Hamburguesa y Perro','Masa Cachito y Derivados','Pan de Papa'],pend:['Pan de Hamburguesa Golden / Brioche','Golfeado · Pan de Guayaba']},
   bolleria:{t:'Bollería y Galletas',bg:'var(--verde-cl)',fg:'var(--verde-osc)',icbg:'#1D9E75',fichas:['Galleta New York Cookie','Galleta New York Red Velvet','Berlín · Bomba · Rosca de Azúcar','Galletas de Huevo'],pend:['Palmeras y Croissant']},
   subingredientes:{t:'Sub-Ingredientes',bg:'var(--rojo-cl)',fg:'var(--rojo)',icbg:'#A32D2D',fichas:['Crema Pastelera','Insert Queso Crema Red Velvet','Papelón Líquido','Queso Crema Porcionado'],pend:[]},
   gestion:{t:'Gestión',bg:'#F0EDE8',fg:'#444',icbg:'#555',fichas:['Control de Neveras y Congelador','Producción Diaria'],pend:[],full:true},
@@ -127,7 +128,7 @@ const CATS={
 
 const FREC={
   Diego:['Panelitas de San Joaquín','Cortadito · Pastica Roja','Galleta New York Cookie','Galleta New York Red Velvet','Insert Queso Crema Red Velvet','Bizcocho Base','Brownie Clásico','Hojaldre Jamón y Queso Crema','Catalinas','Galletas de Huevo','Berlín · Bomba · Rosca de Azúcar','Pasta Seca · Galletas de Mantequilla'],
-  Gabriel:['Pan Francés Venezolano y Pepito','Masa Clásica — Hamburguesa y Perro','Masa Cachito y Derivados','Pan de Papa'],
+  Gabriel:['Pan Francés Venezolano y Pepito','Pan Golden · Brioche','Masa Clásica — Hamburguesa y Perro','Masa Cachito y Derivados','Pan de Papa'],
   Eilyn:['Berlín · Bomba · Rosca de Azúcar','Bizcocho Base','Pan Francés Venezolano y Pepito','Catalinas'],
   Rosana:['Bizcocho Base','Berlín · Bomba · Rosca de Azúcar','Catalinas','Hojaldre Jamón y Queso Crema','Producción Diaria'],
   Eibar:['Producción Diaria','Control de Neveras y Congelador','Bizcocho Base','Brownie Clásico'],

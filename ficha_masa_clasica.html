@@ -130,63 +130,17 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 
 <div class="d-card">
   <div class="d-card-title">Calculadora — por unidades</div>
-  <div class="d-calc-item">
-  <div class="d-calc-info"><div class="d-calc-name">Tapadito / Perro cóctel</div><div class="d-calc-peso">30 g · Cóctel</div></div>
-  <div class="d-qty">
-    <button class="d-qty-btn" onclick="cp('tp',-1)">−</button>
-    <input type="number" class="d-qty-num" id="q-tp" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'tp')">
-    <button class="d-qty-btn" onclick="cp('tp',1)">+</button>
-  </div>
-</div><div class="d-calc-item">
-  <div class="d-calc-info"><div class="d-calc-name">Mini perro 15 cm</div><div class="d-calc-peso">70 g</div></div>
-  <div class="d-qty">
-    <button class="d-qty-btn" onclick="cp('mp',-1)">−</button>
-    <input type="number" class="d-qty-num" id="q-mp" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'mp')">
-    <button class="d-qty-btn" onclick="cp('mp',1)">+</button>
-  </div>
-</div><div class="d-calc-item">
-  <div class="d-calc-info"><div class="d-calc-name">Mini hamb. 10 cm</div><div class="d-calc-peso">70 g</div></div>
-  <div class="d-qty">
-    <button class="d-qty-btn" onclick="cp('mh',-1)">−</button>
-    <input type="number" class="d-qty-num" id="q-mh" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'mh')">
-    <button class="d-qty-btn" onclick="cp('mh',1)">+</button>
-  </div>
-</div><div class="d-calc-item">
-  <div class="d-calc-info"><div class="d-calc-name">Perro caliente 18 cm</div><div class="d-calc-peso">100 g · 10 uds/bandeja</div></div>
-  <div class="d-qty">
-    <button class="d-qty-btn" onclick="cp('pc',-1)">−</button>
-    <input type="number" class="d-qty-num" id="q-pc" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'pc')">
-    <button class="d-qty-btn" onclick="cp('pc',1)">+</button>
-  </div>
-</div><div class="d-calc-item">
-  <div class="d-calc-info"><div class="d-calc-name">Hamburguesa clásica 12 cm</div><div class="d-calc-peso">100 g · 6 uds/bandeja</div></div>
-  <div class="d-qty">
-    <button class="d-qty-btn" onclick="cp('hc',-1)">−</button>
-    <input type="number" class="d-qty-num" id="q-hc" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'hc')">
-    <button class="d-qty-btn" onclick="cp('hc',1)">+</button>
-  </div>
-</div><div class="d-calc-item">
-  <div class="d-calc-info"><div class="d-calc-name">Hamburguesa XL 15 cm</div><div class="d-calc-peso">150 g · 6 uds/bandeja</div></div>
-  <div class="d-qty">
-    <button class="d-qty-btn" onclick="cp('hx',-1)">−</button>
-    <input type="number" class="d-qty-num" id="q-hx" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'hx')">
-    <button class="d-qty-btn" onclick="cp('hx',1)">+</button>
-  </div>
-</div><div class="d-calc-item">
-  <div class="d-calc-info"><div class="d-calc-name">Sombrero 26 cm</div><div class="d-calc-peso">750 g · 2 uds/bandeja</div></div>
-  <div class="d-qty">
-    <button class="d-qty-btn" onclick="cp('sm',-1)">−</button>
-    <input type="number" class="d-qty-num" id="q-sm" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'sm')">
-    <button class="d-qty-btn" onclick="cp('sm',1)">+</button>
-  </div>
-</div><div class="d-calc-item">
-  <div class="d-calc-info"><div class="d-calc-name">Sombrero La Fortaleza <span style="font-size:10px;font-weight:700;color:var(--rojo)">Cliente especial</span></div><div class="d-calc-peso">680 g · cliente especial</div></div>
-  <div class="d-qty">
-    <button class="d-qty-btn" onclick="cp('smf',-1)">−</button>
-    <input type="number" class="d-qty-num" id="q-smf" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'smf')">
-    <button class="d-qty-btn" onclick="cp('smf',1)">+</button>
-  </div>
-</div>
+  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--sub);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--crema-osc)">Perros</div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Perro cóctel</div><div class="d-calc-peso">30 g · 10 uds/bandeja</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cp('pc2',-1)">−</button><input type="number" class="d-qty-num" id="q-pc2" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'pc2')"><button class="d-qty-btn" onclick="cp('pc2',1)">+</button></div></div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Mini perro 15 cm</div><div class="d-calc-peso">70 g · 10 uds/bandeja</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cp('mp',-1)">−</button><input type="number" class="d-qty-num" id="q-mp" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'mp')"><button class="d-qty-btn" onclick="cp('mp',1)">+</button></div></div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Perro caliente 18 cm</div><div class="d-calc-peso">100 g · 10 uds/bandeja</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cp('pc',-1)">−</button><input type="number" class="d-qty-num" id="q-pc" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'pc')"><button class="d-qty-btn" onclick="cp('pc',1)">+</button></div></div>
+  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--sub);margin-top:14px;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--crema-osc)">Hamburguesas</div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Tapadito / Hamburguesa cóctel</div><div class="d-calc-peso">30 g · 54 uds/bandeja</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cp('tp',-1)">−</button><input type="number" class="d-qty-num" id="q-tp" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'tp')"><button class="d-qty-btn" onclick="cp('tp',1)">+</button></div></div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Mini hamburguesa 10 cm</div><div class="d-calc-peso">70 g · 9 uds/bandeja</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cp('mh',-1)">−</button><input type="number" class="d-qty-num" id="q-mh" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'mh')"><button class="d-qty-btn" onclick="cp('mh',1)">+</button></div></div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Hamburguesa clásica 12 cm</div><div class="d-calc-peso">100 g · 6 uds/bandeja</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cp('hc',-1)">−</button><input type="number" class="d-qty-num" id="q-hc" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'hc')"><button class="d-qty-btn" onclick="cp('hc',1)">+</button></div></div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Hamburguesa XL 15 cm</div><div class="d-calc-peso">150 g · 6 uds/bandeja</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cp('hx',-1)">−</button><input type="number" class="d-qty-num" id="q-hx" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'hx')"><button class="d-qty-btn" onclick="cp('hx',1)">+</button></div></div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Sombrero La Fortaleza <span style="font-size:10px;font-weight:700;color:var(--rojo)">Cliente especial</span></div><div class="d-calc-peso">680 g · 2 uds/bandeja</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cp('smf',-1)">−</button><input type="number" class="d-qty-num" id="q-smf" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'smf')"><button class="d-qty-btn" onclick="cp('smf',1)">+</button></div></div>
+  <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Sombrero 26 cm</div><div class="d-calc-peso">750 g · 2 uds/bandeja</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cp('sm',-1)">−</button><input type="number" class="d-qty-num" id="q-sm" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'sm')"><button class="d-qty-btn" onclick="cp('sm',1)">+</button></div></div>
 </div>
 
 <div id="res"><div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div></div>
@@ -257,10 +211,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <script>
 
 const PRODS={
-  tp:{n:'Tapadito / Perro cóctel',g:30},
+  pc2:{n:'Perro cóctel',g:30},
   mp:{n:'Mini perro 15 cm',g:70},
-  mh:{n:'Mini hamb. 10 cm',g:70},
   pc:{n:'Perro caliente 18 cm',g:100},
+  tp:{n:'Tapadito / Hamburguesa cóctel',g:30},
+  mh:{n:'Mini hamb. 10 cm',g:70},
   hc:{n:'Hamburguesa clásica 12 cm',g:100},
   hx:{n:'Hamburguesa XL 15 cm',g:150},
   sm:{n:'Sombrero 26 cm',g:750},
@@ -270,7 +225,7 @@ const RPERRO=[{"n": "Harina Verde", "g": 430, "p": 42.97, "sep": "Tramo 1 — Mi
 const ESPPERRO=['propianato','sorbato','glucosa','oxidasa'];
 const HIELO_MIN=0.008695652173913044;
 const HIELO_MAX=0.013043478260869565;
-let qperro={tp:0,mp:0,mh:0,pc:0,hc:0,hx:0,sm:0,smf:0};
+let qperro={pc2:0,mp:0,pc:0,tp:0,mh:0,hc:0,hx:0,sm:0,smf:0};
 function cp(k,d){var el=document.getElementById('q-'+k);qperro[k]=Math.max(0,(parseInt(el.value)||0)+d);el.value=qperro[k];renderPERRO();}
 function syncInput(el,key){qperro[key]=Math.max(0,parseInt(el.value)||0);renderPERRO();}
 function fmtP(n,v){if(ESPPERRO.some(e=>n.toLowerCase().includes(e)))return v.toFixed(2);if(v>=10)return Math.round(v).toString();return (Math.round(v*100)/100).toString();}

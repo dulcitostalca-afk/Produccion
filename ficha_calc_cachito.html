@@ -178,6 +178,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 const PRD={ca:{n:'Cachito',g:105},mj:{n:'Mini Jamón',g:145},ja:{n:'Jamón',g:550},mq:{n:'Mini Queso Tocineta',g:165},qt:{n:'Queso Tocineta',g:330}};
 const RCK=[{n:'Harina Super Pan Verde',g:297,p:29.7,t:'m'},{n:'Harina Super Pan 2',g:297,p:29.7,t:'m'},{n:'Azúcar',g:72,p:7.2,t:'m'},{n:'Leche en polvo industrial',g:12,p:1.2,t:'m'},{n:'Huevo en polvo',g:11,p:1.1,t:'m'},{n:'Sal',g:9,p:0.9,t:'m'},{n:'Levadura instantánea',g:4,p:0.4,t:'m'},{n:'Mejorador Magimix',g:3,p:0.3,t:'m'},{n:'Agua',g:234,p:23.4,t:'a'},{n:'Manteca Gold',g:30,p:3.0,t:'a'},{n:'Margarina Cordobesa',g:30,p:3.0,t:'a'},{n:'Esencia mantequilla',g:2.96,p:0.3,t:'a'}];
 const ESPCK=['esencia'];
+const T2_NAMES=["Agua", "Manteca Gold", "Margarina Cordobesa", "Esencia mantequilla"];
 let qck={ca:0,mj:0,ja:0,mq:0,qt:0};
 function ck(k,d){var el=document.getElementById('q-'+k);qck[k]=Math.max(0,(parseInt(el.value)||0)+d);el.value=qck[k];renderCK();}
 function syncInput(el,key){qck[key]=Math.max(0,parseInt(el.value)||0);renderCK();}

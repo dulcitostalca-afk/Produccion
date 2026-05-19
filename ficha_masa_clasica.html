@@ -221,10 +221,11 @@ const PRODS={
   sm:{n:'Sombrero 26 cm',g:750},
   smf:{n:'Sombrero La Fortaleza',g:680},
 };
-const RPERRO=[{"n": "Harina Verde", "g": 430, "p": 42.97, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 207, "p": 20.69, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar", "g": 44, "p": 4.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 12, "p": 1.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 4, "p": 0.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo en polvo", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Propianato", "g": 0.4, "p": 0.04, "sep": "Tramo 1 — Mise en place"}, {"n": "Sorbato de Potasio", "g": 0.2, "p": 0.02, "sep": "Tramo 1 — Mise en place"}, {"n": "Glucosa Oxidasa", "g": 0.04, "p": 0.004, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 265, "p": 26.48, "sep": "Tramo 2 — Al amasar"}, {"n": "Levadura fresca", "g": 20, "p": 2.0, "sep": "Tramo 2 — Al amasar"}, {"n": "Aceite", "g": 15, "p": 1.5, "sep": "Tramo 2 — Al amasar"}];
+const RPERRO=[{"n": "Harina Verde", "g": 430, "p": 42.97, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 207, "p": 20.69, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar", "g": 44, "p": 4.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 12, "p": 1.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 4, "p": 0.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo en polvo", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Propianato", "g": 0.4, "p": 0.04, "sep": "Tramo 1 — Mise en place"}, {"n": "Sorbato de Potasio", "g": 0.2, "p": 0.02, "sep": "Tramo 1 — Mise en place"}, {"n": "Glucosa Oxidasa", "g": 0.04, "p": 0.004, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 265, "p": 26.48, "sep": "Al amasar"}, {"n": "Levadura fresca", "g": 20, "p": 2.0, "sep": "Al amasar"}, {"n": "Aceite", "g": 15, "p": 1.5, "sep": "Al amasar"}];
 const ESPPERRO=['propianato','sorbato','glucosa','oxidasa'];
 const HIELO_PCT=0.01087;
 
+const T2_NAMES=["Agua", "Levadura fresca", "Aceite"];
 let qperro={pc2:0,mp:0,pc:0,tp:0,mh:0,hc:0,hx:0,sm:0,smf:0};
 function cp(k,d){var el=document.getElementById('q-'+k);qperro[k]=Math.max(0,(parseInt(el.value)||0)+d);el.value=qperro[k];renderPERRO();}
 function syncInput(el,key){qperro[key]=Math.max(0,parseInt(el.value)||0);renderPERRO();}
@@ -238,6 +239,7 @@ function renderPERRO(){
   var hielo=Math.round(tot*HIELO_PCT);
   var sep='',rH='';
   RPERRO.forEach(i=>{
+    if(!T2_NAMES.includes(i.n)) return;
     if(i.sep&&i.sep!==sep){rH+=`<tr class="d-sep"><td colspan="3">${i.sep}</td></tr>`;sep=i.sep;}
     if(i.n==='Agua'){
       var agua=Math.round(i.g*f);
@@ -251,7 +253,7 @@ function renderPERRO(){
   <div style="margin-bottom:12px">${desg}</div>
   <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${(Math.round(tot*100)/100).toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
-function getRecetaBase(){ return [{"n": "Harina Verde", "g": 430, "p": 42.97, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 207, "p": 20.69, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar", "g": 44, "p": 4.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 12, "p": 1.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 4, "p": 0.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo en polvo", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Propianato", "g": 0.4, "p": 0.04, "sep": "Tramo 1 — Mise en place"}, {"n": "Sorbato de Potasio", "g": 0.2, "p": 0.02, "sep": "Tramo 1 — Mise en place"}, {"n": "Glucosa Oxidasa", "g": 0.04, "p": 0.004, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 265, "p": 26.48, "sep": "Tramo 2 — Al amasar"}, {"n": "Levadura fresca", "g": 20, "p": 2.0, "sep": "Tramo 2 — Al amasar"}, {"n": "Aceite", "g": 15, "p": 1.5, "sep": "Tramo 2 — Al amasar"}]; }
+function getRecetaBase(){ return [{"n": "Harina Verde", "g": 430, "p": 42.97, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 207, "p": 20.69, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar", "g": 44, "p": 4.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 12, "p": 1.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 4, "p": 0.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo en polvo", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Propianato", "g": 0.4, "p": 0.04, "sep": "Tramo 1 — Mise en place"}, {"n": "Sorbato de Potasio", "g": 0.2, "p": 0.02, "sep": "Tramo 1 — Mise en place"}, {"n": "Glucosa Oxidasa", "g": 0.04, "p": 0.004, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 265, "p": 26.48, "sep": "Al amasar"}, {"n": "Levadura fresca", "g": 20, "p": 2.0, "sep": "Al amasar"}, {"n": "Aceite", "g": 15, "p": 1.5, "sep": "Al amasar"}]; }
 function calcInversa(){
   var kg=parseFloat(document.getElementById('ci-kg').value);
   var el=document.getElementById('ci-res');

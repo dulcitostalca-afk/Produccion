@@ -211,7 +211,8 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 
 <script>
 
-const Rgolden=[{"n": "Harina Verde", "g": 330, "p": 33.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 210, "p": 21.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar", "g": 70, "p": 7.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche en polvo", "g": 27, "p": 2.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura instantánea", "g": 13, "p": 1.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 11, "p": 1.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo en polvo", "g": 10, "p": 1.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 291, "p": 29.1, "sep": "Tramo 2 — Al amasar"}, {"n": "Manteca", "g": 20, "p": 2.0, "sep": "Tramo 2 — Al amasar"}, {"n": "Aceite", "g": 15, "p": 1.5, "sep": "Tramo 2 — Al amasar"}];
+const Rgolden=[{"n": "Harina Verde", "g": 330, "p": 33.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 210, "p": 21.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar", "g": 70, "p": 7.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche en polvo", "g": 27, "p": 2.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura instantánea", "g": 13, "p": 1.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 11, "p": 1.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo en polvo", "g": 10, "p": 1.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 291, "p": 29.1, "sep": "Al amasar"}, {"n": "Manteca", "g": 20, "p": 2.0, "sep": "Al amasar"}, {"n": "Aceite", "g": 15, "p": 1.5, "sep": "Al amasar"}];
+const T2_NAMES=["Agua", "Manteca", "Aceite"];
 let qgolden={g10:0,g12:0,gxl:0};
 function cgolden(k,d){var el=document.getElementById('q-'+k);qgolden[k]=Math.max(0,(parseInt(el.value)||0)+d);el.value=qgolden[k];renderGOLDEN();}
 function syncInput(el,key){qgolden[key]=Math.max(0,parseInt(el.value)||0);renderGOLDEN();}
@@ -227,6 +228,7 @@ function renderGOLDEN(){
   if(qgolden.gxl)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qgolden.gxl} × Golden XL (160g)</span><span class="d-res-row-val">${(qgolden.gxl*160).toLocaleString('es-CL')} g</span></div>`;
   var sep='',rH='';
   Rgolden.forEach(i=>{
+    if(!T2_NAMES.includes(i.n)) return;
     if(i.sep&&i.sep!==sep){rH+=`<tr class="d-sep"><td colspan="3">${i.sep}</td></tr>`;sep=i.sep;}
     rH+=`<tr><td>${i.n}</td><td class="r">${fmtG(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;
   });
@@ -235,7 +237,7 @@ function renderGOLDEN(){
   <div style="margin-bottom:12px">${desg}</div>
   <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
-function getRecetaBase(){ return [{"n": "Harina Verde", "g": 330, "p": 33.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 210, "p": 21.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar", "g": 70, "p": 7.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche en polvo", "g": 27, "p": 2.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura instantánea", "g": 13, "p": 1.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 11, "p": 1.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo en polvo", "g": 10, "p": 1.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 291, "p": 29.1, "sep": "Tramo 2 — Al amasar"}, {"n": "Manteca", "g": 20, "p": 2.0, "sep": "Tramo 2 — Al amasar"}, {"n": "Aceite", "g": 15, "p": 1.5, "sep": "Tramo 2 — Al amasar"}]; }
+function getRecetaBase(){ return [{"n": "Harina Verde", "g": 330, "p": 33.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 210, "p": 21.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar", "g": 70, "p": 7.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche en polvo", "g": 27, "p": 2.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura instantánea", "g": 13, "p": 1.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 11, "p": 1.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo en polvo", "g": 10, "p": 1.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 291, "p": 29.1, "sep": "Al amasar"}, {"n": "Manteca", "g": 20, "p": 2.0, "sep": "Al amasar"}, {"n": "Aceite", "g": 15, "p": 1.5, "sep": "Al amasar"}]; }
 function calcInversa(){
   var kg=parseFloat(document.getElementById('ci-kg').value);
   var el=document.getElementById('ci-res');

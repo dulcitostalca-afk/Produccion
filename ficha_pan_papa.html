@@ -191,11 +191,12 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 
 <script>
 
-const Rpapa=[{"n": "Harina Verde", "g": 320, "p": 32.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 204, "p": 20.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar", "g": 50, "p": 5.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Papa en escamas", "g": 30, "p": 3.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche en polvo", "g": 17, "p": 1.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura instantánea", "g": 12, "p": 1.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 11, "p": 1.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo en polvo", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 300, "p": 30.0, "sep": "Tramo 2 — Al amasar"}, {"n": "Manteca", "g": 50, "p": 5.0, "sep": "Tramo 2 — Al amasar"}];
+const Rpapa=[{"n": "Harina Verde", "g": 320, "p": 32.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 204, "p": 20.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar", "g": 50, "p": 5.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Papa en escamas", "g": 30, "p": 3.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche en polvo", "g": 17, "p": 1.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura instantánea", "g": 12, "p": 1.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 11, "p": 1.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo en polvo", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 300, "p": 30.0, "sep": "Al amasar"}, {"n": "Manteca", "g": 50, "p": 5.0, "sep": "Al amasar"}];
 const PRODS_PAPA={
   p10:{n:'Pan de papa 10 cm',g:70},
   p12:{n:'Pan de papa 12 cm',g:100},
 };
+const T2_NAMES=["Agua", "Manteca"];
 let qpapa={p10:0,p12:0};
 function cpapa(k,d){var el=document.getElementById('q-'+k);qpapa[k]=Math.max(0,(parseInt(el.value)||0)+d);el.value=qpapa[k];renderPAPA();}
 function syncInput(el,key){qpapa[key]=Math.max(0,parseInt(el.value)||0);renderPAPA();}
@@ -210,6 +211,7 @@ function renderPAPA(){
   if(qpapa.p12)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qpapa.p12} × Pan de papa 12 cm (100g)</span><span class="d-res-row-val">${(qpapa.p12*100).toLocaleString('es-CL')} g</span></div>`;
   var sep='',rH='';
   Rpapa.forEach(i=>{
+    if(!T2_NAMES.includes(i.n)) return;
     if(i.sep&&i.sep!==sep){rH+=`<tr class="d-sep"><td colspan="3">${i.sep}</td></tr>`;sep=i.sep;}
     rH+=`<tr><td>${i.n}</td><td class="r">${fmtPAPA(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;
   });
@@ -218,7 +220,7 @@ function renderPAPA(){
   <div style="margin-bottom:12px">${desg}</div>
   <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
-function getRecetaBase(){ return [{"n": "Harina Verde", "g": 320, "p": 32.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 204, "p": 20.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar", "g": 50, "p": 5.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Papa en escamas", "g": 30, "p": 3.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche en polvo", "g": 17, "p": 1.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura instantánea", "g": 12, "p": 1.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 11, "p": 1.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo en polvo", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 300, "p": 30.0, "sep": "Tramo 2 — Al amasar"}, {"n": "Manteca", "g": 50, "p": 5.0, "sep": "Tramo 2 — Al amasar"}]; }
+function getRecetaBase(){ return [{"n": "Harina Verde", "g": 320, "p": 32.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 204, "p": 20.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar", "g": 50, "p": 5.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Papa en escamas", "g": 30, "p": 3.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche en polvo", "g": 17, "p": 1.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura instantánea", "g": 12, "p": 1.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 11, "p": 1.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo en polvo", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 300, "p": 30.0, "sep": "Al amasar"}, {"n": "Manteca", "g": 50, "p": 5.0, "sep": "Al amasar"}]; }
 function calcInversa(){
   var kg=parseFloat(document.getElementById('ci-kg').value);
   var el=document.getElementById('ci-res');

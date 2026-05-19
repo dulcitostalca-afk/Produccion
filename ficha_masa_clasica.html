@@ -150,7 +150,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
   <div class="d-rec-wrap" id="rw">
     <table class="d-ing-table">
       <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
-      <tbody><tr class="d-sep"><td colspan="4">Tramo 1 — Mise en place</td></tr><tr><td>1</td><td>Harina Verde</td><td class="r">430</td><td class="pct">42.97%</td></tr><tr><td>2</td><td>Harina SP2</td><td class="r">207</td><td class="pct">20.69%</td></tr><tr><td>3</td><td>Azúcar</td><td class="r">44</td><td class="pct">4.4%</td></tr><tr><td>4</td><td>Sal</td><td class="r">12</td><td class="pct">1.2%</td></tr><tr><td>5</td><td>Mejorador Magimix</td><td class="r">4</td><td class="pct">0.4%</td></tr><tr><td>6</td><td>Huevo en polvo</td><td class="r">3</td><td class="pct">0.3%</td></tr><tr><td>7</td><td>Propianato</td><td class="r">0.40</td><td class="pct">0.04%</td></tr><tr><td>8</td><td>Sorbato de Potasio</td><td class="r">0.20</td><td class="pct">0.02%</td></tr><tr><td>9</td><td>Glucosa Oxidasa</td><td class="r">0.04</td><td class="pct">0.004%</td></tr><tr class="d-sep"><td colspan="4">Tramo 2 — Al amasar</td></tr><tr><td>10</td><td>Agua</td><td class="r">265 <span style="font-size:10px;color:#185FA5;font-weight:600">(hielo base: ~11 g por kg · ajustar según clima)</span></td><td class="pct">26.48%</td></tr><tr><td>11</td><td>Levadura fresca</td><td class="r">20</td><td class="pct">2.0%</td></tr><tr><td>12</td><td>Aceite</td><td class="r">15</td><td class="pct">1.5%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000,64</td><td class="pct">~100%</td></tr></tbody>
+      <tbody></tbody></table><div class="tramo1-block"><table class="d-ing-table"><tbody><tr class="d-sep"><td colspan="4">Tramo 1 — Mise en place</td></tr><tr><td>1</td><td>Harina Verde</td><td class="r">430</td><td class="pct">42.97%</td></tr><tr><td>2</td><td>Harina SP2</td><td class="r">207</td><td class="pct">20.69%</td></tr><tr><td>3</td><td>Azúcar</td><td class="r">44</td><td class="pct">4.4%</td></tr><tr><td>4</td><td>Sal</td><td class="r">12</td><td class="pct">1.2%</td></tr><tr><td>5</td><td>Mejorador Magimix</td><td class="r">4</td><td class="pct">0.4%</td></tr><tr><td>6</td><td>Huevo en polvo</td><td class="r">3</td><td class="pct">0.3%</td></tr><tr><td>7</td><td>Propianato</td><td class="r">0.40</td><td class="pct">0.04%</td></tr><tr><td>8</td><td>Sorbato de Potasio</td><td class="r">0.20</td><td class="pct">0.02%</td></tr><tr><td>9</td><td>Glucosa Oxidasa</td><td class="r">0.04</td><td class="pct">0.004%</td></tr></tbody></table></div><table class="d-ing-table"><tbody><tr class="d-sep"><td colspan="4">Tramo 2 — Al amasar</td></tr><tr><td>10</td><td>Agua</td><td class="r">265 <span style="font-size:10px;color:#185FA5;font-weight:600">(hielo base: ~11 g por kg · ajustar según clima)</span></td><td class="pct">26.48%</td></tr><tr><td>11</td><td>Levadura fresca</td><td class="r">20</td><td class="pct">2.0%</td></tr><tr><td>12</td><td>Aceite</td><td class="r">15</td><td class="pct">1.5%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000,64</td><td class="pct">~100%</td></tr></tbody>
     </table>
     <div class="d-nota" style="margin-top:10px">⚠ Tramo 1 solo Rosana y Eibar — caja pre-pesada.<br>⚠ Balanza GRAMAJE: Propianato · Sorbato de Potasio · Glucosa Oxidasa.<br>⚠ Cada horno tiene su hoja impresa con temperaturas exactas.</div>
     <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
@@ -209,6 +209,16 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 </div>
 
 <script>
+// Control de acceso Tramo 1
+var _user = localStorage.getItem('dulcitos_user');
+var _canSeT1 = (_user === 'Rosana' || _user === 'Eibar');
+document.addEventListener('DOMContentLoaded', function() {
+  var t1blocks = document.querySelectorAll('.tramo1-block');
+  t1blocks.forEach(function(el) {
+    el.style.display = _canSeT1 ? '' : 'none';
+  });
+});
+
 
 const PRODS={
   pc2:{n:'Perro cóctel',g:30},

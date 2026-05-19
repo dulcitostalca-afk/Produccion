@@ -183,6 +183,16 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 </div>
 </div><a class="d-home" href="index.html">🏠 Inicio</a></body></html>
 <script>
+// Control de acceso Tramo 1
+var _user = localStorage.getItem('dulcitos_user');
+var _canSeT1 = (_user === 'Rosana' || _user === 'Eibar');
+document.addEventListener('DOMContentLoaded', function() {
+  var t1blocks = document.querySelectorAll('.tramo1-block');
+  t1blocks.forEach(function(el) {
+    el.style.display = _canSeT1 ? '' : 'none';
+  });
+});
+
 const PFP={pf:{n:'Pan Francés',g:95},p30:{n:'Pepito 30cm',g:190},p45:{n:'Pepito 45cm',g:280}};
 const RFPP=[{n:'Harina Verde',g:454,p:45.4,t:'m'},{n:'Harina SP2',g:195,p:19.5,t:'m'},{n:'Azúcar',g:25,p:2.5,t:'m'},{n:'Mejorador Puratos',g:12,p:1.2,t:'m'},{n:'Propianato',g:0.5,p:0.05,t:'m'},{n:'Sorbato de Potasio',g:0.25,p:0.025,t:'m'},{n:'Agua fría + hielo',g:273,p:27.3,t:'a'},{n:'Levadura fresca',g:20,p:2.0,t:'a'},{n:'Manteca La Granja',g:25,p:2.5,t:'a'}];
 const ESPFP=['propianato','sorbato'];
@@ -199,7 +209,8 @@ function renderFP(){
   if(!tot){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div>';return;}
   const f=tot/1000;let pt='',rH='';
   RFPP.forEach(i=>{
-    if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='m'?'Mise en place':'Al amasar'}</td></tr>`;pt=i.t;}
+    if(i.t==='m') return;
+    if(i.t!==pt){if(i.t!=='m'){rH+=`<tr class="d-sep"><td colspan="3">Al amasar</td></tr>`;};pt=i.t;}
     if(i.n==='Agua fría + hielo'){
       const agua=Math.round(i.g*f);
       const hielo=Math.round(tot*HIELO_PCT_FP);

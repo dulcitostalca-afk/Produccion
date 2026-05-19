@@ -155,7 +155,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
   <div class="d-rec-wrap" id="rw">
     <table class="d-ing-table">
       <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
-      <tbody><tr class="d-sep"><td colspan="4">Tramo 1 — Mise en place</td></tr><tr><td>1</td><td>Harina Verde</td><td class="r">320</td><td class="pct">32.0%</td></tr><tr><td>2</td><td>Harina SP2</td><td class="r">204</td><td class="pct">20.4%</td></tr><tr><td>3</td><td>Azúcar</td><td class="r">50</td><td class="pct">5.0%</td></tr><tr><td>4</td><td>Papa en escamas</td><td class="r">30</td><td class="pct">3.0%</td></tr><tr><td>5</td><td>Leche en polvo</td><td class="r">17</td><td class="pct">1.7%</td></tr><tr><td>6</td><td>Levadura instantánea</td><td class="r">12</td><td class="pct">1.2%</td></tr><tr><td>7</td><td>Sal</td><td class="r">11</td><td class="pct">1.1%</td></tr><tr><td>8</td><td>Huevo en polvo</td><td class="r">3</td><td class="pct">0.3%</td></tr><tr><td>9</td><td>Mejorador Magimix</td><td class="r">3</td><td class="pct">0.3%</td></tr><tr class="d-sep"><td colspan="4">Tramo 2 — Al amasar</td></tr><tr><td>10</td><td>Agua</td><td class="r">300</td><td class="pct">30.0%</td></tr><tr><td>11</td><td>Manteca</td><td class="r">50</td><td class="pct">5.0%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000</td><td class="pct">100%</td></tr></tbody>
+      <tbody></tbody></table><div class="tramo1-block"><table class="d-ing-table"><tbody><tr class="d-sep"><td colspan="4">Tramo 1 — Mise en place</td></tr><tr><td>1</td><td>Harina Verde</td><td class="r">320</td><td class="pct">32.0%</td></tr><tr><td>2</td><td>Harina SP2</td><td class="r">204</td><td class="pct">20.4%</td></tr><tr><td>3</td><td>Azúcar</td><td class="r">50</td><td class="pct">5.0%</td></tr><tr><td>4</td><td>Papa en escamas</td><td class="r">30</td><td class="pct">3.0%</td></tr><tr><td>5</td><td>Leche en polvo</td><td class="r">17</td><td class="pct">1.7%</td></tr><tr><td>6</td><td>Levadura instantánea</td><td class="r">12</td><td class="pct">1.2%</td></tr><tr><td>7</td><td>Sal</td><td class="r">11</td><td class="pct">1.1%</td></tr><tr><td>8</td><td>Huevo en polvo</td><td class="r">3</td><td class="pct">0.3%</td></tr><tr><td>9</td><td>Mejorador Magimix</td><td class="r">3</td><td class="pct">0.3%</td></tr></tbody></table></div><table class="d-ing-table"><tbody><tr class="d-sep"><td colspan="4">Tramo 2 — Al amasar</td></tr><tr><td>10</td><td>Agua</td><td class="r">300</td><td class="pct">30.0%</td></tr><tr><td>11</td><td>Manteca</td><td class="r">50</td><td class="pct">5.0%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000</td><td class="pct">100%</td></tr></tbody>
     </table>
     <div class="d-nota" style="margin-top:10px">⚠ Tramo 1 solo Rosana y Eibar — caja pre-pesada.<br>⚠ Temperatura de horno pendiente de confirmar.</div>
     <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
@@ -190,6 +190,16 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 </div>
 
 <script>
+// Control de acceso Tramo 1
+var _user = localStorage.getItem('dulcitos_user');
+var _canSeT1 = (_user === 'Rosana' || _user === 'Eibar');
+document.addEventListener('DOMContentLoaded', function() {
+  var t1blocks = document.querySelectorAll('.tramo1-block');
+  t1blocks.forEach(function(el) {
+    el.style.display = _canSeT1 ? '' : 'none';
+  });
+});
+
 
 const Rpapa=[{"n": "Harina Verde", "g": 320, "p": 32.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 204, "p": 20.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar", "g": 50, "p": 5.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Papa en escamas", "g": 30, "p": 3.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche en polvo", "g": 17, "p": 1.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura instantánea", "g": 12, "p": 1.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 11, "p": 1.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo en polvo", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 3, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 300, "p": 30.0, "sep": "Al amasar"}, {"n": "Manteca", "g": 50, "p": 5.0, "sep": "Al amasar"}];
 const PRODS_PAPA={

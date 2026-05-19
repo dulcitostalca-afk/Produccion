@@ -249,7 +249,7 @@ function renderPERRO(){
   var hielo=Math.round(tot*HIELO_PCT);
   var sep='',rH='';
   RPERRO.forEach(i=>{
-    if(!T2_NAMES.includes(i.n)) return;
+    if(!_canSeT1 && !T2_NAMES.includes(i.n)) return;
     if(i.sep&&i.sep!==sep){rH+=`<tr class="d-sep"><td colspan="3">${i.sep}</td></tr>`;sep=i.sep;}
     if(i.n==='Agua'){
       var agua=Math.round(i.g*f);

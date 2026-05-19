@@ -221,7 +221,7 @@ function renderPAPA(){
   if(qpapa.p12)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qpapa.p12} × Pan de papa 12 cm (100g)</span><span class="d-res-row-val">${(qpapa.p12*100).toLocaleString('es-CL')} g</span></div>`;
   var sep='',rH='';
   Rpapa.forEach(i=>{
-    if(!T2_NAMES.includes(i.n)) return;
+    if(!_canSeT1 && !T2_NAMES.includes(i.n)) return;
     if(i.sep&&i.sep!==sep){rH+=`<tr class="d-sep"><td colspan="3">${i.sep}</td></tr>`;sep=i.sep;}
     rH+=`<tr><td>${i.n}</td><td class="r">${fmtPAPA(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;
   });

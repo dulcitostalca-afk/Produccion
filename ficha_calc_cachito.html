@@ -199,8 +199,8 @@ function renderCK(){
   const el=document.getElementById('res');
   if(!tot){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div>';return;}
   const f=tot/1000;let pt='',rH='';
-  RCK.forEach(i=>{if(i.t==='m') return;
-    if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='m'?'':' Al amasar'}</td></tr>`;pt=i.t;}rH+=`<tr><td>${i.n}</td><td class="r">${fmtCK(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  RCK.forEach(i=>{if(!_canSeT1 && i.t==='m') return;
+    if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='m'?(_canSeT1?'Mise en place':''):'Al amasar'}</td></tr>`;pt=i.t;}rH+=`<tr><td>${i.n}</td><td class="r">${fmtCK(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa necesaria</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
 function getRecetaBase(){ return [{"n": "Harina Super Pan Verde", "g": 297, "sep": "Mise en place"}, {"n": "Harina Super Pan 2", "g": 297, "sep": "Mise en place"}, {"n": "Azúcar", "g": 72, "sep": "Mise en place"}, {"n": "Leche en polvo industrial", "g": 12, "sep": "Mise en place"}, {"n": "Huevo en polvo", "g": 11, "sep": "Mise en place"}, {"n": "Sal", "g": 9, "sep": "Mise en place"}, {"n": "Levadura instantánea", "g": 4, "sep": "Mise en place"}, {"n": "Mejorador Magimix", "g": 3, "sep": "Mise en place"}, {"n": "Agua", "g": 234, "sep": "Al amasar"}, {"n": "Manteca Gold", "g": 30, "sep": "Al amasar"}, {"n": "Margarina Cordobesa", "g": 30, "sep": "Al amasar"}, {"n": "Esencia mantequilla", "g": 2.96, "sep": "Al amasar"}]; }

@@ -209,7 +209,7 @@ function renderFP(){
   if(!tot){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div>';return;}
   const f=tot/1000;let pt='',rH='';
   RFPP.forEach(i=>{
-    if(i.t==='m') return;
+    if(!_canSeT1 && i.t==='m') return;
     if(i.t!==pt){if(i.t!=='m'){rH+=`<tr class="d-sep"><td colspan="3">Al amasar</td></tr>`;};pt=i.t;}
     if(i.n==='Agua fría + hielo'){
       const agua=Math.round(i.g*f);

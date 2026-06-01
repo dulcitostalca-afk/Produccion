@@ -124,7 +124,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-card"><button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button><div class="d-rec-wrap" id="rw">
 <table class="d-ing-table"><thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead><tbody>
 <tr class="d-sep"><td colspan="4">Secos — mise en place previo</td></tr>
-<tr><td>1</td><td>Harina pastelera</td><td class="r">489</td><td class="pct">48,9%</td></tr>
+<tr><td>1</td><td>Harina pastelera</td><td class="r">488</td><td class="pct">48,8%</td></tr>
 <tr><td>2</td><td>Leche en polvo Colun</td><td class="r">29</td><td class="pct">2,9%</td></tr>
 <tr><td>3</td><td>Polvo de hornear</td><td class="r">12</td><td class="pct">1,2%</td></tr>
 <tr><td>4</td><td>Propianato</td><td class="r">0,4</td><td class="pct">0,04%</td></tr>
@@ -160,7 +160,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-crit"><span class="d-crit-icon">⚠</span><span>Usar balanza de GRAMAJE para Propianato y Sorbato de Potasio</span></div></div>
 </div><a class="d-home" href="index.html">🏠 Inicio</a></body></html>
 <script>
-const RG=[{n:'Harina pastelera',g:489,p:48.9,t:'s'},{n:'Leche en polvo Colun',g:29,p:2.9,t:'s'},{n:'Polvo de hornear',g:12,p:1.2,t:'s'},{n:'Propianato',g:0.4,p:0.04,t:'s'},{n:'Sorbato de Potasio',g:0.2,p:0.02,t:'s'},{n:'Azúcar',g:244,p:24.4,t:'h'},{n:'Leche líquida',g:122,p:12.2,t:'h'},{n:'Huevos líquidos',g:49,p:4.9,t:'h'},{n:'Margarina Cordobesa',g:49,p:4.9,t:'h'},{n:'Esencia mantecado',g:5,p:0.5,t:'h'},{n:'Colorante amarillo',g:0.3,p:0.03,t:'h'}];
+const RG=[{n:'Harina pastelera',g:488,p:48.8,t:'s'},{n:'Leche en polvo Colun',g:29,p:2.9,t:'s'},{n:'Polvo de hornear',g:12,p:1.2,t:'s'},{n:'Propianato',g:0.4,p:0.04,t:'s'},{n:'Sorbato de Potasio',g:0.2,p:0.02,t:'s'},{n:'Azúcar',g:244,p:24.4,t:'h'},{n:'Leche líquida',g:122,p:12.2,t:'h'},{n:'Huevos líquidos',g:49,p:4.9,t:'h'},{n:'Margarina Cordobesa',g:49,p:4.9,t:'h'},{n:'Vainilla blanca',g:2.5,p:0.25},{n:'Esencia mantecado',g:2.5,p:0.5,t:'h'},{n:'Colorante amarillo',g:0.35,p:0.035,t:'h'}];
 const ESPG=['esencia','colorante','propianato','sorbato'];
 let pgq=0;
 function cg(d){var el=document.getElementById('qg');pgq=Math.max(0,(parseInt(el.value)||0)+d);el.value=pgq;renderG();}

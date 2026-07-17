@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Masa Dulce · Pan Piñita · Dulcitos</title>
+<style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --amber:#EF9F27; --amber-osc:#633806; --amber-med:#854F0B; --amber-cl:#FAEEDA;
+  --verde:#1D9E75; --verde-osc:#085041; --verde-cl:#E1F5EE;
+  --purple:#7F77DD; --purple-osc:#26215C; --purple-cl:#EEEDFE;
+  --rojo:#A32D2D; --rojo-cl:#FCEBEB;
+  --azul:#185FA5; --azul-cl:#E6F1FB;
+  --crema:#F9F5ED; --crema-med:#F0E8D4; --crema-osc:#E8DCC4;
+  --gris:#F4F2ED; --borde:#DDD5C0; --texto:#1a1a18; --sub:#7A6F5A;
+  --r:12px; --r-sm:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:var(--texto);min-height:100vh;padding-bottom:80px}
+.page{max-width:680px;margin:0 auto;padding:1.25rem}
+
+/* HEADER — crema editorial */
+.d-header{background:var(--crema-med);border-radius:var(--r);padding:1.5rem;margin-bottom:1.25rem;border-top:3px solid #1a1a18;position:relative}
+.d-header-eyebrow{font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--sub);margin-bottom:8px}
+.d-header-title{font-family:'Fraunces',serif;font-size:26px;font-weight:700;color:#1a1a18;line-height:1.2}
+.d-header-line{width:40px;height:3px;background:var(--amber);margin-top:10px;border-radius:2px}
+.d-header-sub{font-size:13px;color:var(--sub);margin-top:8px;line-height:1.6}
+.d-header-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.d-htag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(0,0,0,.06);color:var(--sub);border:1px solid var(--borde)}
+
+/* CARD */
+.d-card{background:#fff;border-radius:var(--r);border:1px solid var(--borde);padding:1.1rem 1.25rem;margin-bottom:12px}
+.d-card-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--amber-osc);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.d-card-title::after{content:'';flex:1;height:1px;background:var(--crema-osc)}
+
+/* TABLA */
+.d-ing-table{width:100%;border-collapse:collapse;font-size:14px}
+.d-ing-table th{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);padding:6px 10px;border-bottom:2px solid var(--crema-osc)}
+.d-ing-table th.r{text-align:right}
+.d-ing-table td{padding:9px 10px;border-bottom:1px solid var(--crema-med);vertical-align:middle}
+.d-ing-table td.r{text-align:right;font-weight:600;min-width:68px}
+.d-ing-table td.pct{text-align:right;color:#bbb;font-size:12px;min-width:46px}
+.d-ing-table tr.d-sep td{background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--amber-med);padding:5px 10px}
+.d-ing-table tr.d-tot td{border-top:2px solid var(--borde);font-weight:700;background:var(--crema);border-bottom:none}
+
+/* CALCULADORA */
+.d-calc-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--crema-osc)}
+.d-calc-item:last-child{border-bottom:none}
+.d-calc-info{flex:1}
+.d-calc-name{font-size:15px;font-weight:600;line-height:1.3;color:var(--texto)}
+.d-calc-peso{font-size:12px;color:var(--sub);margin-top:2px}
+.d-qty{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.d-qty-btn{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--borde);background:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--sub);font-weight:600;transition:all .12s}
+.d-qty-btn:active{background:var(--amber-cl);border-color:var(--amber);color:var(--amber-osc);transform:scale(.93)}
+.d-qty-num{font-size:22px;font-weight:700;min-width:36px;text-align:center;color:var(--texto)}
+
+/* RESULTADO */
+.d-res-total{background:#1a1a18;border-radius:var(--r-sm);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.d-res-lbl{font-size:12px;font-weight:600;color:rgba(255,255,255,.6)}
+.d-res-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:3px}
+.d-res-val{font-family:'Fraunces',serif;font-size:32px;font-weight:700;color:#EF9F27;line-height:1}
+.d-res-unit{font-size:12px;color:rgba(255,255,255,.4);margin-top:2px;text-align:right}
+.d-res-row{display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid var(--crema-med)}
+.d-res-row:last-child{border-bottom:none}
+.d-res-row-lbl{color:var(--sub)}
+.d-res-row-val{font-weight:600}
+
+/* TOGGLE */
+.d-toggle{width:100%;padding:12px 16px;background:var(--crema);border:1px solid var(--borde);border-radius:var(--r-sm);font-size:13px;font-weight:600;color:var(--amber-osc);cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;transition:all .15s}
+.d-toggle:active{background:var(--amber-cl);border-color:var(--amber)}
+.d-rec-wrap{overflow:hidden;max-height:0;transition:max-height .4s ease}
+.d-rec-wrap.open{max-height:5000px}
+
+/* PASOS */
+.d-paso{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--crema-med)}
+.d-paso:last-child{border-bottom:none}
+.d-paso-num{width:26px;height:26px;border-radius:50%;background:var(--crema-osc);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--amber-osc);flex-shrink:0;margin-top:1px}
+.d-paso-body{flex:1}
+.d-paso-title{font-size:14px;font-weight:600;margin-bottom:3px;color:var(--texto)}
+.d-paso-desc{font-size:13px;color:var(--sub);line-height:1.6}
+.d-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.d-badge{font-size:11px;font-weight:600;padding:2px 9px;border-radius:100px}
+.d-badge-r{background:var(--rojo-cl);color:var(--rojo)}
+.d-badge-a{background:var(--amber-cl);color:var(--amber-osc)}
+.d-badge-v{background:var(--verde-cl);color:var(--verde-osc)}
+
+/* CRÍTICOS */
+.d-crit{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--crema-med);font-size:13px;line-height:1.6;color:var(--sub)}
+.d-crit:last-child{border-bottom:none}
+.d-crit-icon{color:var(--amber);flex-shrink:0;font-size:15px;margin-top:1px}
+
+/* NOTAS */
+.d-nota{border-radius:var(--r-sm);padding:10px 14px;font-size:13px;border-left:3px solid var(--amber);line-height:1.6;margin-top:10px;background:var(--amber-cl);color:var(--amber-osc)}
+.d-nota-v{background:var(--verde-cl);color:var(--verde-osc);border-left-color:var(--verde)}
+.d-nota-r{background:var(--rojo-cl);color:var(--rojo);border-left-color:var(--rojo)}
+
+/* GRUPO */
+.d-grupo{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--sub);margin:1.25rem 0 8px;display:flex;align-items:center;gap:8px}
+.d-grupo::after{content:'';flex:1;height:1px;background:var(--borde)}
+
+/* HORNO */
+.d-horno-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.d-horno-box{background:var(--crema);border-radius:var(--r-sm);padding:12px;border:1px solid var(--crema-osc)}
+.d-horno-lbl{font-size:10px;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.d-horno-val{font-size:20px;font-weight:700;color:var(--rojo);font-family:'Fraunces',serif}
+.d-horno-desc{font-size:11px;color:var(--sub);margin-top:3px;line-height:1.4}
+
+/* HOME BTN */
+.d-home{position:fixed;bottom:20px;right:20px;z-index:999;display:flex;align-items:center;gap:8px;background:#1a1a18;color:#fff;text-decoration:none;padding:12px 20px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.25)}
+
+.d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
+.d-card{animation:fadeUp .2s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body><div class="page">
+<div class="d-header">
+  <div class="d-header-eyebrow">Panadería · Masa dulce</div>
+  <div class="d-header-title">Masa Dulce<br>Pan Piñita y Derivados</div>
+  <div class="d-header-line"></div>
+  <div class="d-header-sub">Base para Piñita · Golfeado · Pan de Guayaba · Quesadilla · Horno de piso</div>
+  <div class="d-header-tags">
+    <span class="d-htag">Base 1.000 g</span>
+    <span class="d-htag">5 productos</span>
+    <span class="d-htag">Horno de piso</span>
+  </div>
+</div>
+
+<div class="d-card">
+  <div class="d-card-title">Calculadora — por unidades</div>
+  <div class="d-calc-item">
+  <div class="d-calc-info"><div class="d-calc-name">Piñita / Pan dulce</div><div class="d-calc-peso">70 g · 6 uds/paquete</div></div>
+  <div class="d-qty">
+    <button class="d-qty-btn" onclick="cpd('p70',-1)">−</button>
+    <input type="number" class="d-qty-num" id="q-p70" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'p70')">
+    <button class="d-qty-btn" onclick="cpd('p70',1)">+</button>
+  </div>
+</div><div class="d-calc-item">
+  <div class="d-calc-info"><div class="d-calc-name">Golfeado</div><div class="d-calc-peso">125 g · 2 uds/paquete</div></div>
+  <div class="d-qty">
+    <button class="d-qty-btn" onclick="cpd('gol',-1)">−</button>
+    <input type="number" class="d-qty-num" id="q-gol" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'gol')">
+    <button class="d-qty-btn" onclick="cpd('gol',1)">+</button>
+  </div>
+</div><div class="d-calc-item">
+  <div class="d-calc-info"><div class="d-calc-name">Pan de guayaba</div><div class="d-calc-peso">330 g · 1 ud</div></div>
+  <div class="d-qty">
+    <button class="d-qty-btn" onclick="cpd('gua',-1)">−</button>
+    <input type="number" class="d-qty-num" id="q-gua" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'gua')">
+    <button class="d-qty-btn" onclick="cpd('gua',1)">+</button>
+  </div>
+</div><div class="d-calc-item">
+  <div class="d-calc-info"><div class="d-calc-name">Mini pan de guayaba</div><div class="d-calc-peso">165 g · 1 ud</div></div>
+  <div class="d-qty">
+    <button class="d-qty-btn" onclick="cpd('mgu',-1)">−</button>
+    <input type="number" class="d-qty-num" id="q-mgu" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'mgu')">
+    <button class="d-qty-btn" onclick="cpd('mgu',1)">+</button>
+  </div>
+</div><div class="d-calc-item">
+  <div class="d-calc-info"><div class="d-calc-name">Quesadilla</div><div class="d-calc-peso">125 g · 1 ud</div></div>
+  <div class="d-qty">
+    <button class="d-qty-btn" onclick="cpd('que',-1)">−</button>
+    <input type="number" class="d-qty-num" id="q-que" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'que')">
+    <button class="d-qty-btn" onclick="cpd('que',1)">+</button>
+  </div>
+</div>
+  <div class="d-calc-item">
+    <div class="d-calc-info"><div class="d-calc-name">Mini pan de queso</div><div class="d-calc-peso">165 g · 1 ud</div></div>
+    <div class="d-qty">
+      <button class="d-qty-btn" onclick="cpd('mq',-1)">−</button>
+      <input type="number" class="d-qty-num" id="q-mq" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'mq')">
+      <button class="d-qty-btn" onclick="cpd('mq',1)">+</button>
+    </div>
+  </div>
+  <div class="d-calc-item">
+    <div class="d-calc-info"><div class="d-calc-name">Mini pan de guayaba y queso</div><div class="d-calc-peso">165 g · 1 ud</div></div>
+    <div class="d-qty">
+      <button class="d-qty-btn" onclick="cpd('mgq',-1)">−</button>
+      <input type="number" class="d-qty-num" id="q-mgq" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'mgq')">
+      <button class="d-qty-btn" onclick="cpd('mgq',1)">+</button>
+    </div>
+  </div>
+  <div class="d-calc-item">
+    <div class="d-calc-info"><div class="d-calc-name">Pan de guayaba y queso</div><div class="d-calc-peso">330 g · 1 ud</div></div>
+    <div class="d-qty">
+      <button class="d-qty-btn" onclick="cpd('gyq',-1)">−</button>
+      <input type="number" class="d-qty-num" id="q-gyq" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInput(this,'gyq')">
+      <button class="d-qty-btn" onclick="cpd('gyq',1)">+</button>
+    </div>
+  </div>
+</div>
+
+<div id="res"><div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div></div>
+
+<div class="d-card">
+  <button class="d-toggle" onclick="tog()"><span id="tl">Ver receta base</span></button>
+  <div class="d-rec-wrap" id="rw">
+    <div class="tramo1-block">
+      <table class="d-ing-table">
+        <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
+        <tbody>
+          <tr class="d-sep"><td colspan="4">Tramo 1 — Mise en place</td></tr>
+          <tr><td>1</td><td>Harina Verde</td><td class="r">273</td><td class="pct">27.3%</td></tr>
+<tr><td>2</td><td>Harina SP2</td><td class="r">273</td><td class="pct">27.3%</td></tr>
+<tr><td>3</td><td>Margarina Cordobesa</td><td class="r">62</td><td class="pct">6.2%</td></tr>
+<tr><td>4</td><td>Levadura fresca</td><td class="r">50</td><td class="pct">5.0%</td></tr>
+<tr><td>5</td><td>Azúcar (mise en place)</td><td class="r">37</td><td class="pct">3.7%</td></tr>
+<tr><td>6</td><td>Leche polvo industrial</td><td class="r">15</td><td class="pct">1.5%</td></tr>
+<tr><td>7</td><td>Huevo entero en polvo</td><td class="r">7</td><td class="pct">0.7%</td></tr>
+<tr><td>8</td><td>Sal</td><td class="r">6</td><td class="pct">0.6%</td></tr>
+<tr><td>9</td><td>Mejorador Magimix</td><td class="r">4</td><td class="pct">0.4%</td></tr>
+<tr><td>10</td><td>Mejorador de Frescura</td><td class="r">1</td><td class="pct">0.1%</td></tr>
+<tr><td>11</td><td>Canela Kirkland</td><td class="r">0.4</td><td class="pct">0.04%</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+    <table class="d-ing-table">
+      <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
+      <tbody>
+        <tr class="d-sep"><td colspan="4">Tramo 2 — Al amasar</td></tr>
+        <tr><td>1</td><td>Agua</td><td class="r">154</td><td class="pct">15.4%</td></tr>
+<tr><td>2</td><td>Azúcar (durante amasado)</td><td class="r">113</td><td class="pct">11.3%</td></tr>
+<tr><td>3</td><td>Esencia de vainilla</td><td class="r">2.4</td><td class="pct">0.24%</td></tr>
+<tr><td>4</td><td>Anís semilla</td><td class="r">2</td><td class="pct">0.16%</td></tr>
+<tr><td>5</td><td>Esencia de anís</td><td class="r">0.7</td><td class="pct">0.07%</td></tr>
+
+        <tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000,1</td><td class="pct">~100%</td></tr>
+      </tbody>
+    </table>
+    <div class="d-nota" style="margin-top:10px">⚠ Tramo 1 solo Rosana y Eibar — caja pre-pesada.<br>⚠ Balanza GRAMAJE para Canela Kirkland, Esencia de vainilla y Esencia de anís.</div>
+    <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--amber-osc);margin-bottom:12px">Calculadora por kilos de mezcla</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <input type="number" id="ci-kg" min="0.1" step="0.5" placeholder="ej: 5" oninput="calcInversa()" style="width:110px;height:46px;border:1.5px solid var(--borde);border-radius:8px;padding:0 12px;font-size:20px;font-weight:600;color:var(--texto);background:white;outline:none;font-family:inherit">
+        <span style="font-size:15px;color:var(--sub);font-weight:600">kg</span>
+        <button onclick="document.getElementById('ci-kg').value='';document.getElementById('ci-res').innerHTML=''" style="background:none;border:1px solid var(--borde);border-radius:6px;color:var(--sub);font-size:13px;cursor:pointer;padding:6px 12px;font-family:inherit">Limpiar</button>
+      </div>
+      <div id="ci-res" style="margin-top:12px"></div>
+    </div>
+  </div>
+</div>
+
+<div class="d-card">
+  <div class="d-card-title">Pesos y empaques por producto</div>
+  <table class="d-ing-table">
+    <thead><tr><th>Producto</th><th class="r">Peso crudo</th><th class="r">Empaque</th></tr></thead>
+    <tbody>
+      <tr><td>Piñita / Pan dulce</td><td class="r">70 g</td><td class="r">6 uds/paquete</td></tr>
+      <tr><td>Golfeado</td><td class="r">125 g</td><td class="r">2 uds/paquete</td></tr>
+      <tr><td>Mini pan de guayaba</td><td class="r">165 g</td><td class="r">1 ud</td></tr>
+      <tr><td>Quesadilla</td><td class="r">125 g</td><td class="r">1 ud</td></tr>
+      <tr><td>Pan de guayaba</td><td class="r">330 g</td><td class="r">1 ud</td></tr>
+      <tr><td>Mini pan de queso</td><td class="r">165 g</td><td class="r">1 ud</td></tr>
+      <tr><td>Mini pan de guayaba y queso</td><td class="r">165 g</td><td class="r">1 ud</td></tr>
+      <tr><td>Pan de guayaba y queso</td><td class="r">330 g</td><td class="r">1 ud</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+
+var _user = localStorage.getItem('dulcitos_user');
+var _canSeT1 = (_user === 'Rosana' || _user === 'Eibar');
+document.addEventListener('DOMContentLoaded', function() {
+  var t1blocks = document.querySelectorAll('.tramo1-block');
+  t1blocks.forEach(function(el) {
+    el.style.display = _canSeT1 ? '' : 'none';
+  });
+});
+
+
+const RPD=[{"n": "Harina Verde", "g": 273, "p": 27.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 273, "p": 27.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Margarina Cordobesa", "g": 62, "p": 6.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura fresca", "g": 50, "p": 5.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar (mise en place)", "g": 37, "p": 3.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche polvo industrial", "g": 15, "p": 1.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo entero en polvo", "g": 7, "p": 0.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 6, "p": 0.6, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 4, "p": 0.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador de Frescura", "g": 1, "p": 0.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Canela Kirkland", "g": 0.4, "p": 0.04, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 154, "p": 15.4, "sep": "Tramo 2 — Al amasar"}, {"n": "Azúcar (durante amasado)", "g": 113, "p": 11.3, "sep": "Tramo 2 — Al amasar"}, {"n": "Esencia de vainilla", "g": 2.4, "p": 0.24, "sep": "Tramo 2 — Al amasar"}, {"n": "Anís semilla", "g": 1.6, "p": 0.16, "sep": "Tramo 2 — Al amasar"}, {"n": "Esencia de anís", "g": 0.7, "p": 0.07, "sep": "Tramo 2 — Al amasar"}];
+const T2_PD=["Agua", "Azúcar (durante amasado)", "Esencia de vainilla", "Anís semilla", "Esencia de anís"];
+const PRODS_PD={
+  p70:{n:'Piñita / Pan dulce',g:70},
+  gol:{n:'Golfeado',g:125},
+  gua:{n:'Pan de guayaba',g:330},
+  mgu:{n:'Mini pan de guayaba',g:165},
+  que:{n:'Quesadilla',g:125},mq:{n:'Mini pan de queso',g:165},mgq:{n:'Mini pan de guayaba y queso',g:165},gyq:{n:'Pan de guayaba y queso',g:330},
+};
+let qpd={p70:0,gol:0,gua:0,mgu:0,que:0,mq:0,mgq:0,gyq:0};
+function cpd(k,d){var el=document.getElementById('q-'+k);qpd[k]=Math.max(0,(parseInt(el.value)||0)+d);el.value=qpd[k];renderPD();}
+function syncInput(el,key){qpd[key]=Math.max(0,parseInt(el.value)||0);renderPD();}
+function fmtPD(n,v){
+  var ESP=['esencia','canela','frescura'];
+  if(ESP.some(e=>n.toLowerCase().includes(e)))return v.toFixed(1);
+  if(v>=10)return Math.round(v).toString();
+  return (Math.round(v*10)/10).toString();
+}
+function renderPD(){
+  var tot=0,desg='';
+  Object.keys(qpd).forEach(k=>{if(qpd[k]>0){var m=qpd[k]*PRODS_PD[k].g;tot+=m;desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qpd[k]} × ${PRODS_PD[k].n} (${PRODS_PD[k].g}g)</span><span class="d-res-row-val">${m.toLocaleString('es-CL')} g</span></div>`;}});
+  var el=document.getElementById('res');
+  if(!tot){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div>';return;}
+  var f=tot/1000;
+  var sep='',rH='';
+  RPD.forEach(i=>{
+    if(!_canSeT1 && !T2_PD.includes(i.n)) return;
+    if(i.sep&&i.sep!==sep){
+      sep=i.sep;
+      if(_canSeT1 || i.sep.indexOf('Tramo 1')<0){
+        rH+=`<tr class="d-sep"><td colspan="3">${i.sep}</td></tr>`;
+      }
+    }
+    rH+=`<tr><td>${i.n}</td><td class="r">${fmtPD(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;
+  });
+  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div>
+  <div class="d-res-total"><div><div class="d-res-lbl">Total masa necesaria</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
+  <div style="margin-bottom:12px">${desg}</div>
+  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
+}
+function getRecetaBase(){ return [{"n": "Harina Verde", "g": 273, "p": 27.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 273, "p": 27.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Margarina Cordobesa", "g": 62, "p": 6.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura fresca", "g": 50, "p": 5.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar (mise en place)", "g": 37, "p": 3.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche polvo industrial", "g": 15, "p": 1.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo entero en polvo", "g": 7, "p": 0.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 6, "p": 0.6, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 4, "p": 0.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador de Frescura", "g": 1, "p": 0.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Canela Kirkland", "g": 0.4, "p": 0.04, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 154, "p": 15.4, "sep": "Tramo 2 — Al amasar"}, {"n": "Azúcar (durante amasado)", "g": 113, "p": 11.3, "sep": "Tramo 2 — Al amasar"}, {"n": "Esencia de vainilla", "g": 2.4, "p": 0.24, "sep": "Tramo 2 — Al amasar"}, {"n": "Anís semilla", "g": 1.6, "p": 0.16, "sep": "Tramo 2 — Al amasar"}, {"n": "Esencia de anís", "g": 0.7, "p": 0.07, "sep": "Tramo 2 — Al amasar"}]; }
+function calcInversa(){
+  var kg=parseFloat(document.getElementById('ci-kg').value);
+  var el=document.getElementById('ci-res');
+  if(!kg||kg<=0){el.innerHTML='';return;}
+  var rec=getRecetaBase();
+  var ESP=['esencia','canela','frescura'];
+  function fmt(n,v){
+    if(ESP.some(function(e){return n.toLowerCase().indexOf(e)>=0;}))return v.toFixed(1)+' g';
+    if(v>=10)return Math.round(v)+' g';
+    return (Math.round(v*10)/10)+' g';
+  }
+  var html='<table style="width:100%;border-collapse:collapse;font-size:14px"><thead><tr><th style="text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Ingrediente</th><th style="text-align:right;font-size:10px;font-weight:700;text-transform:uppercase;color:#aaa;padding:5px 8px;border-bottom:2px solid var(--crema-osc)">Cantidad</th></tr></thead><tbody>';
+  var sep='';
+  for(var i=0;i<rec.length;i++){
+    var ing=rec[i];
+    if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
+    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+  }
+  var tot=0;for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  el.innerHTML=html;
+}
+function tog(){
+  var w=document.getElementById('rw');
+  var l=document.getElementById('tl');
+  if(!w||!l)return;
+  w.classList.toggle('open');
+  l.textContent=w.classList.contains('open')?'Ocultar receta base':'Ver receta base';
+}
+</script>
+</div><a class="d-home" href="index.html">Inicio</a></body></html>

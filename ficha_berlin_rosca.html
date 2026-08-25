@@ -129,18 +129,18 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-card"><button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button><div class="d-rec-wrap" id="rw">
 <table class="d-ing-table"><thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead><tbody>
 <tr class="d-sep"><td colspan="4">Secos — incorporar primero</td></tr>
-<tr><td>1</td><td>Harina Puente Alto</td><td class="r">592</td><td class="pct">59,2%</td></tr>
-<tr><td>2</td><td>Azúcar</td><td class="r">62</td><td class="pct">6,2%</td></tr>
-<tr><td>3</td><td>Levadura instantánea</td><td class="r">6</td><td class="pct">0,6%</td></tr>
-<tr><td>4</td><td>Mejorador Magimix</td><td class="r">3</td><td class="pct">0,3%</td></tr>
-<tr><td>5</td><td>Sal</td><td class="r">3</td><td class="pct">0,3%</td></tr>
+<tr><td>1</td><td>Harina Puente Alto</td><td class="r">585</td><td class="pct">58,5%</td></tr>
+<tr><td>2</td><td>Azúcar</td><td class="r">70</td><td class="pct">7,0%</td></tr>
+<tr><td>3</td><td>Sal</td><td class="r">10</td><td class="pct">1,0%</td></tr>
+<tr><td>4</td><td>Levadura instantánea</td><td class="r">8</td><td class="pct">0,8%</td></tr>
+<tr><td>5</td><td>Mejorador Magimix</td><td class="r">3</td><td class="pct">0,3%</td></tr>
 <tr><td>6</td><td>Mejorador Frescura</td><td class="r">0,8</td><td class="pct">0,08%</td></tr>
 <tr class="d-sep"><td colspan="4">Húmedos — incorporar al final</td></tr>
-<tr><td>7</td><td>Leche líquida</td><td class="r">165</td><td class="pct">16,5%</td></tr>
-<tr><td>8</td><td>Gramos de huevo</td><td class="r">103</td><td class="pct">10,3%</td></tr>
+<tr><td>7</td><td>Leche líquida</td><td class="r">158</td><td class="pct">15,8%</td></tr>
+<tr><td>8</td><td>Huevo líquido</td><td class="r">100</td><td class="pct">10,0%</td></tr>
 <tr><td>9</td><td>Margarina Cordobesa 16%</td><td class="r">60</td><td class="pct">6,0%</td></tr>
-<tr><td>10</td><td>Vainilla blanca</td><td class="r">5</td><td class="pct">0,5%</td></tr>
-<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">999,8</td><td class="pct">~100%</td></tr>
+<tr><td>10</td><td>Vainilla blanca</td><td class="r">5,2</td><td class="pct">0,52%</td></tr>
+<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000</td><td class="pct">100%</td></tr>
 </tbody></table>
 <div class="d-nota" style="margin-top:10px">Tanda amasadora (1.944 g) = receta × 1,944. Etiqueta Bollería 1 ya tiene esas cantidades.
 
@@ -183,7 +183,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 </div>
 </div><a class="d-home" href="index.html">🏠 Inicio</a></body></html>
 <script>
-const RBL=[{n:'Harina Puente Alto',g:592,p:59.2,t:'s'},{n:'Azúcar',g:62,p:6.2,t:'s'},{n:'Levadura instantánea',g:6,p:0.6,t:'s'},{n:'Mejorador Magimix',g:3,p:0.3,t:'s'},{n:'Sal',g:3,p:0.3,t:'s'},{n:'Mejorador Frescura',g:0.8,p:0.08,t:'s'},{n:'Leche líquida',g:165,p:16.5,t:'h'},{n:'Gramos de huevo',g:103,p:10.3,t:'h'},{n:'Margarina Cordobesa 16%',g:60,p:6.0,t:'h'},{n:'Vainilla blanca',g:5,p:0.5,t:'h'}];
+const RBL=[{n:'Harina Puente Alto',g:585,p:58.5,t:'s'},{n:'Azúcar',g:70,p:7.0,t:'s'},{n:'Sal',g:10,p:1.0,t:'s'},{n:'Levadura instantánea',g:8,p:0.8,t:'s'},{n:'Mejorador Magimix',g:3,p:0.3,t:'s'},{n:'Mejorador Frescura',g:0.8,p:0.08,t:'s'},{n:'Leche líquida',g:158,p:15.8,t:'h'},{n:'Huevo líquido',g:100,p:10.0,t:'h'},{n:'Margarina Cordobesa 16%',g:60,p:6.0,t:'h'},{n:'Vainilla blanca',g:5.2,p:0.52,t:'h'}];
 const ESPBL=['vainilla'];
 let qbl={b:0,r:0,m:0};
 function cbl(k,d){var el=document.getElementById('q'+k);qbl[k]=Math.max(0,(parseInt(el.value)||0)+d);el.value=qbl[k];renderBL();}
@@ -200,7 +200,7 @@ function renderBL(){
   RBL.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="4">${i.t==='s'?'Secos':'Húmedos'}</td></tr>`;pt=i.t;}rH+=`<tr><td></td><td>${i.n}</td><td class="r">${fmtBL(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${qbl.b+qbl.r+(qbl.m*6)} unidades totales</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th></th><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
-function getRecetaBase(){ return [{"n": "Harina Puente Alto", "g": 592, "sep": "Secos"}, {"n": "Azúcar", "g": 62, "sep": "Secos"}, {"n": "Levadura instantánea", "g": 6, "sep": "Secos"}, {"n": "Mejorador Magimix", "g": 3, "sep": "Secos"}, {"n": "Sal", "g": 3, "sep": "Secos"}, {"n": "Mejorador Frescura", "g": 0.8, "sep": "Secos"}, {"n": "Leche líquida", "g": 165, "sep": "Húmedos"}, {"n": "Gramos de huevo", "g": 103, "sep": "Húmedos"}, {"n": "Margarina Cordobesa 16%", "g": 60, "sep": "Húmedos"}, {"n": "Vainilla blanca", "g": 5, "sep": "Húmedos"}]; }
+function getRecetaBase(){ return [{"n": "Harina Puente Alto", "g": 585, "sep": "Secos"}, {"n": "Azúcar", "g": 70, "sep": "Secos"}, {"n": "Sal", "g": 10, "sep": "Secos"}, {"n": "Levadura instantánea", "g": 8, "sep": "Secos"}, {"n": "Mejorador Magimix", "g": 3, "sep": "Secos"}, {"n": "Mejorador Frescura", "g": 0.8, "sep": "Secos"}, {"n": "Leche líquida", "g": 158, "sep": "Húmedos"}, {"n": "Huevo líquido", "g": 100, "sep": "Húmedos"}, {"n": "Margarina Cordobesa 16%", "g": 60, "sep": "Húmedos"}, {"n": "Vainilla blanca", "g": 5.2, "sep": "Húmedos"}]; }
 function calcInversa(){
   var kg=parseFloat(document.getElementById('ci-kg').value);
   var el=document.getElementById('ci-res');

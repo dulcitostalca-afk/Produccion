@@ -147,17 +147,16 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
         <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
         <tbody>
           <tr class="d-sep"><td colspan="4">Tramo 1 — Mise en place</td></tr>
-          <tr><td>1</td><td>Harina Verde</td><td class="r">273</td><td class="pct">27.3%</td></tr>
-<tr><td>2</td><td>Harina SP2</td><td class="r">273</td><td class="pct">27.3%</td></tr>
+          <tr><td>1</td><td>Harina Super Pan Verde</td><td class="r">275</td><td class="pct">27.5%</td></tr>
+<tr><td>2</td><td>Harina SP2</td><td class="r">275</td><td class="pct">27.5%</td></tr>
 <tr><td>3</td><td>Margarina Cordobesa</td><td class="r">62</td><td class="pct">6.2%</td></tr>
 <tr><td>4</td><td>Levadura fresca</td><td class="r">50</td><td class="pct">5.0%</td></tr>
-<tr><td>5</td><td>Azúcar (mise en place)</td><td class="r">37</td><td class="pct">3.7%</td></tr>
+<tr><td>5</td><td>Azúcar (mise en place)</td><td class="r">35</td><td class="pct">3.5%</td></tr>
 <tr><td>6</td><td>Leche polvo industrial</td><td class="r">15</td><td class="pct">1.5%</td></tr>
-<tr><td>7</td><td>Huevo entero en polvo</td><td class="r">7</td><td class="pct">0.7%</td></tr>
-<tr><td>8</td><td>Sal</td><td class="r">6</td><td class="pct">0.6%</td></tr>
-<tr><td>9</td><td>Mejorador Magimix</td><td class="r">4</td><td class="pct">0.4%</td></tr>
+<tr><td>7</td><td>Huevo entero en polvo</td><td class="r">7,5</td><td class="pct">0.7%</td></tr>
+<tr><td>8</td><td>Sal</td><td class="r">5,5</td><td class="pct">0.5%</td></tr>
+<tr><td>9</td><td>Mejorador Magimix</td><td class="r">3,5</td><td class="pct">0.3%</td></tr>
 <tr><td>10</td><td>Mejorador de Frescura</td><td class="r">1</td><td class="pct">0.1%</td></tr>
-<tr><td>11</td><td>Canela Kirkland</td><td class="r">0.4</td><td class="pct">0.04%</td></tr>
 
         </tbody>
       </table>
@@ -167,15 +166,15 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
       <tbody>
         <tr class="d-sep"><td colspan="4">Tramo 2 — Al amasar</td></tr>
         <tr><td>1</td><td>Agua</td><td class="r">154</td><td class="pct">15.4%</td></tr>
-<tr><td>2</td><td>Azúcar (durante amasado)</td><td class="r">113</td><td class="pct">11.3%</td></tr>
+<tr><td>2</td><td>Azúcar (durante amasado)</td><td class="r">112</td><td class="pct">11.2%</td></tr>
 <tr><td>3</td><td>Esencia de vainilla</td><td class="r">2.4</td><td class="pct">0.24%</td></tr>
-<tr><td>4</td><td>Anís semilla</td><td class="r">2</td><td class="pct">0.16%</td></tr>
+<tr><td>4</td><td>Anís semilla</td><td class="r">1.6</td><td class="pct">0.16%</td></tr>
 <tr><td>5</td><td>Esencia de anís</td><td class="r">0.7</td><td class="pct">0.07%</td></tr>
 
-        <tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000,1</td><td class="pct">~100%</td></tr>
+        <tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000,2</td><td class="pct">~100%</td></tr>
       </tbody>
     </table>
-    <div class="d-nota" style="margin-top:10px">⚠ Tramo 1 solo Rosana y Eibar — caja pre-pesada.<br>⚠ Balanza GRAMAJE para Canela Kirkland, Esencia de vainilla y Esencia de anís.</div>
+    <div class="d-nota" style="margin-top:10px">⚠ Tramo 1 solo Rosana y Eibar — caja pre-pesada.<br>⚠ Balanza GRAMAJE para Huevo en polvo, Sal, Mejorador Magimix, Esencia de vainilla y Esencia de anís.</div>
     <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
       <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--amber-osc);margin-bottom:12px">Calculadora por kilos de mezcla</div>
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
@@ -209,6 +208,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 
 var _user = localStorage.getItem('dulcitos_user');
 var _canSeT1 = (_user === 'Rosana' || _user === 'Eibar');
+if(typeof _canSeT1 === 'undefined') _canSeT1 = false;
 document.addEventListener('DOMContentLoaded', function() {
   var t1blocks = document.querySelectorAll('.tramo1-block');
   t1blocks.forEach(function(el) {
@@ -217,20 +217,20 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-const RPD=[{"n": "Harina Verde", "g": 273, "p": 27.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 273, "p": 27.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Margarina Cordobesa", "g": 62, "p": 6.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura fresca", "g": 50, "p": 5.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar (mise en place)", "g": 37, "p": 3.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche polvo industrial", "g": 15, "p": 1.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo entero en polvo", "g": 7, "p": 0.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 6, "p": 0.6, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 4, "p": 0.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador de Frescura", "g": 1, "p": 0.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Canela Kirkland", "g": 0.4, "p": 0.04, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 154, "p": 15.4, "sep": "Tramo 2 — Al amasar"}, {"n": "Azúcar (durante amasado)", "g": 113, "p": 11.3, "sep": "Tramo 2 — Al amasar"}, {"n": "Esencia de vainilla", "g": 2.4, "p": 0.24, "sep": "Tramo 2 — Al amasar"}, {"n": "Anís semilla", "g": 1.6, "p": 0.16, "sep": "Tramo 2 — Al amasar"}, {"n": "Esencia de anís", "g": 0.7, "p": 0.07, "sep": "Tramo 2 — Al amasar"}];
+const RPD=[{"n": "Harina Super Pan Verde", "g": 275, "p": 27.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 275, "p": 27.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Margarina Cordobesa", "g": 62, "p": 6.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura fresca", "g": 50, "p": 5.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar (mise en place)", "g": 35, "p": 3.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche polvo industrial", "g": 15, "p": 1.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo entero en polvo", "g": 7.5, "p": 0.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 5.5, "p": 0.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 3.5, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador de Frescura", "g": 1, "p": 0.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 154, "p": 15.4, "sep": "Tramo 2 — Al amasar"}, {"n": "Azúcar (durante amasado)", "g": 112, "p": 11.2, "sep": "Tramo 2 — Al amasar"}, {"n": "Esencia de vainilla", "g": 2.4, "p": 0.24, "sep": "Tramo 2 — Al amasar"}, {"n": "Anís semilla", "g": 1.6, "p": 0.16, "sep": "Tramo 2 — Al amasar"}, {"n": "Esencia de anís", "g": 0.7, "p": 0.07, "sep": "Tramo 2 — Al amasar"}];
 const T2_PD=["Agua", "Azúcar (durante amasado)", "Esencia de vainilla", "Anís semilla", "Esencia de anís"];
 const PRODS_PD={
-  p70:{n:'Piñita / Pan dulce',g:70},
-  gol:{n:'Golfeado',g:125},
-  gua:{n:'Pan de guayaba',g:330},
-  mgu:{n:'Mini pan de guayaba',g:165},
-  que:{n:'Quesadilla',g:125},mq:{n:'Mini pan de queso',g:165},mgq:{n:'Mini pan de guayaba y queso',g:165},gyq:{n:'Pan de guayaba y queso',g:330},
+  p420:{n:'Piñita / Pan dulce',g:420},
+  gol:{n:'Golfeado',g:250},
+  que:{n:'Quesadilla',g:125},
+  min165:{n:'Mini pan relleno',g:165},
+  rel330:{n:'Pan relleno',g:330},
 };
 let qpd={p420:0,coco:0,gol:0,que:0,min165:0,rel330:0};
 function cpd(k,d){var el=document.getElementById('q-'+k);qpd[k]=Math.max(0,(parseInt(el.value)||0)+d);el.value=qpd[k];renderPD();}
 function syncInput(el,key){qpd[key]=Math.max(0,parseInt(el.value)||0);renderPD();}
 function fmtPD(n,v){
-  var ESP=['esencia','canela','frescura'];
+  var ESP=['esencia','frescura'];
   if(ESP.some(e=>n.toLowerCase().includes(e)))return v.toFixed(1);
   if(v>=10)return Math.round(v).toString();
   return (Math.round(v*10)/10).toString();
@@ -265,13 +265,13 @@ function renderPD(){
   <div style="margin-bottom:12px">${desg}</div>
   <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table>${cocoBlock}</div>`;
 }
-function getRecetaBase(){ return [{"n": "Harina Verde", "g": 273, "p": 27.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 273, "p": 27.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Margarina Cordobesa", "g": 62, "p": 6.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura fresca", "g": 50, "p": 5.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar (mise en place)", "g": 37, "p": 3.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche polvo industrial", "g": 15, "p": 1.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo entero en polvo", "g": 7, "p": 0.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 6, "p": 0.6, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 4, "p": 0.4, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador de Frescura", "g": 1, "p": 0.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Canela Kirkland", "g": 0.4, "p": 0.04, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 154, "p": 15.4, "sep": "Tramo 2 — Al amasar"}, {"n": "Azúcar (durante amasado)", "g": 113, "p": 11.3, "sep": "Tramo 2 — Al amasar"}, {"n": "Esencia de vainilla", "g": 2.4, "p": 0.24, "sep": "Tramo 2 — Al amasar"}, {"n": "Anís semilla", "g": 1.6, "p": 0.16, "sep": "Tramo 2 — Al amasar"}, {"n": "Esencia de anís", "g": 0.7, "p": 0.07, "sep": "Tramo 2 — Al amasar"}]; }
+function getRecetaBase(){ return [{"n": "Harina Super Pan Verde", "g": 275, "p": 27.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 275, "p": 27.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Margarina Cordobesa", "g": 62, "p": 6.2, "sep": "Tramo 1 — Mise en place"}, {"n": "Levadura fresca", "g": 50, "p": 5.0, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar (mise en place)", "g": 35, "p": 3.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche polvo industrial", "g": 15, "p": 1.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo entero en polvo", "g": 7.5, "p": 0.7, "sep": "Tramo 1 — Mise en place"}, {"n": "Sal", "g": 5.5, "p": 0.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 3.5, "p": 0.3, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador de Frescura", "g": 1, "p": 0.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 154, "p": 15.4, "sep": "Tramo 2 — Al amasar"}, {"n": "Azúcar (durante amasado)", "g": 112, "p": 11.2, "sep": "Tramo 2 — Al amasar"}, {"n": "Esencia de vainilla", "g": 2.4, "p": 0.24, "sep": "Tramo 2 — Al amasar"}, {"n": "Anís semilla", "g": 1.6, "p": 0.16, "sep": "Tramo 2 — Al amasar"}, {"n": "Esencia de anís", "g": 0.7, "p": 0.07, "sep": "Tramo 2 — Al amasar"}]; }
 function calcInversa(){
   var kg=parseFloat(document.getElementById('ci-kg').value);
   var el=document.getElementById('ci-res');
   if(!kg||kg<=0){el.innerHTML='';return;}
   var rec=getRecetaBase();
-  var ESP=['esencia','canela','frescura'];
+  var ESP=['esencia','frescura'];
   function fmt(n,v){
     if(ESP.some(function(e){return n.toLowerCase().indexOf(e)>=0;}))return v.toFixed(1)+' g';
     if(v>=10)return Math.round(v)+' g';

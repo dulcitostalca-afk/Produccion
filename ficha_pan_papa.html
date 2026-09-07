@@ -113,8 +113,10 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 .d-card{animation:fadeUp .2s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 
-/* LEGIBILIDAD — números de gramos grandes (PRUEBA pan de papa) */
+/* LEGIBILIDAD — nombre de ingrediente y cantidad en gramos, grandes */
 .d-gramos,.d-ing-table td.d-gramos{font-size:22px;font-weight:700;line-height:1.25;color:var(--texto)}
+.d-nombre,.d-ing-table td.d-nombre{font-size:22px;font-weight:700;line-height:1.25}
+.d-ing-table tr.d-tot td.d-gramos{white-space:nowrap}
 </style>
 </head>
 <body><div class="page">
@@ -158,7 +160,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
   <div class="d-rec-wrap" id="rw">
     <table class="d-ing-table">
       <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
-      <tbody></tbody></table><div class="tramo1-block"><table class="d-ing-table"><tbody><tr class="d-sep"><td colspan="4">Tramo 1 — Mise en place</td></tr><tr><td>1</td><td>Harina Verde</td><td class="r d-gramos">320</td><td class="pct">32.0%</td></tr><tr><td>2</td><td>Harina SP2</td><td class="r d-gramos">204</td><td class="pct">20.4%</td></tr><tr><td>3</td><td>Azúcar</td><td class="r d-gramos">50</td><td class="pct">5.0%</td></tr><tr><td>4</td><td>Papa en escamas</td><td class="r d-gramos">30</td><td class="pct">3.0%</td></tr><tr><td>5</td><td>Leche en polvo</td><td class="r d-gramos">17</td><td class="pct">1.7%</td></tr><tr><td>6</td><td>Levadura instantánea</td><td class="r d-gramos">12</td><td class="pct">1.2%</td></tr><tr><td>7</td><td>Sal</td><td class="r d-gramos">11</td><td class="pct">1.1%</td></tr><tr><td>8</td><td>Huevo en polvo</td><td class="r d-gramos">3</td><td class="pct">0.3%</td></tr><tr><td>9</td><td>Mejorador Magimix</td><td class="r d-gramos">3</td><td class="pct">0.3%</td></tr></tbody></table></div><table class="d-ing-table"><tbody><tr class="d-sep"><td colspan="4">Tramo 2 — Al amasar</td></tr><tr><td>10</td><td>Agua</td><td class="r d-gramos">300</td><td class="pct">30.0%</td></tr><tr><td>11</td><td>Manteca</td><td class="r d-gramos">50</td><td class="pct">5.0%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">1.000</td><td class="pct">100%</td></tr></tbody>
+      <tbody></tbody></table><div class="tramo1-block"><table class="d-ing-table"><tbody><tr class="d-sep"><td colspan="4">Tramo 1 — Mise en place</td></tr><tr><td>1</td><td class="d-nombre">Harina Verde</td><td class="r d-gramos">320</td><td class="pct">32.0%</td></tr><tr><td>2</td><td class="d-nombre">Harina SP2</td><td class="r d-gramos">204</td><td class="pct">20.4%</td></tr><tr><td>3</td><td class="d-nombre">Azúcar</td><td class="r d-gramos">50</td><td class="pct">5.0%</td></tr><tr><td>4</td><td class="d-nombre">Papa en escamas</td><td class="r d-gramos">30</td><td class="pct">3.0%</td></tr><tr><td>5</td><td class="d-nombre">Leche en polvo</td><td class="r d-gramos">17</td><td class="pct">1.7%</td></tr><tr><td>6</td><td class="d-nombre">Levadura instantánea</td><td class="r d-gramos">12</td><td class="pct">1.2%</td></tr><tr><td>7</td><td class="d-nombre">Sal</td><td class="r d-gramos">11</td><td class="pct">1.1%</td></tr><tr><td>8</td><td class="d-nombre">Huevo en polvo</td><td class="r d-gramos">3</td><td class="pct">0.3%</td></tr><tr><td>9</td><td class="d-nombre">Mejorador Magimix</td><td class="r d-gramos">3</td><td class="pct">0.3%</td></tr></tbody></table></div><table class="d-ing-table"><tbody><tr class="d-sep"><td colspan="4">Tramo 2 — Al amasar</td></tr><tr><td>10</td><td class="d-nombre">Agua</td><td class="r d-gramos">300</td><td class="pct">30.0%</td></tr><tr><td>11</td><td class="d-nombre">Manteca</td><td class="r d-gramos">50</td><td class="pct">5.0%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">1.000</td><td class="pct">100%</td></tr></tbody>
     </table>
     <div class="d-nota" style="margin-top:10px">⚠ Tramo 1 solo Rosana y Eibar — caja pre-pesada.<br>⚠ Temperatura de horno pendiente de confirmar.</div>
     <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
@@ -226,7 +228,7 @@ function renderPAPA(){
   Rpapa.forEach(i=>{
     if(!_canSeT1 && !T2_NAMES.includes(i.n)) return;
     if(i.sep&&i.sep!==sep){rH+=`<tr class="d-sep"><td colspan="3">${i.sep}</td></tr>`;sep=i.sep;}
-    rH+=`<tr><td>${i.n}</td><td class="r d-gramos">${fmtPAPA(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;
+    rH+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtPAPA(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;
   });
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div>
   <div class="d-res-total"><div><div class="d-res-lbl">Total masa necesaria</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
@@ -248,7 +250,7 @@ function calcInversa(){
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
     if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
   }
   var tot=0;for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
   html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';

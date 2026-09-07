@@ -112,6 +112,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 .d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
 .d-card{animation:fadeUp .2s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* LEGIBILIDAD — nombre de ingrediente y cantidad en gramos, grandes */
+.d-gramos,.d-ing-table td.d-gramos{font-size:22px;font-weight:700;line-height:1.25;color:var(--texto)}
+.d-nombre,.d-ing-table td.d-nombre{font-size:22px;font-weight:700;line-height:1.25}
+.d-ing-table tr.d-tot td.d-gramos{white-space:nowrap}
 </style>
 </head>
 <body><div class="page">
@@ -156,7 +161,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
   <div class="d-rec-wrap" id="rw">
     <table class="d-ing-table">
       <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
-      <tbody><tr><td>1</td><td>Harina pastelera</td><td class="r">448</td><td class="pct">44.8%</td></tr><tr><td>2</td><td>Azúcar</td><td class="r">223</td><td class="pct">22.3%</td></tr><tr><td>3</td><td>Agua</td><td class="r">150</td><td class="pct">15.0%</td></tr><tr><td>4</td><td>Leche líquida</td><td class="r">111</td><td class="pct">11.1%</td></tr><tr><td>5</td><td>Polvo de hornear</td><td class="r">12</td><td class="pct">1.2%</td></tr><tr><td>6</td><td>Margarina Cordobesa</td><td class="r">22</td><td class="pct">2.2%</td></tr><tr><td>7</td><td>Huevo líquido</td><td class="r">22</td><td class="pct">2.2%</td></tr><tr><td>8</td><td>Sal</td><td class="r">4</td><td class="pct">0.4%</td></tr><tr><td>9</td><td>Mantecado chilena</td><td class="r">2.2</td><td class="pct">0.22%</td></tr><tr><td>10</td><td>Esencia vainilla blanca</td><td class="r">2.2</td><td class="pct">0.22%</td></tr><tr><td>11</td><td>Levadura instantánea</td><td class="r">2.2</td><td class="pct">0.22%</td></tr><tr><td>12</td><td>Propianato</td><td class="r">0.7</td><td class="pct">0.07%</td></tr><tr><td>13</td><td>Colorante amarillo</td><td class="r">0.19</td><td class="pct">0.01%</td></tr><tr><td>14</td><td>Enzima Frescura Rapidox</td><td class="r">0.4</td><td class="pct">0.04%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">999,8</td><td class="pct">~100%</td></tr></tbody>
+      <tbody><tr><td>1</td><td class="d-nombre">Harina pastelera</td><td class="r d-gramos">448</td><td class="pct">44.8%</td></tr><tr><td>2</td><td class="d-nombre">Azúcar</td><td class="r d-gramos">223</td><td class="pct">22.3%</td></tr><tr><td>3</td><td class="d-nombre">Agua</td><td class="r d-gramos">150</td><td class="pct">15.0%</td></tr><tr><td>4</td><td class="d-nombre">Leche líquida</td><td class="r d-gramos">111</td><td class="pct">11.1%</td></tr><tr><td>5</td><td class="d-nombre">Polvo de hornear</td><td class="r d-gramos">12</td><td class="pct">1.2%</td></tr><tr><td>6</td><td class="d-nombre">Margarina Cordobesa</td><td class="r d-gramos">22</td><td class="pct">2.2%</td></tr><tr><td>7</td><td class="d-nombre">Huevo líquido</td><td class="r d-gramos">22</td><td class="pct">2.2%</td></tr><tr><td>8</td><td class="d-nombre">Sal</td><td class="r d-gramos">4</td><td class="pct">0.4%</td></tr><tr><td>9</td><td class="d-nombre">Mantecado chilena</td><td class="r d-gramos">2.2</td><td class="pct">0.22%</td></tr><tr><td>10</td><td class="d-nombre">Esencia vainilla blanca</td><td class="r d-gramos">2.2</td><td class="pct">0.22%</td></tr><tr><td>11</td><td class="d-nombre">Levadura instantánea</td><td class="r d-gramos">2.2</td><td class="pct">0.22%</td></tr><tr><td>12</td><td class="d-nombre">Propianato</td><td class="r d-gramos">0.7</td><td class="pct">0.07%</td></tr><tr><td>13</td><td class="d-nombre">Colorante amarillo</td><td class="r d-gramos">0.19</td><td class="pct">0.01%</td></tr><tr><td>14</td><td class="d-nombre">Enzima Frescura Rapidox</td><td class="r d-gramos">0.4</td><td class="pct">0.04%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">999,8</td><td class="pct">~100%</td></tr></tbody>
     </table>
     <div class="d-nota" style="margin-top:10px">⚠ Balanza de GRAMAJE: Propianato · Enzima Frescura · Colorantes · Esencias · Levadura.<br>⚠ Colorante rojo solo para cobertura — no va en la mezcla.</div>
     <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
@@ -232,7 +237,7 @@ function renderCORT(){
   if(qcort.b1)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qcort.b1} bandeja${qcort.b1>1?'s':''} completa${qcort.b1>1?'s':''} × 4.200 g · ${qcort.b1*35} uds</span><span class="d-res-row-val">${(qcort.b1*4200).toLocaleString('es-CL')} g</span></div>`;
   if(qcort.b05)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qcort.b05} media${qcort.b05>1?'s':''} bandeja${qcort.b05>1?'s':''} × 2.100 g · ${qcort.b05*17} uds</span><span class="d-res-row-val">${(qcort.b05*2100).toLocaleString('es-CL')} g</span></div>`;
   var rH='';
-  RCORT.forEach(i=>{rH+=`<tr><td>${i.n}</td><td class="r">${fmtCort(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  RCORT.forEach(i=>{rH+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtCort(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
   var totalBandejas = qcort.b1 + qcort.b05;
   var aguaCob = totalBandejas * 30;
   var colorCob = totalBandejas * 1;
@@ -252,7 +257,7 @@ function renderCORT(){
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div>
   <div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${uds} uds · ${paq} paq${sueltas>0?' + '+sueltas+' uds sueltas':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
   <div style="margin-bottom:12px">${desg}</div>
-  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table>
+  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table>
   ${cobHTML}
   </div>`;
 }
@@ -272,10 +277,10 @@ function calcInversa(){
   var tot=0;
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
     tot+=ing.g*kg;
   }
-  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
   el.innerHTML=html;
 }
 function tog(){

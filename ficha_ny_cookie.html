@@ -113,6 +113,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 .d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
 .d-card{animation:fadeUp .2s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* LEGIBILIDAD — nombre de ingrediente y cantidad en gramos, grandes */
+.d-gramos,.d-ing-table td.d-gramos{font-size:22px;font-weight:700;line-height:1.25;color:var(--texto)}
+.d-nombre,.d-ing-table td.d-nombre{font-size:22px;font-weight:700;line-height:1.25}
+.d-ing-table tr.d-tot td.d-gramos{white-space:nowrap}
 </style>
 </head>
 <body><div class="page">
@@ -177,7 +182,7 @@ Chocolate Chip Cookie</div>
   <div class="d-rec-wrap" id="rw">
     <table class="d-ing-table">
       <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
-      <tbody><tr><td>1</td><td>Mantequilla + Margarina</td><td class="r">179</td><td class="pct">17.9%</td></tr><tr><td>2</td><td>Azúcar blanco</td><td class="r">71</td><td class="pct">7.1%</td></tr><tr><td>3</td><td>Azúcar moreno</td><td class="r">103</td><td class="pct">10.3%</td></tr><tr><td>4</td><td>Huevo</td><td class="r">80</td><td class="pct">8.0%</td></tr><tr><td>5</td><td>Vainilla negra</td><td class="r">8.9</td><td class="pct">0.89%</td></tr><tr><td>6</td><td>Harina pastelera</td><td class="r">386</td><td class="pct">38.6%</td></tr><tr><td>7</td><td>Polvo de hornear</td><td class="r">4.5</td><td class="pct">0.45%</td></tr><tr><td>8</td><td>Soda (Bicarbonato)</td><td class="r">4.5</td><td class="pct">0.45%</td></tr><tr><td>9</td><td>Sal</td><td class="r">2.7</td><td class="pct">0.27%</td></tr><tr><td>10</td><td>Chispa chocolate</td><td class="r">80</td><td class="pct">8.0%</td></tr><tr><td>11</td><td>Nueces <span style="font-size:10px;background:var(--rojo-cl);color:var(--rojo);padding:1px 6px;border-radius:100px">Solo 11·25·100g</span></td><td class="r">80</td><td class="pct">8.0%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1000</td><td class="pct">~100%</td></tr></tbody>
+      <tbody><tr><td>1</td><td class="d-nombre">Mantequilla + Margarina</td><td class="r d-gramos">179</td><td class="pct">17.9%</td></tr><tr><td>2</td><td class="d-nombre">Azúcar blanco</td><td class="r d-gramos">71</td><td class="pct">7.1%</td></tr><tr><td>3</td><td class="d-nombre">Azúcar moreno</td><td class="r d-gramos">103</td><td class="pct">10.3%</td></tr><tr><td>4</td><td class="d-nombre">Huevo</td><td class="r d-gramos">80</td><td class="pct">8.0%</td></tr><tr><td>5</td><td class="d-nombre">Vainilla negra</td><td class="r d-gramos">8.9</td><td class="pct">0.89%</td></tr><tr><td>6</td><td class="d-nombre">Harina pastelera</td><td class="r d-gramos">386</td><td class="pct">38.6%</td></tr><tr><td>7</td><td class="d-nombre">Polvo de hornear</td><td class="r d-gramos">4.5</td><td class="pct">0.45%</td></tr><tr><td>8</td><td class="d-nombre">Soda (Bicarbonato)</td><td class="r d-gramos">4.5</td><td class="pct">0.45%</td></tr><tr><td>9</td><td class="d-nombre">Sal</td><td class="r d-gramos">2.7</td><td class="pct">0.27%</td></tr><tr><td>10</td><td class="d-nombre">Chispa chocolate</td><td class="r d-gramos">80</td><td class="pct">8.0%</td></tr><tr><td>11</td><td class="d-nombre">Nueces <span style="font-size:10px;background:var(--rojo-cl);color:var(--rojo);padding:1px 6px;border-radius:100px">Solo 11·25·100g</span></td><td class="r d-gramos">80</td><td class="pct">8.0%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">1000</td><td class="pct">~100%</td></tr></tbody>
     </table>
     <div class="d-nota" style="margin-top:10px">⚠ Mantequilla y margarina a temperatura ambiente antes de comenzar.<br>⚠ Galleta 150 g <strong>no lleva nueces</strong> — el resto sí.</div>
     <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
@@ -268,13 +273,13 @@ function renderNY(){
   var html='<div class="d-card"><div class="d-card-title">Receta ajustada</div><div style="margin-bottom:12px">'+desg+'</div>';
   if(totCN>0){
     var f=totCN/1000;var rH='';
-    REC_NY.forEach(i=>{rH+=`<tr><td>${i.n}</td><td class="r">${fmtNY(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
-    html+=`<div class="d-res-total" style="margin-bottom:8px"><div><div class="d-res-lbl">Masacon nueces</div></div><div style="text-align:right"><div class="d-res-val">${totCN.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><table class="d-ing-table" style="margin-bottom:16px"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${totCN.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table>`;
+    REC_NY.forEach(i=>{rH+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtNY(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+    html+=`<div class="d-res-total" style="margin-bottom:8px"><div><div class="d-res-lbl">Masacon nueces</div></div><div style="text-align:right"><div class="d-res-val">${totCN.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><table class="d-ing-table" style="margin-bottom:16px"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r d-gramos">${totCN.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table>`;
   }
   if(totSN>0&&REC_NY_SN){
     var f2=totSN/1000;var rH2='';
-    REC_NY_SN.forEach(i=>{rH2+=`<tr><td>${i.n}</td><td class="r">${fmtNY(i.n,i.g*f2)} g</td><td class="pct">${i.p}%</td></tr>`;});
-    html+=`<div class="d-res-total" style="margin-bottom:8px;background:var(--rojo-claro)"><div><div class="d-res-lbl" style="color:var(--rojo)">Masa SIN nueces (150 g)</div></div><div style="text-align:right"><div class="d-res-val" style="color:var(--rojo)">${totSN.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH2}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${totSN.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table>`;
+    REC_NY_SN.forEach(i=>{rH2+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtNY(i.n,i.g*f2)} g</td><td class="pct">${i.p}%</td></tr>`;});
+    html+=`<div class="d-res-total" style="margin-bottom:8px;background:var(--rojo-claro)"><div><div class="d-res-lbl" style="color:var(--rojo)">Masa SIN nueces (150 g)</div></div><div style="text-align:right"><div class="d-res-val" style="color:var(--rojo)">${totSN.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH2}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r d-gramos">${totSN.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table>`;
   }
   html+='</div>';
   el.innerHTML=html;
@@ -295,10 +300,10 @@ function calcInversa(){
   var tot=0;
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
     tot+=ing.g*kg;
   }
-  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
   el.innerHTML=html;
 }
 function tog(){

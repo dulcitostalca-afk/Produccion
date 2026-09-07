@@ -113,6 +113,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 .d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
 .d-card{animation:fadeUp .2s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* LEGIBILIDAD — nombre de ingrediente y cantidad en gramos, grandes */
+.d-gramos,.d-ing-table td.d-gramos{font-size:22px;font-weight:700;line-height:1.25;color:var(--texto)}
+.d-nombre,.d-ing-table td.d-nombre{font-size:22px;font-weight:700;line-height:1.25}
+.d-ing-table tr.d-tot td.d-gramos{white-space:nowrap}
 </style>
 </head>
 <body><div class="page">
@@ -124,19 +129,19 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-card"><button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button><div class="d-rec-wrap" id="rw">
 <table class="d-ing-table"><thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead><tbody>
 <tr class="d-sep"><td colspan="4">Secos — mise en place previo</td></tr>
-<tr><td>1</td><td>Harina</td><td class="r">500</td><td class="pct">50,0%</td></tr>
-<tr><td>2</td><td>Bicarbonato de sodio</td><td class="r">3,5</td><td class="pct">0,35%</td></tr>
-<tr><td>3</td><td>Polvo de hornear</td><td class="r">3,5</td><td class="pct">0,35%</td></tr>
-<tr><td>4</td><td>Canela en polvo</td><td class="r">3,5</td><td class="pct">0,35%</td></tr>
-<tr><td>5</td><td>Clavo de olor molido</td><td class="r">2,5</td><td class="pct">0,25%</td></tr>
-<tr><td>6</td><td>Jengibre molido</td><td class="r">2,5</td><td class="pct">0,25%</td></tr>
+<tr><td>1</td><td class="d-nombre">Harina</td><td class="r d-gramos">500</td><td class="pct">50,0%</td></tr>
+<tr><td>2</td><td class="d-nombre">Bicarbonato de sodio</td><td class="r d-gramos">3,5</td><td class="pct">0,35%</td></tr>
+<tr><td>3</td><td class="d-nombre">Polvo de hornear</td><td class="r d-gramos">3,5</td><td class="pct">0,35%</td></tr>
+<tr><td>4</td><td class="d-nombre">Canela en polvo</td><td class="r d-gramos">3,5</td><td class="pct">0,35%</td></tr>
+<tr><td>5</td><td class="d-nombre">Clavo de olor molido</td><td class="r d-gramos">2,5</td><td class="pct">0,25%</td></tr>
+<tr><td>6</td><td class="d-nombre">Jengibre molido</td><td class="r d-gramos">2,5</td><td class="pct">0,25%</td></tr>
 <tr class="d-sep"><td colspan="4">Húmedos — incorporar al mezclar</td></tr>
-<tr><td>7</td><td>Papelón líquido</td><td class="r">370</td><td class="pct">37,0%</td></tr>
-<tr><td>8</td><td>Azúcar</td><td class="r">45</td><td class="pct">4,5%</td></tr>
-<tr><td>9</td><td>Margarina Cordobesa</td><td class="r">37</td><td class="pct">3,7%</td></tr>
-<tr><td>10</td><td>Huevo líquido</td><td class="r">25</td><td class="pct">2,5%</td></tr>
-<tr><td>11</td><td>Caramelina</td><td class="r">7,5</td><td class="pct">0,75%</td></tr>
-<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000</td><td class="pct">~100%</td></tr>
+<tr><td>7</td><td class="d-nombre">Papelón líquido</td><td class="r d-gramos">370</td><td class="pct">37,0%</td></tr>
+<tr><td>8</td><td class="d-nombre">Azúcar</td><td class="r d-gramos">45</td><td class="pct">4,5%</td></tr>
+<tr><td>9</td><td class="d-nombre">Margarina Cordobesa</td><td class="r d-gramos">37</td><td class="pct">3,7%</td></tr>
+<tr><td>10</td><td class="d-nombre">Huevo líquido</td><td class="r d-gramos">25</td><td class="pct">2,5%</td></tr>
+<tr><td>11</td><td class="d-nombre">Caramelina</td><td class="r d-gramos">7,5</td><td class="pct">0,75%</td></tr>
+<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">1.000</td><td class="pct">~100%</td></tr>
 </tbody></table>
 <div class="d-nota" style="margin-top:10px">⚠ Tener papelón líquido frío y colado antes de arrancar.
 
@@ -181,8 +186,8 @@ function renderC(){
   if(!pq){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá los paquetes para ver la receta ajustada</div></div>';return;}
   const tot=pq*450,f=tot/1000,tandas=Math.round(tot/8100*10)/10;
   let pt='',rH='';
-  RC.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='s'?'Secos':'Húmedos'}</td></tr>`;pt=i.t;}rH+=`<tr><td>${i.n}</td><td class="r">${fmtC(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
-  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${pq} paquete${pq!==1?'s':''} · ${pq*5} Catalinas</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table><div class="d-nota" style="margin-top:10px">Papelón necesario: ${Math.round(370*f)} g</div></div>`;
+  RC.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='s'?'Secos':'Húmedos'}</td></tr>`;pt=i.t;}rH+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtC(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${pq} paquete${pq!==1?'s':''} · ${pq*5} Catalinas</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table><div class="d-nota" style="margin-top:10px">Papelón necesario: ${Math.round(370*f)} g</div></div>`;
 }
 function getRecetaBase(){ return [{"n": "Harina", "g": 500, "sep": "Secos"}, {"n": "Bicarbonato de sodio", "g": 3.5, "sep": "Secos"}, {"n": "Polvo de hornear", "g": 3.5, "sep": "Secos"}, {"n": "Canela en polvo", "g": 3.5, "sep": "Secos"}, {"n": "Clavo de olor molido", "g": 2.5, "sep": "Secos"}, {"n": "Jengibre molido", "g": 2.5, "sep": "Secos"}, {"n": "Papelón líquido", "g": 370, "sep": "Húmedos"}, {"n": "Azúcar", "g": 45, "sep": "Húmedos"}, {"n": "Margarina Cordobesa", "g": 37, "sep": "Húmedos"}, {"n": "Huevo líquido", "g": 25, "sep": "Húmedos"}, {"n": "Caramelina", "g": 7.5, "sep": "Húmedos"}]; }
 function calcInversa(){
@@ -202,11 +207,11 @@ function calcInversa(){
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
     if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
   }
   var tot=0;
   for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
-  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
   el.innerHTML=html;
 }
 function tog(){

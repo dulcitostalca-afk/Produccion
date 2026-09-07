@@ -112,6 +112,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 .d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
 .d-card{animation:fadeUp .2s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* LEGIBILIDAD — nombre de ingrediente y cantidad en gramos, grandes */
+.d-gramos,.d-ing-table td.d-gramos{font-size:22px;font-weight:700;line-height:1.25;color:var(--texto)}
+.d-nombre,.d-ing-table td.d-nombre{font-size:22px;font-weight:700;line-height:1.25}
+.d-ing-table tr.d-tot td.d-gramos{white-space:nowrap}
 </style>
 </head>
 <body><div class="page">
@@ -154,7 +159,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
   <div class="d-rec-wrap" id="rw">
     <table class="d-ing-table">
       <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
-      <tbody><tr><td>1</td><td>Queso crema</td><td class="r">791</td><td class="pct">79.1%</td></tr><tr><td>2</td><td>Azúcar glass</td><td class="r">182</td><td class="pct">18.2%</td></tr><tr><td>3</td><td>Esencia vainilla blanca</td><td class="r">23</td><td class="pct">2.3%</td></tr><tr><td>4</td><td>Jugo de limón</td><td class="r">4</td><td class="pct">0.4%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000</td><td class="pct">100%</td></tr></tbody>
+      <tbody><tr><td>1</td><td class="d-nombre">Queso crema</td><td class="r d-gramos">791</td><td class="pct">79.1%</td></tr><tr><td>2</td><td class="d-nombre">Azúcar glass</td><td class="r d-gramos">182</td><td class="pct">18.2%</td></tr><tr><td>3</td><td class="d-nombre">Esencia vainilla blanca</td><td class="r d-gramos">23</td><td class="pct">2.3%</td></tr><tr><td>4</td><td class="d-nombre">Jugo de limón</td><td class="r d-gramos">4</td><td class="pct">0.4%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">1.000</td><td class="pct">100%</td></tr></tbody>
     </table>
     <div class="d-nota" style="margin-top:10px">⚠ Usar balanza de GRAMAJE para Esencia vainilla y Jugo de limón.</div>
     <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
@@ -215,11 +220,11 @@ function renderIRV(){
   if(qirv.ch)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qirv.ch} insert${qirv.ch>1?'s':''} chico${qirv.ch>1?'s':''} × 15 g</span><span class="d-res-row-val">${(qirv.ch*15).toLocaleString('es-CL')} g</span></div>`;
   if(qirv.gr)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qirv.gr} insert${qirv.gr>1?'s':''} grande${qirv.gr>1?'s':''} × 25 g</span><span class="d-res-row-val">${(qirv.gr*25).toLocaleString('es-CL')} g</span></div>`;
   var rH='';
-  RIRV.forEach(i=>{rH+=`<tr><td>${i.n}</td><td class="r">${fmtIRV(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  RIRV.forEach(i=>{rH+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtIRV(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div>
   <div class="d-res-total"><div><div class="d-res-lbl">Total mezcla</div><div class="d-res-sub">${qirv.ch+qirv.gr} inserts · ${qirv.ch} chicos + ${qirv.gr} grandes</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
   <div style="margin-bottom:12px">${desg}</div>
-  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
+  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
 function getRecetaBase(){ return [{"n": "Queso crema", "g": 791, "p": 79.1}, {"n": "Azúcar glass", "g": 182, "p": 18.2}, {"n": "Esencia vainilla blanca", "g": 23, "p": 2.3}, {"n": "Jugo de limón", "g": 4, "p": 0.4}]; }
 function calcInversa(){
@@ -237,10 +242,10 @@ function calcInversa(){
   var tot=0;
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
     tot+=ing.g*kg;
   }
-  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
   el.innerHTML=html;
 }
 function tog(){

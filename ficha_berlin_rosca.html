@@ -113,6 +113,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 .d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
 .d-card{animation:fadeUp .2s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* LEGIBILIDAD — nombre de ingrediente y cantidad en gramos, grandes */
+.d-gramos,.d-ing-table td.d-gramos{font-size:22px;font-weight:700;line-height:1.25;color:var(--texto)}
+.d-nombre,.d-ing-table td.d-nombre{font-size:22px;font-weight:700;line-height:1.25}
+.d-ing-table tr.d-tot td.d-gramos{white-space:nowrap}
 </style>
 </head>
 <body><div class="page">
@@ -129,18 +134,18 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-card"><button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button><div class="d-rec-wrap" id="rw">
 <table class="d-ing-table"><thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead><tbody>
 <tr class="d-sep"><td colspan="4">Secos — incorporar primero</td></tr>
-<tr><td>1</td><td>Harina Puente Alto</td><td class="r">585</td><td class="pct">58,5%</td></tr>
-<tr><td>2</td><td>Azúcar</td><td class="r">70</td><td class="pct">7,0%</td></tr>
-<tr><td>3</td><td>Sal</td><td class="r">10</td><td class="pct">1,0%</td></tr>
-<tr><td>4</td><td>Levadura instantánea</td><td class="r">8</td><td class="pct">0,8%</td></tr>
-<tr><td>5</td><td>Mejorador Magimix</td><td class="r">3</td><td class="pct">0,3%</td></tr>
-<tr><td>6</td><td>Mejorador Frescura</td><td class="r">0,8</td><td class="pct">0,08%</td></tr>
+<tr><td>1</td><td class="d-nombre">Harina Puente Alto</td><td class="r d-gramos">585</td><td class="pct">58,5%</td></tr>
+<tr><td>2</td><td class="d-nombre">Azúcar</td><td class="r d-gramos">70</td><td class="pct">7,0%</td></tr>
+<tr><td>3</td><td class="d-nombre">Sal</td><td class="r d-gramos">10</td><td class="pct">1,0%</td></tr>
+<tr><td>4</td><td class="d-nombre">Levadura instantánea</td><td class="r d-gramos">8</td><td class="pct">0,8%</td></tr>
+<tr><td>5</td><td class="d-nombre">Mejorador Magimix</td><td class="r d-gramos">3</td><td class="pct">0,3%</td></tr>
+<tr><td>6</td><td class="d-nombre">Mejorador Frescura</td><td class="r d-gramos">0,8</td><td class="pct">0,08%</td></tr>
 <tr class="d-sep"><td colspan="4">Húmedos — incorporar al final</td></tr>
-<tr><td>7</td><td>Leche líquida</td><td class="r">158</td><td class="pct">15,8%</td></tr>
-<tr><td>8</td><td>Huevo líquido</td><td class="r">100</td><td class="pct">10,0%</td></tr>
-<tr><td>9</td><td>Margarina Cordobesa 16%</td><td class="r">60</td><td class="pct">6,0%</td></tr>
-<tr><td>10</td><td>Vainilla blanca</td><td class="r">5,2</td><td class="pct">0,52%</td></tr>
-<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000</td><td class="pct">100%</td></tr>
+<tr><td>7</td><td class="d-nombre">Leche líquida</td><td class="r d-gramos">158</td><td class="pct">15,8%</td></tr>
+<tr><td>8</td><td class="d-nombre">Huevo líquido</td><td class="r d-gramos">100</td><td class="pct">10,0%</td></tr>
+<tr><td>9</td><td class="d-nombre">Margarina Cordobesa 16%</td><td class="r d-gramos">60</td><td class="pct">6,0%</td></tr>
+<tr><td>10</td><td class="d-nombre">Vainilla blanca</td><td class="r d-gramos">5,2</td><td class="pct">0,52%</td></tr>
+<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">1.000</td><td class="pct">100%</td></tr>
 </tbody></table>
 <div class="d-nota" style="margin-top:10px">Tanda amasadora (1.944 g) = receta × 1,944. Etiqueta Bollería 1 ya tiene esas cantidades.
 
@@ -198,8 +203,8 @@ function renderBL(){
   if(qbl.b)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">Berlín · ${qbl.b} uds × 65g</span><span class="d-res-row-val">${qbl.b*65} g</span></div>`;
   if(qbl.r)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">Rosca · ${qbl.r} uds × 65g</span><span class="d-res-row-val">${qbl.r*65} g</span></div>`;
   if(qbl.m)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">Combo Mini Berlín · ${qbl.m} combo${qbl.m>1?'s':''} × 90g · ${qbl.m*6} mini berlines</span><span class="d-res-row-val">${qbl.m*90} g</span></div>`;
-  RBL.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="4">${i.t==='s'?'Secos':'Húmedos'}</td></tr>`;pt=i.t;}rH+=`<tr><td></td><td>${i.n}</td><td class="r">${fmtBL(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
-  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${qbl.b+qbl.r+(qbl.m*6)} unidades totales</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th></th><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
+  RBL.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="4">${i.t==='s'?'Secos':'Húmedos'}</td></tr>`;pt=i.t;}rH+=`<tr><td></td><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtBL(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${qbl.b+qbl.r+(qbl.m*6)} unidades totales</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th></th><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
 function getRecetaBase(){ return [{"n": "Harina Puente Alto", "g": 585, "sep": "Secos"}, {"n": "Azúcar", "g": 70, "sep": "Secos"}, {"n": "Sal", "g": 10, "sep": "Secos"}, {"n": "Levadura instantánea", "g": 8, "sep": "Secos"}, {"n": "Mejorador Magimix", "g": 3, "sep": "Secos"}, {"n": "Mejorador Frescura", "g": 0.8, "sep": "Secos"}, {"n": "Leche líquida", "g": 158, "sep": "Húmedos"}, {"n": "Huevo líquido", "g": 100, "sep": "Húmedos"}, {"n": "Margarina Cordobesa 16%", "g": 60, "sep": "Húmedos"}, {"n": "Vainilla blanca", "g": 5.2, "sep": "Húmedos"}]; }
 function calcInversa(){
@@ -219,11 +224,11 @@ function calcInversa(){
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
     if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
   }
   var tot=0;
   for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
-  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
   el.innerHTML=html;
 }
 function tog(){

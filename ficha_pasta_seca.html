@@ -112,6 +112,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 .d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
 .d-card{animation:fadeUp .2s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* LEGIBILIDAD — nombre de ingrediente y cantidad en gramos, grandes */
+.d-gramos,.d-ing-table td.d-gramos{font-size:22px;font-weight:700;line-height:1.25;color:var(--texto)}
+.d-nombre,.d-ing-table td.d-nombre{font-size:22px;font-weight:700;line-height:1.25}
+.d-ing-table tr.d-tot td.d-gramos{white-space:nowrap}
 </style>
 </head>
 <body><div class="page">
@@ -178,7 +183,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
   <div class="d-rec-wrap" id="rw">
     <table class="d-ing-table">
       <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
-      <tbody><tr class="d-sep"><td colspan="4">Tramo 1 — Cremar</td></tr><tr><td>1</td><td>Margarina</td><td class="r">346</td><td class="pct">34.6%</td></tr><tr><td>2</td><td>Azúcar glass</td><td class="r">99</td><td class="pct">9.9%</td></tr><tr><td>3</td><td>Azúcar blanca</td><td class="r">40</td><td class="pct">4.0%</td></tr><tr class="d-sep"><td colspan="4">Tramo 2 — Húmedos</td></tr><tr><td>4</td><td>Yema en polvo</td><td class="r">21</td><td class="pct">2.1%</td></tr><tr><td>5</td><td>Huevo en polvo entero</td><td class="r">7</td><td class="pct">0.7%</td></tr><tr><td>6</td><td>Agua</td><td class="r">48</td><td class="pct">4.8%</td></tr><tr class="d-sep"><td colspan="4">Tramo 3 — Esencias</td></tr><tr><td>7</td><td>Vainilla</td><td class="r">4.0</td><td class="pct">0.4%</td></tr><tr><td>8</td><td>Esencia mantequilla</td><td class="r">1.8</td><td class="pct">0.18%</td></tr><tr class="d-sep"><td colspan="4">Tramo 4 — Harina</td></tr><tr><td>9</td><td>Harina Puente Alto</td><td class="r">433</td><td class="pct">43.3%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">999,8</td><td class="pct">~100%</td></tr></tbody>
+      <tbody><tr class="d-sep"><td colspan="4">Tramo 1 — Cremar</td></tr><tr><td>1</td><td class="d-nombre">Margarina</td><td class="r d-gramos">346</td><td class="pct">34.6%</td></tr><tr><td>2</td><td class="d-nombre">Azúcar glass</td><td class="r d-gramos">99</td><td class="pct">9.9%</td></tr><tr><td>3</td><td class="d-nombre">Azúcar blanca</td><td class="r d-gramos">40</td><td class="pct">4.0%</td></tr><tr class="d-sep"><td colspan="4">Tramo 2 — Húmedos</td></tr><tr><td>4</td><td class="d-nombre">Yema en polvo</td><td class="r d-gramos">21</td><td class="pct">2.1%</td></tr><tr><td>5</td><td class="d-nombre">Huevo en polvo entero</td><td class="r d-gramos">7</td><td class="pct">0.7%</td></tr><tr><td>6</td><td class="d-nombre">Agua</td><td class="r d-gramos">48</td><td class="pct">4.8%</td></tr><tr class="d-sep"><td colspan="4">Tramo 3 — Esencias</td></tr><tr><td>7</td><td class="d-nombre">Vainilla</td><td class="r d-gramos">4.0</td><td class="pct">0.4%</td></tr><tr><td>8</td><td class="d-nombre">Esencia mantequilla</td><td class="r d-gramos">1.8</td><td class="pct">0.18%</td></tr><tr class="d-sep"><td colspan="4">Tramo 4 — Harina</td></tr><tr><td>9</td><td class="d-nombre">Harina Puente Alto</td><td class="r d-gramos">433</td><td class="pct">43.3%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">999,8</td><td class="pct">~100%</td></tr></tbody>
     </table>
     <div class="d-nota" style="margin-top:10px">⚠ Balanza de GRAMAJE para Esencia de mantequilla y Vainilla. Margarina a temperatura ambiente antes de cremar.</div>
     <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
@@ -264,7 +269,7 @@ function renderPSC(){
   const f=tot/1000;
   const masaHorn=Math.round(tot*0.874);
   let pt='',rH='';
-  RPSC.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${LABELS[i.t]}</td></tr>`;pt=i.t;}rH+=`<tr><td>${i.n}</td><td class="r">${fmtP(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  RPSC.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${LABELS[i.t]}</td></tr>`;pt=i.t;}rH+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtP(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div>
   <div class="d-res-total"><div><div class="d-res-lbl">Total masa cruda</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
   <div style="background:var(--verde-cl);border-radius:8px;padding:10px 14px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center">
@@ -272,7 +277,7 @@ function renderPSC(){
     <span style="font-size:18px;font-weight:700;color:var(--verde-osc)">${masaHorn.toLocaleString('es-CL')} g</span>
   </div>
   <div style="margin-bottom:12px">${desg}</div>
-  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL masa cruda</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
+  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL masa cruda</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
 function getRecetaBase(){ return [{"n": "Margarina", "g": 346, "p": 34.6, "sep": "Tramo 1 — Cremar"}, {"n": "Azúcar glass", "g": 99, "p": 9.9, "sep": "Tramo 1 — Cremar"}, {"n": "Azúcar blanca", "g": 40, "p": 4.0, "sep": "Tramo 1 — Cremar"}, {"n": "Yema en polvo", "g": 21, "p": 2.1, "sep": "Tramo 2 — Húmedos"}, {"n": "Huevo en polvo entero", "g": 7, "p": 0.7, "sep": "Tramo 2 — Húmedos"}, {"n": "Agua", "g": 48, "p": 4.8, "sep": "Tramo 2 — Húmedos"}, {"n": "Vainilla", "g": 4, "p": 0.4, "sep": "Tramo 3 — Esencias"}, {"n": "Esencia mantequilla", "g": 1.8, "p": 0.18, "sep": "Tramo 3 — Esencias"}, {"n": "Harina Puente Alto", "g": 433, "p": 43.3, "sep": "Tramo 4 — Harina"}]; }
 function calcInversa(){
@@ -291,10 +296,10 @@ function calcInversa(){
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
     if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
   }
   var tot=0;for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
-  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
   el.innerHTML=html;
 }
 function tog(){

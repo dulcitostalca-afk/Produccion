@@ -113,6 +113,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 .d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
 .d-card{animation:fadeUp .2s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* LEGIBILIDAD — nombre de ingrediente y cantidad en gramos, grandes */
+.d-gramos,.d-ing-table td.d-gramos{font-size:22px;font-weight:700;line-height:1.25;color:var(--texto)}
+.d-nombre,.d-ing-table td.d-nombre{font-size:22px;font-weight:700;line-height:1.25}
+.d-ing-table tr.d-tot td.d-gramos{white-space:nowrap}
 </style>
 </head>
 <body><div class="page">
@@ -135,17 +140,17 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-card"><button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button><div class="d-rec-wrap" id="rw">
 <table class="d-ing-table"><thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead><tbody>
 </tbody></table><div class="tramo1-block"><table class="d-ing-table"><tbody><tr class="d-sep"><td colspan="4">Tramo 1 — Mise en place · caja plástica pre-pesada</td></tr>
-<tr><td>1</td><td>Harina Verde</td><td class="r">454</td><td class="pct">45,4%</td></tr>
-<tr><td>2</td><td>Harina SP2</td><td class="r">195</td><td class="pct">19,5%</td></tr>
-<tr><td>3</td><td>Azúcar</td><td class="r">25</td><td class="pct">2,5%</td></tr>
-<tr><td>4</td><td>Mejorador Puratos</td><td class="r">12</td><td class="pct">1,2%</td></tr>
-<tr><td>5</td><td>Propianato (0,15–0,2%)</td><td class="r">0,5</td><td class="pct">0,05%</td></tr>
-<tr><td>6</td><td>Sorbato de Potasio</td><td class="r">0,25</td><td class="pct">0,025%</td></tr>
+<tr><td>1</td><td class="d-nombre">Harina Verde</td><td class="r d-gramos">454</td><td class="pct">45,4%</td></tr>
+<tr><td>2</td><td class="d-nombre">Harina SP2</td><td class="r d-gramos">195</td><td class="pct">19,5%</td></tr>
+<tr><td>3</td><td class="d-nombre">Azúcar</td><td class="r d-gramos">25</td><td class="pct">2,5%</td></tr>
+<tr><td>4</td><td class="d-nombre">Mejorador Puratos</td><td class="r d-gramos">12</td><td class="pct">1,2%</td></tr>
+<tr><td>5</td><td class="d-nombre">Propianato (0,15–0,2%)</td><td class="r d-gramos">0,5</td><td class="pct">0,05%</td></tr>
+<tr><td>6</td><td class="d-nombre">Sorbato de Potasio</td><td class="r d-gramos">0,25</td><td class="pct">0,025%</td></tr>
 </tbody></table></div><table class="d-ing-table"><tbody><tr class="d-sep"><td colspan="4">Tramo 2 — Al amasar · lo agrega el panadero</td></tr>
-<tr><td>7</td><td>Agua fría + hielo</td><td class="r">273</td><td class="pct">27,3%</td></tr>
-<tr><td>8</td><td>Levadura fresca</td><td class="r">20</td><td class="pct">2,0%</td></tr>
-<tr><td>9</td><td>Manteca La Granja</td><td class="r">25</td><td class="pct">2,5%</td></tr>
-<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.004,75</td><td class="pct">~100%</td></tr>
+<tr><td>7</td><td class="d-nombre">Agua fría + hielo</td><td class="r d-gramos">273</td><td class="pct">27,3%</td></tr>
+<tr><td>8</td><td class="d-nombre">Levadura fresca</td><td class="r d-gramos">20</td><td class="pct">2,0%</td></tr>
+<tr><td>9</td><td class="d-nombre">Manteca La Granja</td><td class="r d-gramos">25</td><td class="pct">2,5%</td></tr>
+<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">1.004,75</td><td class="pct">~100%</td></tr>
 </tbody></table>
 <div class="d-nota" style="margin-top:10px">⚠ Balanza de GRAMAJE para Propianato y Sorbato. Hielo base 800 g — ajustar según clima.
 
@@ -162,10 +167,10 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 </div></div>
 <div class="d-card"><div class="d-card-title">Vista del panadero — lo que agrega al amasar</div>
 <table class="d-ing-table"><thead><tr><th>Paso</th><th>Acción / Ingrediente</th><th class="r">Cantidad</th></tr></thead><tbody>
-<tr><td>1</td><td>Volcar caja de mise en place en la amasadora</td><td class="r">—</td></tr>
-<tr><td>2</td><td>Agua fría + hielo (ver cantidad en la calculadora)</td><td class="r">273 g total</td></tr>
-<tr><td>3</td><td>Levadura fresca</td><td class="r">20 g</td></tr>
-<tr><td>4</td><td>Manteca La Granja</td><td class="r">25 g</td></tr>
+<tr><td>1</td><td class="d-nombre">Volcar caja de mise en place en la amasadora</td><td class="r d-gramos">—</td></tr>
+<tr><td>2</td><td class="d-nombre">Agua fría + hielo (ver cantidad en la calculadora)</td><td class="r d-gramos">273 g total</td></tr>
+<tr><td>3</td><td class="d-nombre">Levadura fresca</td><td class="r d-gramos">20 g</td></tr>
+<tr><td>4</td><td class="d-nombre">Manteca La Granja</td><td class="r d-gramos">25 g</td></tr>
 </tbody></table></div>
 <div class="d-card"><div class="d-card-title">Proceso — Pan Francés</div>
 <div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body"><div class="d-paso-title">Amasado 15 min · Sobado ~15 pasadas</div></div></div>
@@ -215,12 +220,12 @@ function renderFP(){
     if(i.n==='Agua fría + hielo'){
       const agua=Math.round(i.g*f);
       const hielo=Math.round(tot*HIELO_PCT_FP);
-      rH+=`<tr><td>${i.n}</td><td class="r">${agua.toLocaleString('es-CL')} g <span style="font-size:11px;color:var(--azul);font-weight:600">(incluye ${hielo} g de hielo)</span></td><td class="pct">${i.p}%</td></tr>`;
+      rH+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${agua.toLocaleString('es-CL')} g <span style="font-size:11px;color:var(--azul);font-weight:600">(incluye ${hielo} g de hielo)</span></td><td class="pct">${i.p}%</td></tr>`;
     } else {
-      rH+=`<tr><td>${i.n}</td><td class="r">${fmtFP(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;
+      rH+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtFP(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;
     }
   });
-  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa necesaria</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
+  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa necesaria</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
 function getRecetaBase(){ return [{"n": "Harina Verde", "g": 454, "sep": "Mise en place"}, {"n": "Harina SP2", "g": 195, "sep": "Mise en place"}, {"n": "Azúcar", "g": 25, "sep": "Mise en place"}, {"n": "Mejorador Puratos", "g": 12, "sep": "Mise en place"}, {"n": "Propianato", "g": 0.5, "sep": "Mise en place"}, {"n": "Sorbato de Potasio", "g": 0.25, "sep": "Mise en place"}, {"n": "Agua fría + hielo", "g": 273, "sep": "Al amasar"}, {"n": "Levadura fresca", "g": 20, "sep": "Al amasar"}, {"n": "Manteca La Granja", "g": 25, "sep": "Al amasar"}]; }
 function calcInversa(){
@@ -242,14 +247,14 @@ function calcInversa(){
     if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
     if(ing.n.indexOf('Agua')>=0&&ing.n.indexOf('hielo')>=0){
       var hielo=Math.round(kg*1000*HIELO_PCT_FP);
-      html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+' <span style="font-size:11px;color:#185FA5;font-weight:600">('+hielo+' g hielo)</span></td></tr>';
+      html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+' <span style="font-size:11px;color:#185FA5;font-weight:600">('+hielo+' g hielo)</span></td></tr>';
     } else {
-      html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+      html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
     }
   }
   var tot=0;
   for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
-  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
   el.innerHTML=html;
 }
 function tog(){

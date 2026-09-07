@@ -113,6 +113,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 .d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
 .d-card{animation:fadeUp .2s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* LEGIBILIDAD — nombre de ingrediente y cantidad en gramos, grandes */
+.d-gramos,.d-ing-table td.d-gramos{font-size:22px;font-weight:700;line-height:1.25;color:var(--texto)}
+.d-nombre,.d-ing-table td.d-nombre{font-size:22px;font-weight:700;line-height:1.25}
+.d-ing-table tr.d-tot td.d-gramos{white-space:nowrap}
 </style>
 </head>
 <body><div class="page">
@@ -120,13 +125,13 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-header"><span class="d-header-emoji">🍯</span><div class="d-header-title">Papelón Líquido</div><div class="d-header-sub">Sub-ingrediente base para Catalinas y Golfeados · Stock permanente en nevera</div><div class="d-header-tags"><span class="d-htag">Tanda 2.550 g</span><span class="d-htag">Nevera</span><span class="d-htag">Sub-Ingrediente</span></div></div>
 <div class="d-card"><div class="d-card-title">Ingredientes — por tanda</div>
 <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th></tr></thead><tbody>
-<tr><td>Agua</td><td class="r">1.000 ml</td></tr>
-<tr><td>Papelón molido</td><td class="r">800 g</td></tr>
-<tr><td>Papelón en pieza</td><td class="r">908 g</td></tr>
-<tr><td>Canela en rama</td><td class="r">5 g</td></tr>
-<tr><td>Clavo de olor</td><td class="r">5 g</td></tr>
-<tr><td>Anís estrella</td><td class="r">5 g</td></tr>
-<tr class="d-tot"><td><strong>Rendimiento por tanda</strong></td><td class="r">~2.550 g</td></tr>
+<tr><td class="d-nombre">Agua</td><td class="r d-gramos">1.000 ml</td></tr>
+<tr><td class="d-nombre">Papelón molido</td><td class="r d-gramos">800 g</td></tr>
+<tr><td class="d-nombre">Papelón en pieza</td><td class="r d-gramos">908 g</td></tr>
+<tr><td class="d-nombre">Canela en rama</td><td class="r d-gramos">5 g</td></tr>
+<tr><td class="d-nombre">Clavo de olor</td><td class="r d-gramos">5 g</td></tr>
+<tr><td class="d-nombre">Anís estrella</td><td class="r d-gramos">5 g</td></tr>
+<tr class="d-tot"><td><strong>Rendimiento por tanda</strong></td><td class="r d-gramos">~2.550 g</td></tr>
 </tbody></table></div>
 <div class="d-card"><div class="d-card-title">Proceso — aprox 15 min</div>
 <div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body"><div class="d-paso-title">Colocar todos los ingredientes en olla</div><div class="d-paso-desc">Agua, papelón y especias juntos.</div></div></div>

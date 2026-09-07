@@ -112,6 +112,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 .d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
 .d-card{animation:fadeUp .2s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* LEGIBILIDAD — nombre de ingrediente y cantidad en gramos, grandes */
+.d-gramos,.d-ing-table td.d-gramos{font-size:22px;font-weight:700;line-height:1.25;color:var(--texto)}
+.d-nombre,.d-ing-table td.d-nombre{font-size:22px;font-weight:700;line-height:1.25}
+.d-ing-table tr.d-tot td.d-gramos{white-space:nowrap}
 </style>
 </head>
 <body><div class="page">
@@ -147,15 +152,15 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
         <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
         <tbody>
           <tr class="d-sep"><td colspan="4">Tramo 1 — Mise en place</td></tr>
-          <tr><td>1</td><td>Harina Super Pan Verde</td><td class="r">275</td><td class="pct">27.5%</td></tr>
-<tr><td>2</td><td>Harina SP2</td><td class="r">275</td><td class="pct">27.5%</td></tr>
-<tr><td>3</td><td>Azúcar (mise en place)</td><td class="r">35</td><td class="pct">3.5%</td></tr>
-<tr><td>4</td><td>Leche polvo industrial</td><td class="r">15</td><td class="pct">1.5%</td></tr>
-<tr><td>5</td><td>Huevo entero en polvo</td><td class="r">7.5</td><td class="pct">0.75%</td></tr>
-<tr><td>6</td><td>Mejorador Magimix</td><td class="r">3.5</td><td class="pct">0.35%</td></tr>
-<tr><td>7</td><td>Mejorador de Frescura</td><td class="r">1</td><td class="pct">0.1%</td></tr>
-<tr><td>8</td><td>Canela Kirkland</td><td class="r">0.4</td><td class="pct">0.04%</td></tr>
-<tr><td>9</td><td>Glucosa oxidasa</td><td class="r">0.05</td><td class="pct">0.01%</td></tr>
+          <tr><td>1</td><td class="d-nombre">Harina Super Pan Verde</td><td class="r d-gramos">275</td><td class="pct">27.5%</td></tr>
+<tr><td>2</td><td class="d-nombre">Harina SP2</td><td class="r d-gramos">275</td><td class="pct">27.5%</td></tr>
+<tr><td>3</td><td class="d-nombre">Azúcar (mise en place)</td><td class="r d-gramos">35</td><td class="pct">3.5%</td></tr>
+<tr><td>4</td><td class="d-nombre">Leche polvo industrial</td><td class="r d-gramos">15</td><td class="pct">1.5%</td></tr>
+<tr><td>5</td><td class="d-nombre">Huevo entero en polvo</td><td class="r d-gramos">7.5</td><td class="pct">0.75%</td></tr>
+<tr><td>6</td><td class="d-nombre">Mejorador Magimix</td><td class="r d-gramos">3.5</td><td class="pct">0.35%</td></tr>
+<tr><td>7</td><td class="d-nombre">Mejorador de Frescura</td><td class="r d-gramos">1</td><td class="pct">0.1%</td></tr>
+<tr><td>8</td><td class="d-nombre">Canela Kirkland</td><td class="r d-gramos">0.4</td><td class="pct">0.04%</td></tr>
+<tr><td>9</td><td class="d-nombre">Glucosa oxidasa</td><td class="r d-gramos">0.05</td><td class="pct">0.01%</td></tr>
 
         </tbody>
       </table>
@@ -164,16 +169,16 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
       <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
       <tbody>
         <tr class="d-sep"><td colspan="4">Tramo 2 — Al amasar</td></tr>
-        <tr><td>1</td><td>Agua</td><td class="r">154</td><td class="pct">15.4%</td></tr>
-<tr><td>2</td><td>Azúcar (durante amasado)</td><td class="r">112</td><td class="pct">11.2%</td></tr>
-<tr><td>3</td><td>Margarina Cordobesa</td><td class="r">62</td><td class="pct">6.2%</td></tr>
-<tr><td>4</td><td>Levadura fresca</td><td class="r">50</td><td class="pct">5.0%</td></tr>
-<tr><td>5</td><td>Sal</td><td class="r">5.5</td><td class="pct">0.5%</td></tr>
-<tr><td>6</td><td>Anís semilla</td><td class="r">1.6</td><td class="pct">0.16%</td></tr>
-<tr><td>7</td><td>Esencia de vainilla</td><td class="r">2.4</td><td class="pct">0.24%</td></tr>
-<tr><td>8</td><td>Esencia de anís</td><td class="r">0.7</td><td class="pct">0.07%</td></tr>
+        <tr><td>1</td><td class="d-nombre">Agua</td><td class="r d-gramos">154</td><td class="pct">15.4%</td></tr>
+<tr><td>2</td><td class="d-nombre">Azúcar (durante amasado)</td><td class="r d-gramos">112</td><td class="pct">11.2%</td></tr>
+<tr><td>3</td><td class="d-nombre">Margarina Cordobesa</td><td class="r d-gramos">62</td><td class="pct">6.2%</td></tr>
+<tr><td>4</td><td class="d-nombre">Levadura fresca</td><td class="r d-gramos">50</td><td class="pct">5.0%</td></tr>
+<tr><td>5</td><td class="d-nombre">Sal</td><td class="r d-gramos">5.5</td><td class="pct">0.5%</td></tr>
+<tr><td>6</td><td class="d-nombre">Anís semilla</td><td class="r d-gramos">1.6</td><td class="pct">0.16%</td></tr>
+<tr><td>7</td><td class="d-nombre">Esencia de vainilla</td><td class="r d-gramos">2.4</td><td class="pct">0.24%</td></tr>
+<tr><td>8</td><td class="d-nombre">Esencia de anís</td><td class="r d-gramos">0.7</td><td class="pct">0.07%</td></tr>
 
-        <tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000,65</td><td class="pct">~100%</td></tr>
+        <tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">1.000,65</td><td class="pct">~100%</td></tr>
       </tbody>
     </table>
     <div class="d-nota" style="margin-top:10px">⚠ Tramo 1 solo Rosana y Eibar — caja pre-pesada.<br>⚠ Balanza GRAMAJE para Huevo en polvo, Mejorador Magimix, Canela Kirkland, Glucosa oxidasa, Esencia de vainilla y Esencia de anís.</div>
@@ -261,12 +266,12 @@ function renderPD(){
         rH+=`<tr class="d-sep"><td colspan="3">${i.sep}</td></tr>`;
       }
     }
-    rH+=`<tr><td>${i.n}</td><td class="r">${fmtPD(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;
+    rH+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtPD(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;
   });
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div>
   <div class="d-res-total"><div><div class="d-res-lbl">Total masa necesaria</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
   <div style="margin-bottom:12px">${desg}</div>
-  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table>${cocoBlock}</div>`;
+  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table>${cocoBlock}</div>`;
 }
 function getRecetaBase(){ return [{"n": "Harina Super Pan Verde", "g": 275, "p": 27.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Harina SP2", "g": 275, "p": 27.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Azúcar (mise en place)", "g": 35, "p": 3.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Leche polvo industrial", "g": 15, "p": 1.5, "sep": "Tramo 1 — Mise en place"}, {"n": "Huevo entero en polvo", "g": 7.5, "p": 0.75, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador Magimix", "g": 3.5, "p": 0.35, "sep": "Tramo 1 — Mise en place"}, {"n": "Mejorador de Frescura", "g": 1, "p": 0.1, "sep": "Tramo 1 — Mise en place"}, {"n": "Canela Kirkland", "g": 0.4, "p": 0.04, "sep": "Tramo 1 — Mise en place"}, {"n": "Glucosa oxidasa", "g": 0.05, "p": 0.01, "sep": "Tramo 1 — Mise en place"}, {"n": "Agua", "g": 154, "p": 15.4, "sep": "Tramo 2 — Al amasar"}, {"n": "Azúcar (durante amasado)", "g": 112, "p": 11.2, "sep": "Tramo 2 — Al amasar"}, {"n": "Margarina Cordobesa", "g": 62, "p": 6.2, "sep": "Tramo 2 — Al amasar"}, {"n": "Levadura fresca", "g": 50, "p": 5.0, "sep": "Tramo 2 — Al amasar"}, {"n": "Sal", "g": 5.5, "p": 0.5, "sep": "Tramo 2 — Al amasar"}, {"n": "Anís semilla", "g": 1.6, "p": 0.16, "sep": "Tramo 2 — Al amasar"}, {"n": "Esencia de vainilla", "g": 2.4, "p": 0.24, "sep": "Tramo 2 — Al amasar"}, {"n": "Esencia de anís", "g": 0.7, "p": 0.07, "sep": "Tramo 2 — Al amasar"}]; }
 function calcInversa(){
@@ -286,10 +291,10 @@ function calcInversa(){
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
     if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
   }
   var tot=0;for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
-  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
   el.innerHTML=html;
 }
 function tog(){

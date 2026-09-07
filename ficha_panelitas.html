@@ -112,6 +112,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 .d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
 .d-card{animation:fadeUp .2s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* LEGIBILIDAD — nombre de ingrediente y cantidad en gramos, grandes */
+.d-gramos,.d-ing-table td.d-gramos{font-size:22px;font-weight:700;line-height:1.25;color:var(--texto)}
+.d-nombre,.d-ing-table td.d-nombre{font-size:22px;font-weight:700;line-height:1.25}
+.d-ing-table tr.d-tot td.d-gramos{white-space:nowrap}
 </style>
 </head>
 <body><div class="page">
@@ -156,7 +161,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
   <div class="d-rec-wrap" id="rw">
     <table class="d-ing-table">
       <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
-      <tbody><tr><td>1</td><td>Huevos extra</td><td class="r">329</td><td class="pct">32.9%</td></tr><tr><td>2</td><td>Harina pastelera</td><td class="r">300</td><td class="pct">30.0%</td></tr><tr><td>3</td><td>Azúcar</td><td class="r">278</td><td class="pct">27.8%</td></tr><tr><td>4</td><td>Maicena</td><td class="r">57</td><td class="pct">5.7%</td></tr><tr><td>5</td><td>Polvo de hornear</td><td class="r">22</td><td class="pct">2.2%</td></tr><tr><td>6</td><td>Sal</td><td class="r">6</td><td class="pct">0.6%</td></tr><tr><td>7</td><td>Esencia de anís</td><td class="r">4</td><td class="pct">0.4%</td></tr><tr><td>8</td><td>Vainilla</td><td class="r">4</td><td class="pct">0.4%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000</td><td class="pct">100%</td></tr></tbody>
+      <tbody><tr><td>1</td><td class="d-nombre">Huevos extra</td><td class="r d-gramos">329</td><td class="pct">32.9%</td></tr><tr><td>2</td><td class="d-nombre">Harina pastelera</td><td class="r d-gramos">300</td><td class="pct">30.0%</td></tr><tr><td>3</td><td class="d-nombre">Azúcar</td><td class="r d-gramos">278</td><td class="pct">27.8%</td></tr><tr><td>4</td><td class="d-nombre">Maicena</td><td class="r d-gramos">57</td><td class="pct">5.7%</td></tr><tr><td>5</td><td class="d-nombre">Polvo de hornear</td><td class="r d-gramos">22</td><td class="pct">2.2%</td></tr><tr><td>6</td><td class="d-nombre">Sal</td><td class="r d-gramos">6</td><td class="pct">0.6%</td></tr><tr><td>7</td><td class="d-nombre">Esencia de anís</td><td class="r d-gramos">4</td><td class="pct">0.4%</td></tr><tr><td>8</td><td class="d-nombre">Vainilla</td><td class="r d-gramos">4</td><td class="pct">0.4%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">1.000</td><td class="pct">100%</td></tr></tbody>
     </table>
     <div class="d-nota" style="margin-top:10px">⚠ Balanza de GRAMAJE para Esencia de anís, Vainilla, Sal y Polvo de hornear.</div>
     <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
@@ -245,7 +250,7 @@ function renderPAN(){
   if(qpan.b1)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qpan.b1} bandeja${qpan.b1>1?'s':''} completa${qpan.b1>1?'s':''} × 2.290 g</span><span class="d-res-row-val">${(qpan.b1*2290).toLocaleString('es-CL')} g</span></div>`;
   if(qpan.bm)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">${qpan.bm} media${qpan.bm>1?'s':''} bandeja${qpan.bm>1?'s':''} × 1.145 g</span><span class="d-res-row-val">${(qpan.bm*1145).toLocaleString('es-CL')} g</span></div>`;
   var rH='';
-  RPAN.forEach(i=>{rH+=`<tr><td>${i.n}</td><td class="r">${fmtPAN(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  RPAN.forEach(i=>{rH+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtPAN(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div>
   <div class="d-res-total"><div><div class="d-res-lbl">Total mezcla</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
   <div style="margin-bottom:12px">${desg}</div>
@@ -253,7 +258,7 @@ function renderPAN(){
     <span style="font-size:13px;font-weight:600;color:var(--verde-osc)">Producto final (~61,5% rendimiento)</span>
     <span style="font-size:16px;font-weight:700;color:var(--verde-osc)">~${prod.toLocaleString('es-CL')} g · ~${paq} paq</span>
   </div>
-  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
+  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
 function getRecetaBase(){ return [{"n": "Huevos extra", "g": 329, "p": 32.9}, {"n": "Harina pastelera", "g": 300, "p": 30.0}, {"n": "Azúcar", "g": 278, "p": 27.8}, {"n": "Maicena", "g": 57, "p": 5.7}, {"n": "Polvo de hornear", "g": 22, "p": 2.2}, {"n": "Sal", "g": 6, "p": 0.6}, {"n": "Esencia de anís", "g": 4, "p": 0.4}, {"n": "Vainilla", "g": 4, "p": 0.4}]; }
 function calcInversa(){
@@ -271,12 +276,12 @@ function calcInversa(){
   var tot=0;
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
     tot+=ing.g*kg;
   }
   var prod=Math.round(tot*0.615);
   var paq=Math.floor(prod/180);
-  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL mezcla</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr>';
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL mezcla</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr>';
   html+='<tr><td style="padding:8px 10px;color:var(--verde-osc)">→ Producto final (~61,5%)</td><td style="padding:8px 10px;text-align:right;font-weight:600;color:var(--verde-osc)">~'+prod.toLocaleString('es-CL')+' g · ~'+paq+' paq</td></tr>';
   html+='</tbody></table>';
   el.innerHTML=html;

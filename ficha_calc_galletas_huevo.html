@@ -113,6 +113,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 .d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
 .d-card{animation:fadeUp .2s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* LEGIBILIDAD — nombre de ingrediente y cantidad en gramos, grandes */
+.d-gramos,.d-ing-table td.d-gramos{font-size:22px;font-weight:700;line-height:1.25;color:var(--texto)}
+.d-nombre,.d-ing-table td.d-nombre{font-size:22px;font-weight:700;line-height:1.25}
+.d-ing-table tr.d-tot td.d-gramos{white-space:nowrap}
 </style>
 </head>
 <body><div class="page">
@@ -124,20 +129,20 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-card"><button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button><div class="d-rec-wrap" id="rw">
 <table class="d-ing-table"><thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead><tbody>
 <tr class="d-sep"><td colspan="4">Secos — mise en place previo</td></tr>
-<tr><td>1</td><td>Harina pastelera</td><td class="r">488</td><td class="pct">48,8%</td></tr>
-<tr><td>2</td><td>Leche en polvo Colun</td><td class="r">29</td><td class="pct">2,9%</td></tr>
-<tr><td>3</td><td>Polvo de hornear</td><td class="r">12</td><td class="pct">1,2%</td></tr>
-<tr><td>4</td><td>Propianato</td><td class="r">0,4</td><td class="pct">0,04%</td></tr>
-<tr><td>5</td><td>Sorbato de Potasio</td><td class="r">0,2</td><td class="pct">0,02%</td></tr>
+<tr><td>1</td><td class="d-nombre">Harina pastelera</td><td class="r d-gramos">488</td><td class="pct">48,8%</td></tr>
+<tr><td>2</td><td class="d-nombre">Leche en polvo Colun</td><td class="r d-gramos">29</td><td class="pct">2,9%</td></tr>
+<tr><td>3</td><td class="d-nombre">Polvo de hornear</td><td class="r d-gramos">12</td><td class="pct">1,2%</td></tr>
+<tr><td>4</td><td class="d-nombre">Propianato</td><td class="r d-gramos">0,4</td><td class="pct">0,04%</td></tr>
+<tr><td>5</td><td class="d-nombre">Sorbato de Potasio</td><td class="r d-gramos">0,2</td><td class="pct">0,02%</td></tr>
 <tr class="d-sep"><td colspan="4">Húmedos — incorporar al mezclar</td></tr>
-<tr><td>6</td><td>Azúcar</td><td class="r">244</td><td class="pct">24,4%</td></tr>
-<tr><td>7</td><td>Leche líquida</td><td class="r">122</td><td class="pct">12,2%</td></tr>
-<tr><td>8</td><td>Huevos líquidos</td><td class="r">49</td><td class="pct">4,9%</td></tr>
-<tr><td>9</td><td>Margarina Cordobesa</td><td class="r">49</td><td class="pct">4,9%</td></tr>
-<tr><td>10</td><td>Esencia mantecado</td><td class="r">2.5</td><td class="pct">0,25%</td></tr>
-<tr><td>11</td><td>Vainilla blanca</td><td class="r">2.5</td><td class="pct">0,25%</td></tr>
-<tr><td>12</td><td>Colorante amarillo</td><td class="r">0.43</td><td class="pct">0,043%</td></tr>
-<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">999,95</td><td class="pct">~100%</td></tr>
+<tr><td>6</td><td class="d-nombre">Azúcar</td><td class="r d-gramos">244</td><td class="pct">24,4%</td></tr>
+<tr><td>7</td><td class="d-nombre">Leche líquida</td><td class="r d-gramos">122</td><td class="pct">12,2%</td></tr>
+<tr><td>8</td><td class="d-nombre">Huevos líquidos</td><td class="r d-gramos">49</td><td class="pct">4,9%</td></tr>
+<tr><td>9</td><td class="d-nombre">Margarina Cordobesa</td><td class="r d-gramos">49</td><td class="pct">4,9%</td></tr>
+<tr><td>10</td><td class="d-nombre">Esencia mantecado</td><td class="r d-gramos">2.5</td><td class="pct">0,25%</td></tr>
+<tr><td>11</td><td class="d-nombre">Vainilla blanca</td><td class="r d-gramos">2.5</td><td class="pct">0,25%</td></tr>
+<tr><td>12</td><td class="d-nombre">Colorante amarillo</td><td class="r d-gramos">0.43</td><td class="pct">0,043%</td></tr>
+<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">999,95</td><td class="pct">~100%</td></tr>
 </tbody></table>
 <div class="d-nota d-nota-r" style="margin-top:10px">⚠ Usar balanza de GRAMAJE para Propianato y Sorbato de Potasio.
 
@@ -173,8 +178,8 @@ function renderG(){
   if(!pgq){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá los paquetes para ver la receta ajustada</div></div>';return;}
   const tot=pgq*450,f=tot/1000,tandas=Math.round(tot/8100*10)/10;
   let pt='',rH='';
-  RG.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='s'?'Secos':'Húmedos'}</td></tr>`;pt=i.t;}rH+=`<tr><td>${i.n}</td><td class="r">${fmtG(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
-  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${pgq} paquete${pgq!==1?'s':''} · ${pgq*5} galletas</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
+  RG.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='s'?'Secos':'Húmedos'}</td></tr>`;pt=i.t;}rH+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtG(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${pgq} paquete${pgq!==1?'s':''} · ${pgq*5} galletas</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
 function getRecetaBase(){ return [{"n": "Harina pastelera", "g": 489, "sep": "Secos"}, {"n": "Leche en polvo Colun", "g": 29, "sep": "Secos"}, {"n": "Polvo de hornear", "g": 12, "sep": "Secos"}, {"n": "Propianato", "g": 0.4, "sep": "Secos"}, {"n": "Sorbato de Potasio", "g": 0.2, "sep": "Secos"}, {"n": "Azúcar", "g": 244, "sep": "Húmedos"}, {"n": "Leche líquida", "g": 122, "sep": "Húmedos"}, {"n": "Huevos líquidos", "g": 49, "sep": "Húmedos"}, {"n": "Margarina Cordobesa", "g": 49, "sep": "Húmedos"}, {"n": "Esencia mantecado", "g": 5, "sep": "Húmedos"}, {"n": "Colorante amarillo", "g": 0.3, "sep": "Húmedos"}]; }
 function calcInversa(){
@@ -194,11 +199,11 @@ function calcInversa(){
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
     if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
   }
   var tot=0;
   for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
-  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
   el.innerHTML=html;
 }
 function tog(){

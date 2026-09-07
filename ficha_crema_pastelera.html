@@ -112,6 +112,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 .d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
 .d-card{animation:fadeUp .2s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* LEGIBILIDAD — nombre de ingrediente y cantidad en gramos, grandes */
+.d-gramos,.d-ing-table td.d-gramos{font-size:22px;font-weight:700;line-height:1.25;color:var(--texto)}
+.d-nombre,.d-ing-table td.d-nombre{font-size:22px;font-weight:700;line-height:1.25}
+.d-ing-table tr.d-tot td.d-gramos{white-space:nowrap}
 </style>
 </head>
 <body><div class="page">
@@ -152,7 +157,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
   <div class="d-rec-wrap" id="rw">
     <table class="d-ing-table">
       <thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead>
-      <tbody><tr><td>1</td><td>Leche líquida</td><td class="r">692</td><td class="pct">69.2%</td></tr><tr><td>2</td><td>Azúcar</td><td class="r">173</td><td class="pct">17.3%</td></tr><tr><td>3</td><td>Maicena</td><td class="r">93</td><td class="pct">9.3%</td></tr><tr><td>4</td><td>Margarina Cordobesa</td><td class="r">40</td><td class="pct">4.0%</td></tr><tr><td>5</td><td>Esencia mantecado</td><td class="r">1.7</td><td class="pct">0.17%</td></tr><tr><td>6</td><td>Concha de naranja</td><td class="r">1.0</td><td class="pct">0.1%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000,7</td><td class="pct">~100%</td></tr></tbody>
+      <tbody><tr><td>1</td><td class="d-nombre">Leche líquida</td><td class="r d-gramos">692</td><td class="pct">69.2%</td></tr><tr><td>2</td><td class="d-nombre">Azúcar</td><td class="r d-gramos">173</td><td class="pct">17.3%</td></tr><tr><td>3</td><td class="d-nombre">Maicena</td><td class="r d-gramos">93</td><td class="pct">9.3%</td></tr><tr><td>4</td><td class="d-nombre">Margarina Cordobesa</td><td class="r d-gramos">40</td><td class="pct">4.0%</td></tr><tr><td>5</td><td class="d-nombre">Esencia mantecado</td><td class="r d-gramos">1.7</td><td class="pct">0.17%</td></tr><tr><td>6</td><td class="d-nombre">Concha de naranja</td><td class="r d-gramos">1.0</td><td class="pct">0.1%</td></tr><tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">1.000,7</td><td class="pct">~100%</td></tr></tbody>
     </table>
     <div class="d-nota" style="margin-top:10px">⚠ Usar balanza de GRAMAJE para Esencia mantecado y Concha de naranja.</div>
     <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
@@ -226,10 +231,10 @@ function renderCREMA(){
   if(!kgcrema){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá los kg de crema para ver la receta ajustada</div></div>';return;}
   const f=kgcrema;
   let rH='';
-  RCREMA.forEach(i=>{rH+=`<tr><td>${i.n}</td><td class="r">${fmtC(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
+  RCREMA.forEach(i=>{rH+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtC(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${kgcrema} kg de crema</div>
   <div class="d-res-total"><div><div class="d-res-lbl">Total mezcla</div></div><div style="text-align:right"><div class="d-res-val">${(kgcrema*1000).toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div>
-  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${(kgcrema*1000).toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
+  <table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r d-gramos">${(kgcrema*1000).toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
 function getRecetaBase(){ return [{"n": "Leche líquida", "g": 692, "p": 69.2}, {"n": "Azúcar", "g": 173, "p": 17.3}, {"n": "Maicena", "g": 93, "p": 9.3}, {"n": "Margarina Cordobesa", "g": 40, "p": 4.0}, {"n": "Esencia mantecado", "g": 1.7, "p": 0.17}, {"n": "Concha de naranja", "g": 1, "p": 0.1}]; }
 function calcInversa(){
@@ -247,10 +252,10 @@ function calcInversa(){
   var tot=0;
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
     tot+=ing.g*kg;
   }
-  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
   el.innerHTML=html;
 }
 function tog(){

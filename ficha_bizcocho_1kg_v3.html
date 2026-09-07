@@ -113,6 +113,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 .d-empty{text-align:center;padding:2rem 1rem;color:#bbb;font-size:14px}
 .d-card{animation:fadeUp .2s ease both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* LEGIBILIDAD — nombre de ingrediente y cantidad en gramos, grandes */
+.d-gramos,.d-ing-table td.d-gramos{font-size:22px;font-weight:700;line-height:1.25;color:var(--texto)}
+.d-nombre,.d-ing-table td.d-nombre{font-size:22px;font-weight:700;line-height:1.25}
+.d-ing-table tr.d-tot td.d-gramos{white-space:nowrap}
 </style>
 </head>
 <body><div class="page">
@@ -149,17 +154,17 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
   <button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button>
   <div class="d-rec-wrap" id="rw">
   <table class="d-ing-table"><thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead><tbody>
-    <tr><td>1</td><td>Harina pastelera</td><td class="r">297</td><td class="pct">29,7%</td></tr>
-    <tr><td>2</td><td>Azúcar</td><td class="r">233</td><td class="pct">23,3%</td></tr>
-    <tr><td>3</td><td>Huevos extra</td><td class="r">227</td><td class="pct">22,7%</td></tr>
-    <tr><td>4</td><td>Aceite</td><td class="r">131</td><td class="pct">13,1%</td></tr>
-    <tr><td>5</td><td>Leche líquida entera Colun</td><td class="r">95</td><td class="pct">9,5%</td></tr>
-    <tr><td>6</td><td>Polvo de hornear</td><td class="r">11</td><td class="pct">1,1%</td></tr>
-    <tr><td>7</td><td>Vainilla blanca Levapan</td><td class="r">5</td><td class="pct">0,5%</td></tr>
-    <tr><td>8</td><td>Ralladura naranja o limón</td><td class="r">0,7</td><td class="pct">0,07%</td></tr>
-    <tr><td>9</td><td>Propianato (0,15–0,2% harina)</td><td class="r">0,4</td><td class="pct">0,04%</td></tr>
-    <tr><td>10</td><td>Enzima Frescura</td><td class="r">0,3</td><td class="pct">0,03%</td></tr>
-    <tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r">1.000</td><td class="pct">100%</td></tr>
+    <tr><td>1</td><td class="d-nombre">Harina pastelera</td><td class="r d-gramos">297</td><td class="pct">29,7%</td></tr>
+    <tr><td>2</td><td class="d-nombre">Azúcar</td><td class="r d-gramos">233</td><td class="pct">23,3%</td></tr>
+    <tr><td>3</td><td class="d-nombre">Huevos extra</td><td class="r d-gramos">227</td><td class="pct">22,7%</td></tr>
+    <tr><td>4</td><td class="d-nombre">Aceite</td><td class="r d-gramos">131</td><td class="pct">13,1%</td></tr>
+    <tr><td>5</td><td class="d-nombre">Leche líquida entera Colun</td><td class="r d-gramos">95</td><td class="pct">9,5%</td></tr>
+    <tr><td>6</td><td class="d-nombre">Polvo de hornear</td><td class="r d-gramos">11</td><td class="pct">1,1%</td></tr>
+    <tr><td>7</td><td class="d-nombre">Vainilla blanca Levapan</td><td class="r d-gramos">5</td><td class="pct">0,5%</td></tr>
+    <tr><td>8</td><td class="d-nombre">Ralladura naranja o limón</td><td class="r d-gramos">0,7</td><td class="pct">0,07%</td></tr>
+    <tr><td>9</td><td class="d-nombre">Propianato (0,15–0,2% harina)</td><td class="r d-gramos">0,4</td><td class="pct">0,04%</td></tr>
+    <tr><td>10</td><td class="d-nombre">Enzima Frescura</td><td class="r d-gramos">0,3</td><td class="pct">0,03%</td></tr>
+    <tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">1.000</td><td class="pct">100%</td></tr>
   </tbody></table>
   <div class="d-nota" style="margin-top:10px">⚠ Usar Leche Colun entera y Vainilla Levapan. Balanza de GRAMAJE para Propianato y Enzima Frescura.
     <div id="ci-wrap" style="display:block;margin-top:18px;border-top:2px solid var(--crema-osc);padding-top:14px">
@@ -232,14 +237,14 @@ function render(){
   const hayMarm=qtym.m24>0||qtym.m26>0;
   if(!tot){el.innerHTML='<div class="d-card"><div class="d-empty">Elegí al menos un molde para ver la receta</div></div>';return;}
   const f=tot/1000,tandas=Math.round(tot/4600*10)/10;
-  const rHTML=REC.map(i=>`<tr><td>${i.n}</td><td class="r">${fmt(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`).join('');
+  const rHTML=REC.map(i=>`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmt(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`).join('');
   let marmHTML='';
   if(hayMarm){
     marmHTML='<div style="margin-top:16px;border-top:2px dashed var(--amber);padding-top:12px"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--amber-osc);margin-bottom:10px">Adicional marmoleado — agregar sobre mezcla base ya horneada</div>';
     Object.keys(qtym).forEach(k=>{if(qtym[k]>0){const d=MM[k];marmHTML+=`<div style="background:var(--amber-cl);border-radius:8px;padding:10px 14px;margin-bottom:8px"><div style="font-size:13px;font-weight:600;color:var(--amber-osc);font-style:italic;margin-bottom:6px">${qtym[k]} × ${d.l}</div><div style="display:flex;justify-content:space-between;font-size:13px;color:var(--amber-med)"><span>Mezcla base (ya incluida arriba)</span><span style="font-weight:600">${(qtym[k]*d.base).toLocaleString('es-CL')} g</span></div><div style="display:flex;justify-content:space-between;font-size:14px;font-weight:700;color:var(--amber-osc);margin-top:6px"><span>+ Cacao en polvo</span><span>${(qtym[k]*d.cacao).toLocaleString('es-CL')} g</span></div><div style="display:flex;justify-content:space-between;font-size:14px;font-weight:700;color:var(--amber-osc)"><span>+ Leche líquida extra</span><span>${(qtym[k]*d.leche).toLocaleString('es-CL')} g</span></div><div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--amber-osc);margin-top:6px;border-top:1px solid var(--amber);padding-top:6px"><span>Total final molde</span><span>${(qtym[k]*(d.base+d.cacao+d.leche)).toLocaleString('es-CL')} g</span></div></div>`;}});
     marmHTML+='</div>';
   }
-  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div><div class="d-res-total"><div><div class="d-res-lbl">Total mezcla base</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rHTML}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r">${tot.toLocaleString('es-CL')} g</td><td class="pct">100%</td></tr></tbody></table>${marmHTML}</div>`;
+  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div><div class="d-res-total"><div><div class="d-res-lbl">Total mezcla base</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rHTML}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">100%</td></tr></tbody></table>${marmHTML}</div>`;
 }
 function getRecetaBase(){ return [{"n": "Harina pastelera", "g": 297}, {"n": "Azúcar", "g": 233}, {"n": "Huevos extra", "g": 227}, {"n": "Aceite", "g": 131}, {"n": "Leche líquida Colun", "g": 95}, {"n": "Polvo de hornear", "g": 11}, {"n": "Vainilla blanca Levapan", "g": 5}, {"n": "Ralladura naranja/limón", "g": 0.7}, {"n": "Propianato", "g": 0.4}, {"n": "Enzima Frescura", "g": 0.3}]; }
 function calcInversa(){
@@ -259,11 +264,11 @@ function calcInversa(){
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
     if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
-    html+='<tr><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right;font-weight:600">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
+    html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
   }
   var tot=0;
   for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
-  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td style="padding:8px 10px;font-weight:700;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
   el.innerHTML=html;
 }
 function tog(){

@@ -290,6 +290,7 @@ function calcInversa(){
   var sep='';
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
+    if(!_canSeT1 && !T2_PD.includes(ing.n)) continue;
     if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
     html+='<tr><td class="d-nombre" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);color:var(--sub)">'+ing.n+'</td><td class="d-gramos" style="padding:8px 10px;border-bottom:1px solid var(--crema-med);text-align:right">'+fmt(ing.n,ing.g*kg)+'</td></tr>';
   }

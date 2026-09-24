@@ -244,6 +244,7 @@ function calcInversa(){
   var sep='';
   for(var i=0;i<rec.length;i++){
     var ing=rec[i];
+    if(!_canSeT1 && !T2_NAMES.includes(ing.n)) continue;
     if(ing.sep&&ing.sep!==sep){sep=ing.sep;html+='<tr><td colspan="2" style="background:var(--crema-med);font-size:10px;font-weight:700;text-transform:uppercase;color:var(--amber-med);padding:4px 8px">'+ing.sep+'</td></tr>';}
     if(ing.n.indexOf('Agua')>=0&&ing.n.indexOf('hielo')>=0){
       var hielo=Math.round(kg*1000*HIELO_PCT_FP);

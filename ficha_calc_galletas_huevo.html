@@ -142,7 +142,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <tr><td>10</td><td class="d-nombre">Esencia mantecado</td><td class="r d-gramos">2.5</td><td class="pct">0,25%</td></tr>
 <tr><td>11</td><td class="d-nombre">Vainilla blanca</td><td class="r d-gramos">2.5</td><td class="pct">0,25%</td></tr>
 <tr><td>12</td><td class="d-nombre">Colorante amarillo</td><td class="r d-gramos">0.43</td><td class="pct">0,043%</td></tr>
-<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">999,95</td><td class="pct">~100%</td></tr>
+<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">999,03</td><td class="pct">~100%</td></tr>
 </tbody></table>
 <div class="d-nota d-nota-r" style="margin-top:10px">⚠ Usar balanza de GRAMAJE para Propianato y Sorbato de Potasio.
 
@@ -167,8 +167,8 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 </div><a class="d-home" href="index.html">🏠 Inicio</a><script src="dulcitos-permisos.js"></script>
 </body></html>
 <script>
-const RG=[{n:'Harina pastelera',g:488,p:48.8,t:'s'},{n:'Leche en polvo Colun',g:29,p:2.9,t:'s'},{n:'Polvo de hornear',g:12,p:1.2,t:'s'},{n:'Propianato',g:0.4,p:0.04,t:'s'},{n:'Sorbato de Potasio',g:0.2,p:0.02,t:'s'},{n:'Azúcar',g:244,p:24.4,t:'h'},{n:'Leche líquida',g:122,p:12.2,t:'h'},{n:'Huevos líquidos',g:49,p:4.9,t:'h'},{n:'Margarina Cordobesa',g:49,p:4.9,t:'h'},{n:'Vainilla blanca',g:2.5,p:0.25},{n:'Esencia mantecado',g:2.5,p:0.5,t:'h'},{n:'Colorante amarillo',g:0.43,p:0.035,t:'h'}];
-const ESPG=['esencia','colorante','propianato','sorbato'];
+const RG=[{n:'Harina pastelera',g:488,p:48.8,t:'s'},{n:'Leche en polvo Colun',g:29,p:2.9,t:'s'},{n:'Polvo de hornear',g:12,p:1.2,t:'s'},{n:'Propianato',g:0.4,p:0.04,t:'s'},{n:'Sorbato de Potasio',g:0.2,p:0.02,t:'s'},{n:'Azúcar',g:244,p:24.4,t:'h'},{n:'Leche líquida',g:122,p:12.2,t:'h'},{n:'Huevos líquidos',g:49,p:4.9,t:'h'},{n:'Margarina Cordobesa',g:49,p:4.9,t:'h'},{n:'Esencia mantecado',g:2.5,p:0.25,t:'h'},{n:'Vainilla blanca',g:2.5,p:0.25,t:'h'},{n:'Colorante amarillo',g:0.43,p:0.043,t:'h'}];
+const ESPG=['esencia','vainilla','colorante','propianato','sorbato'];
 let pgq=0;
 function cg(d){var el=document.getElementById('qg');pgq=Math.max(0,(parseInt(el.value)||0)+d);el.value=pgq;renderG();}
 function syncInputById(el,id){pgq=Math.max(0,parseInt(el.value)||0);renderG();}
@@ -181,7 +181,7 @@ function renderG(){
   RG.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='s'?'Secos':'Húmedos'}</td></tr>`;pt=i.t;}rH+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtG(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${pgq} paquete${pgq!==1?'s':''} · ${pgq*5} galletas</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
-function getRecetaBase(){ return [{"n": "Harina pastelera", "g": 489, "sep": "Secos"}, {"n": "Leche en polvo Colun", "g": 29, "sep": "Secos"}, {"n": "Polvo de hornear", "g": 12, "sep": "Secos"}, {"n": "Propianato", "g": 0.4, "sep": "Secos"}, {"n": "Sorbato de Potasio", "g": 0.2, "sep": "Secos"}, {"n": "Azúcar", "g": 244, "sep": "Húmedos"}, {"n": "Leche líquida", "g": 122, "sep": "Húmedos"}, {"n": "Huevos líquidos", "g": 49, "sep": "Húmedos"}, {"n": "Margarina Cordobesa", "g": 49, "sep": "Húmedos"}, {"n": "Esencia mantecado", "g": 5, "sep": "Húmedos"}, {"n": "Colorante amarillo", "g": 0.3, "sep": "Húmedos"}]; }
+function getRecetaBase(){ return [{"n": "Harina pastelera", "g": 488, "sep": "Secos"}, {"n": "Leche en polvo Colun", "g": 29, "sep": "Secos"}, {"n": "Polvo de hornear", "g": 12, "sep": "Secos"}, {"n": "Propianato", "g": 0.4, "sep": "Secos"}, {"n": "Sorbato de Potasio", "g": 0.2, "sep": "Secos"}, {"n": "Azúcar", "g": 244, "sep": "Húmedos"}, {"n": "Leche líquida", "g": 122, "sep": "Húmedos"}, {"n": "Huevos líquidos", "g": 49, "sep": "Húmedos"}, {"n": "Margarina Cordobesa", "g": 49, "sep": "Húmedos"}, {"n": "Esencia mantecado", "g": 2.5, "sep": "Húmedos"}, {"n": "Vainilla blanca", "g": 2.5, "sep": "Húmedos"}, {"n": "Colorante amarillo", "g": 0.43, "sep": "Húmedos"}]; }
 function calcInversa(){
   var kg=parseFloat(document.getElementById('ci-kg').value);
   var el=document.getElementById('ci-res');

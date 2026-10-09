@@ -23,6 +23,41 @@ siguen cargando acá.
 - **`node --check` antes de entregar.** Sobre `dulcitos-permisos.js` y sobre el
   `<script>` de cada ficha que se tocó (extraerlo a un `.js` temporal para chequearlo).
 
+## REGLA: chequeo de recetas antes de publicar (desde el 2026-10-09)
+
+**Ningún cambio de receta se publica si `node chequeo-recetas.mjs` no da todo igual.**
+
+Cada ficha guarda la receta tres veces: la tabla "Ver receta base", el array de la
+calculadora por unidades y `getRecetaBase()` de la calculadora por kilos. Nada las
+mantiene iguales. El 2026-10-09 aparecieron dos fichas donde no coincidían:
+
+- **Galletas de Huevo:** la calculadora por kilos seguía con la receta anterior (5 g de
+  esencia) cuando la actual es 2,5 g de mantecado + 2,5 g de vainilla blanca.
+- **Pan Golden:** 330/210/70 en una parte, contra 334/206/69 en otra.
+
+El personal pesa con las calculadoras: si difieren de la tabla, se produce con una
+receta que nadie decidió.
+
+```
+node chequeo-recetas.mjs                 # las 23 fichas
+node chequeo-recetas.mjs ficha_x.html    # una sola
+```
+
+- **Bloquean** (código de salida 1): **gramos distintos** e **ingrediente que falta** en
+  alguna de las tres partes.
+- **Solo avisan** (marca `!`, no bloquean): **nombre distinto con los mismos gramos**.
+  No cambian lo que se pesa, pero conviene unificarlos antes de migrar. Decidido por
+  Eibar el 2026-10-09.
+- Ignora a propósito la "Vista del panadero" y las variantes como la NY sin nueces, y lo
+  dice en una nota.
+- **No corrige nada.**
+
+**Cada diferencia la confirma Eibar.** No hay regla automática del tipo "manda la
+tabla": en Pan Golden mandó la tabla, pero eso no vale para las demás.
+
+**La suma de la base no tiene que ser exactamente 1000 g.** Un aproximado es válido; no
+se "corrige" la suma ni se reparte la diferencia.
+
 ## Permisos
 
 Se aplican en `dulcitos-permisos.js`. El porcentaje base de la fórmula (celdas `.pct`)

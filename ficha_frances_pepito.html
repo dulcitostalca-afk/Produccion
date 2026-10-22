@@ -140,7 +140,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-card"><button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button><div class="d-rec-wrap" id="rw">
 <table class="d-ing-table"><thead><tr><th>#</th><th>Ingrediente</th><th class="r">Gramos</th><th class="r pct">%</th></tr></thead><tbody>
 </tbody></table><div class="tramo1-block"><table class="d-ing-table"><tbody><tr class="d-sep"><td colspan="4">Tramo 1 — Mise en place · caja plástica pre-pesada</td></tr>
-<tr><td>1</td><td class="d-nombre">Harina Verde</td><td class="r d-gramos">454</td><td class="pct">45,4%</td></tr>
+<tr><td>1</td><td class="d-nombre">Harina Verde</td><td class="r d-gramos">450</td><td class="pct">45,0%</td></tr>
 <tr><td>2</td><td class="d-nombre">Harina SP2</td><td class="r d-gramos">195</td><td class="pct">19,5%</td></tr>
 <tr><td>3</td><td class="d-nombre">Azúcar</td><td class="r d-gramos">25</td><td class="pct">2,5%</td></tr>
 <tr><td>4</td><td class="d-nombre">Mejorador Puratos</td><td class="r d-gramos">12</td><td class="pct">1,2%</td></tr>
@@ -150,7 +150,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <tr><td>7</td><td class="d-nombre">Agua fría + hielo</td><td class="r d-gramos">273</td><td class="pct">27,3%</td></tr>
 <tr><td>8</td><td class="d-nombre">Levadura fresca</td><td class="r d-gramos">20</td><td class="pct">2,0%</td></tr>
 <tr><td>9</td><td class="d-nombre">Manteca La Granja</td><td class="r d-gramos">25</td><td class="pct">2,5%</td></tr>
-<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">1.004,75</td><td class="pct">~100%</td></tr>
+<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">1.000,75</td><td class="pct">~100%</td></tr>
 </tbody></table>
 <div class="d-nota" style="margin-top:10px">⚠ Balanza de GRAMAJE para Propianato y Sorbato. Hielo base 800 g — ajustar según clima.
 
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 const PFP={pf:{n:'Pan Francés',g:90},p30:{n:'Pepito 30cm',g:190},p45:{n:'Pepito 45cm',g:280}};
-const RFPP=[{n:'Harina Verde',g:454,p:45.4,t:'m'},{n:'Harina SP2',g:195,p:19.5,t:'m'},{n:'Azúcar',g:25,p:2.5,t:'m'},{n:'Mejorador Puratos',g:12,p:1.2,t:'m'},{n:'Propianato',g:0.5,p:0.05,t:'m'},{n:'Sorbato de Potasio',g:0.25,p:0.025,t:'m'},{n:'Agua fría + hielo',g:273,p:27.3,t:'a'},{n:'Levadura fresca',g:20,p:2.0,t:'a'},{n:'Manteca La Granja',g:25,p:2.5,t:'a'}];
+const RFPP=[{n:'Harina Verde',g:450,p:45.0,t:'m'},{n:'Harina SP2',g:195,p:19.5,t:'m'},{n:'Azúcar',g:25,p:2.5,t:'m'},{n:'Mejorador Puratos',g:12,p:1.2,t:'m'},{n:'Propianato',g:0.5,p:0.05,t:'m'},{n:'Sorbato de Potasio',g:0.25,p:0.025,t:'m'},{n:'Agua fría + hielo',g:273,p:27.3,t:'a'},{n:'Levadura fresca',g:20,p:2.0,t:'a'},{n:'Manteca La Granja',g:25,p:2.5,t:'a'}];
 const ESPFP=['propianato','sorbato'];
 const T2_NAMES=["Agua fría + hielo", "Levadura fresca", "Manteca La Granja"];
 let qfp={pf:0,p30:0,p45:0};
@@ -227,7 +227,7 @@ function renderFP(){
   });
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa necesaria</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
-function getRecetaBase(){ return [{"n": "Harina Verde", "g": 454, "sep": "Mise en place"}, {"n": "Harina SP2", "g": 195, "sep": "Mise en place"}, {"n": "Azúcar", "g": 25, "sep": "Mise en place"}, {"n": "Mejorador Puratos", "g": 12, "sep": "Mise en place"}, {"n": "Propianato", "g": 0.5, "sep": "Mise en place"}, {"n": "Sorbato de Potasio", "g": 0.25, "sep": "Mise en place"}, {"n": "Agua fría + hielo", "g": 273, "sep": "Al amasar"}, {"n": "Levadura fresca", "g": 20, "sep": "Al amasar"}, {"n": "Manteca La Granja", "g": 25, "sep": "Al amasar"}]; }
+function getRecetaBase(){ return [{"n": "Harina Verde", "g": 450, "sep": "Mise en place"}, {"n": "Harina SP2", "g": 195, "sep": "Mise en place"}, {"n": "Azúcar", "g": 25, "sep": "Mise en place"}, {"n": "Mejorador Puratos", "g": 12, "sep": "Mise en place"}, {"n": "Propianato", "g": 0.5, "sep": "Mise en place"}, {"n": "Sorbato de Potasio", "g": 0.25, "sep": "Mise en place"}, {"n": "Agua fría + hielo", "g": 273, "sep": "Al amasar"}, {"n": "Levadura fresca", "g": 20, "sep": "Al amasar"}, {"n": "Manteca La Granja", "g": 25, "sep": "Al amasar"}]; }
 function calcInversa(){
   var kg=parseFloat(document.getElementById('ci-kg').value);
   var el=document.getElementById('ci-res');
@@ -255,7 +255,7 @@ function calcInversa(){
   }
   var tot=0;
   for(var j=0;j<rec.length;j++)tot+=rec[j].g*kg;
-  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+Math.round(tot).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
+  html+='<tr><td style="padding:8px 10px;font-weight:700;background:var(--crema)">TOTAL</td><td class="d-gramos" style="padding:8px 10px;background:var(--crema);text-align:right">'+(Math.round(tot*100)/100).toLocaleString('es-CL')+' g</td></tr></tbody></table>';
   el.innerHTML=html;
 }
 function tog(){

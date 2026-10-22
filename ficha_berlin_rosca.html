@@ -122,13 +122,13 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 </head>
 <body><div class="page">
 
-<div class="d-header"><span class="d-header-emoji">🍩</span><div class="d-header-title">Berlín · Bomba · Pavita<br>y Rosca de Azúcar</div><div class="d-header-sub">Masa bollería base Pavitas · Sin premezclas · Frita · 65 g por unidad</div><div class="d-header-tags"><span class="d-htag">Base 1.000 g</span><span class="d-htag">Aceite 170°C</span><span class="d-htag">Bollería frita</span></div></div>
+<div class="d-header"><span class="d-header-emoji">🍩</span><div class="d-header-title">Berlín · Bomba · Pavita<br>y Rosca de Azúcar</div><div class="d-header-sub">Masa bollería base Pavitas · Sin premezclas · Frita · 65 g por unidad</div><div class="d-header-tags"><span class="d-htag">Base 1.000 g</span><span class="d-htag">Aceite 165°C</span><span class="d-htag">Bollería frita</span></div></div>
 <div class="d-card"><div class="d-card-title">Utensilios necesarios antes de empezar</div>
 <div style="font-size:13px;color:var(--sub);line-height:1.9">Amasadora espiral · Sobadora Mákas · Ovilladora · Bandejas aluminio 60×40 · Fermentadora Progas · Freidora con aceite · Manga pastelera · Boquilla larga · Tijeras · Tamiz para azúcar glass · Spray de agua</div></div>
 <div class="d-card"><div class="d-card-title">Calculadora — por unidades</div>
 <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Berlín / Bomba / Pavita</div><div class="d-calc-peso">65 g por unidad · Crema pastelera</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cbl('b',-1)">−</button><input type="number" class="d-qty-num" id="qb" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInputById(this,'qb')"><button class="d-qty-btn" onclick="cbl('b',1)">+</button></div></div>
 <div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Rosca de Azúcar</div><div class="d-calc-peso">65 g por unidad · Azúcar granulada</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cbl('r',-1)">−</button><input type="number" class="d-qty-num" id="qr" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInputById(this,'qr')"><button class="d-qty-btn" onclick="cbl('r',1)">+</button></div></div>
-<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Combo Mini Berlín</div><div class="d-calc-peso">90 g por combo · 6 mini berlines de 15 g c/u</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cbl('m',-1)">−</button><input type="number" class="d-qty-num" id="qm" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInputById(this,'qm')"><button class="d-qty-btn" onclick="cbl('m',1)">+</button></div></div>
+<div class="d-calc-item"><div class="d-calc-info"><div class="d-calc-name">Combo Mini Berlín</div><div class="d-calc-peso">120 g por combo · 4 mini berlines de 30 g c/u</div></div><div class="d-qty"><button class="d-qty-btn" onclick="cbl('m',-1)">−</button><input type="number" class="d-qty-num" id="qm" value="0" min="0" style="width:52px;height:38px;border:1.5px solid var(--borde);border-radius:8px;text-align:center;font-size:18px;font-weight:700;font-family:inherit;background:white;outline:none;color:var(--texto)" oninput="syncInputById(this,'qm')"><button class="d-qty-btn" onclick="cbl('m',1)">+</button></div></div>
 </div>
 <div id="res"><div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div></div>
 <div class="d-card"><button class="d-toggle" onclick="tog()"><span>📋</span><span id="tl">Ver receta base</span></button><div class="d-rec-wrap" id="rw">
@@ -165,9 +165,9 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-paso"><div class="d-paso-num">2</div><div class="d-paso-body"><div class="d-paso-title">Amasado</div><div class="d-paso-desc">Secos en amasadora, incorporar húmedos. Masa lisa y homogénea.</div><div class="d-badges"><span class="d-badge d-badge-r">⏱ 25 min</span></div></div></div>
 <div class="d-paso"><div class="d-paso-num">3</div><div class="d-paso-body"><div class="d-paso-title">Sobado — Sobadora Mákas</div><div class="d-badges"><span class="d-badge d-badge-a">3 pasadas</span></div></div></div>
 <div class="d-paso"><div class="d-paso-num">4</div><div class="d-paso-body"><div class="d-paso-title">Reposo</div><div class="d-badges"><span class="d-badge d-badge-r">⏱ 30 min</span></div></div></div>
-<div class="d-paso"><div class="d-paso-num">5</div><div class="d-paso-body"><div class="d-paso-title">Ovilladora — bollos de 65 g</div></div></div>
+<div class="d-paso"><div class="d-paso-num">5</div><div class="d-paso-body"><div class="d-paso-title">Ovilladora — bollos de 65 g (Berlín, Bomba, Pavita y Rosca) o de 30 g (Combo Mini Berlín)</div><div class="d-paso-desc">Misma ovilladora para los dos tamaños.</div></div></div>
 <div class="d-paso"><div class="d-paso-num">6</div><div class="d-paso-body"><div class="d-paso-title">Fermentadora Progas 30°C</div><div class="d-badges"><span class="d-badge d-badge-r">⏱ 1 hora base</span></div></div></div>
-<div class="d-paso"><div class="d-paso-num">7</div><div class="d-paso-body"><div class="d-paso-title">Fritura — aceite 170°C</div></div></div>
+<div class="d-paso"><div class="d-paso-num">7</div><div class="d-paso-body"><div class="d-paso-title">Fritura — aceite 165°C</div><div class="d-paso-desc">Medir con el termómetro de punzón que queda dentro del sartén.</div></div></div>
 </div>
 <div class="d-card"><div class="d-card-title">Terminación — Berlín</div>
 <div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body"><div class="d-paso-title">Crema pastelera fría de nevera</div></div></div>
@@ -175,6 +175,12 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-paso"><div class="d-paso-num">3</div><div class="d-paso-body"><div class="d-paso-title">Corte con tijera — limpio y recto</div></div></div>
 <div class="d-paso"><div class="d-paso-num">4</div><div class="d-paso-body"><div class="d-paso-title">Rellenar — generoso pero sin desbordar</div></div></div>
 <div class="d-paso"><div class="d-paso-num">5</div><div class="d-paso-body"><div class="d-paso-title">Azúcar glass con tamiz — justo antes de vitrina</div></div></div>
+</div>
+<div class="d-card"><div class="d-card-title">Terminación — Combo Mini Berlín</div>
+<div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body"><div class="d-paso-title">Corte con tijera — igual que el Berlín</div></div></div>
+<div class="d-paso"><div class="d-paso-num">2</div><div class="d-paso-body"><div class="d-paso-title">3 mini berlines con crema pastelera fría — 25 g c/u</div><div class="d-badges"><span class="d-badge d-badge-a">75 g por combo</span></div></div></div>
+<div class="d-paso"><div class="d-paso-num">3</div><div class="d-paso-body"><div class="d-paso-title">1 mini berlín con manjar — 20 g</div></div></div>
+<div class="d-paso"><div class="d-paso-num">4</div><div class="d-paso-body"><div class="d-paso-title">Azúcar glass (flor) con tamiz — justo antes de vitrina</div><div class="d-paso-desc">El de manjar se distingue porque se ve el relleno.</div></div></div>
 </div>
 <div class="d-card"><div class="d-card-title">Terminación — Rosca de Azúcar</div>
 <div class="d-paso"><div class="d-paso-num">1</div><div class="d-paso-body"><div class="d-paso-title">Atomizar con spray de agua — superficie apenas húmeda</div></div></div>
@@ -199,15 +205,15 @@ function cbl(k,d){var el=document.getElementById('q'+k);qbl[k]=Math.max(0,(parse
 function syncInputById(el,id){var k=id.replace('q','');qbl[k]=Math.max(0,parseInt(el.value)||0);renderBL();}
 function fmtBL(n,v){if(ESPBL.some(e=>n.toLowerCase().includes(e)))return v.toFixed(1);return v>=10?Math.round(v).toString():(Math.round(v*10)/10).toString();}
 function renderBL(){
-  const tot=(qbl.b+qbl.r)*65+qbl.m*90,el=document.getElementById('res');
+  const tot=(qbl.b+qbl.r)*65+qbl.m*120,el=document.getElementById('res');
   if(!tot){el.innerHTML='<div class="d-card"><div class="d-empty">Ingresá las unidades para ver la receta ajustada</div></div>';return;}
   const f=tot/1000,tandas=Math.round(tot/1944*10)/10;
   let desg='',pt='',rH='';
   if(qbl.b)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">Berlín · ${qbl.b} uds × 65g</span><span class="d-res-row-val">${qbl.b*65} g</span></div>`;
   if(qbl.r)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">Rosca · ${qbl.r} uds × 65g</span><span class="d-res-row-val">${qbl.r*65} g</span></div>`;
-  if(qbl.m)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">Combo Mini Berlín · ${qbl.m} combo${qbl.m>1?'s':''} × 90g · ${qbl.m*6} mini berlines</span><span class="d-res-row-val">${qbl.m*90} g</span></div>`;
+  if(qbl.m)desg+=`<div class="d-res-row"><span class="d-res-row-lbl">Combo Mini Berlín · ${qbl.m} combo${qbl.m>1?'s':''} × 120g · ${qbl.m*4} mini berlines</span><span class="d-res-row-val">${qbl.m*120} g</span></div>`;
   RBL.forEach(i=>{if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="4">${i.t==='s'?'Secos':'Húmedos'}</td></tr>`;pt=i.t;}rH+=`<tr><td></td><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtBL(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
-  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${qbl.b+qbl.r+(qbl.m*6)} unidades totales</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th></th><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
+  el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada — ${qbl.b+qbl.r+(qbl.m*4)} unidades totales</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa</div><div class="d-res-sub">${tandas} tanda${tandas!==1?'s':''}</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th></th><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td colspan="2"><strong>TOTAL</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
 function getRecetaBase(){ return [{"n": "Harina Puente Alto", "g": 585, "sep": "Secos"}, {"n": "Azúcar", "g": 70, "sep": "Secos"}, {"n": "Sal", "g": 10, "sep": "Secos"}, {"n": "Levadura instantánea", "g": 8, "sep": "Secos"}, {"n": "Mejorador Magimix", "g": 3, "sep": "Secos"}, {"n": "Mejorador Frescura", "g": 0.8, "sep": "Secos"}, {"n": "Leche líquida", "g": 158, "sep": "Húmedos"}, {"n": "Huevo líquido", "g": 100, "sep": "Húmedos"}, {"n": "Margarina Cordobesa 16%", "g": 60, "sep": "Húmedos"}, {"n": "Vainilla blanca", "g": 5.2, "sep": "Húmedos"}]; }
 function calcInversa(){

@@ -7,10 +7,24 @@ publicadas en GitHub Pages: https://dulcitostalca-afk.github.io/Produccion/ — 
 ficha es un `.html` en la raíz, sin build. Pages publica `main` tal cual: **sin push
 no cambia nada en la página.**
 
-**Es temporal.** Las fichas se migran todas juntas al sistema (`/fichas/`, recetas
-versionadas en D1, repo `dulcitos-sistema`, submódulo `recetas`). Al migrar se
-despublica Pages y este repo queda privado. Hasta entonces, las recetas nuevas se
-siguen cargando acá.
+## REGLA: repo CONGELADO desde el 2026-10-27
+
+**Congelado: todo cambio va solo en Cenzo** (`/fichas/`, repo `dulcitos-sistema`,
+submódulo `recetas`). Decidido por Eibar el 2026-10-27.
+
+- **Ningún cambio en este repo**: ni recetas nuevas, ni correcciones de gramos, ni
+  estilos, ni el índice. Una receta nueva o corregida se carga solo en Cenzo.
+- Este CLAUDE.md es lo único que se tocó después de congelarlo, para dejar la regla.
+- La página sigue publicada tal como quedó: es la referencia contra la que se compara
+  cada receta al migrarla a Cenzo, receta por receta (cada una queda "por verificar"
+  hasta que Eibar o Rosana la confirmen).
+- Por qué: con dos lugares vivos, una corrección hecha en uno solo deja al personal
+  pesando con una receta que nadie decidió (pasó con Galletas de Huevo y Pan Golden).
+- Se despublica Pages y el repo pasa a privado cuando Eibar lo decida.
+
+Antes de esta regla, las fichas se iban a migrar todas juntas y las recetas nuevas se
+seguían cargando acá; eso quedó superado. Lo que sigue de este archivo describe cómo
+quedó la página, para leerla, no para cambiarla.
 
 ## Convenciones
 

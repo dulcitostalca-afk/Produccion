@@ -151,7 +151,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <tr><td>7</td><td class="d-nombre">Levadura instantánea</td><td class="r d-gramos">4</td><td class="pct">0,4%</td></tr>
 <tr><td>8</td><td class="d-nombre">Mejorador Magimix</td><td class="r d-gramos">3</td><td class="pct">0,3%</td></tr>
 </tbody></table></div><table class="d-ing-table"><tbody><tr class="d-sep"><td colspan="4">Tramo 2 — Al amasar · lo agrega el panadero</td></tr>
-<tr><td>9</td><td class="d-nombre">Agua</td><td class="r d-gramos">228</td><td class="pct">22,8%</td></tr>
+<tr><td>9</td><td class="d-nombre">Agua</td><td class="r d-gramos">227</td><td class="pct">22,7%</td></tr>
 <tr><td>10</td><td class="d-nombre">Manteca Gold</td><td class="r d-gramos">30</td><td class="pct">3,0%</td></tr>
 <tr><td>11</td><td class="d-nombre">Margarina Cordobesa</td><td class="r d-gramos">30</td><td class="pct">3,0%</td></tr>
 <tr><td>12</td><td class="d-nombre">Esencia mantequilla</td><td class="r d-gramos">2,96</td><td class="pct">0,3%</td></tr>
@@ -173,7 +173,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--crema);color:va
 <div class="d-card"><div class="d-card-title">Vista del panadero — lo que agrega al amasar</div>
 <table class="d-ing-table"><thead><tr><th>Paso</th><th>Acción / Ingrediente</th><th class="r">Cantidad</th></tr></thead><tbody>
 <tr><td>1</td><td class="d-nombre">Volcar caja de mise en place en la amasadora</td><td class="r d-gramos">—</td></tr>
-<tr><td>2</td><td class="d-nombre">Agua</td><td class="r d-gramos">228 g</td></tr>
+<tr><td>2</td><td class="d-nombre">Agua</td><td class="r d-gramos">227 g</td></tr>
 <tr><td>3</td><td class="d-nombre">Manteca Gold</td><td class="r d-gramos">30 g</td></tr>
 <tr><td>4</td><td class="d-nombre">Margarina Cordobesa</td><td class="r d-gramos">30 g</td></tr>
 <tr><td>5</td><td class="d-nombre">Esencia mantequilla</td><td class="r d-gramos">2,96 g</td></tr>
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 const PRD={ca:{n:'Cachito',g:105},mj:{n:'Mini Jamón',g:145},ja:{n:'Jamón',g:550},mq:{n:'Mini Queso Tocineta',g:165},qt:{n:'Queso Tocineta',g:330}};
-const RCK=[{n:'Harina Super Pan Verde',g:300,p:30.0,t:'m'},{n:'Harina Super Pan 2',g:300,p:30.0,t:'m'},{n:'Azúcar',g:72,p:7.2,t:'m'},{n:'Leche en polvo industrial',g:12,p:1.2,t:'m'},{n:'Huevo en polvo',g:11,p:1.1,t:'m'},{n:'Sal',g:9,p:0.9,t:'m'},{n:'Levadura instantánea',g:4,p:0.4,t:'m'},{n:'Mejorador Magimix',g:3,p:0.3,t:'m'},{n:'Agua',g:228,p:22.8,t:'a'},{n:'Manteca Gold',g:30,p:3.0,t:'a'},{n:'Margarina Cordobesa',g:30,p:3.0,t:'a'},{n:'Esencia mantequilla',g:2.96,p:0.3,t:'a'}];
+const RCK=[{n:'Harina Super Pan Verde',g:300,p:30.0,t:'m'},{n:'Harina Super Pan 2',g:300,p:30.0,t:'m'},{n:'Azúcar',g:72,p:7.2,t:'m'},{n:'Leche en polvo industrial',g:12,p:1.2,t:'m'},{n:'Huevo en polvo',g:11,p:1.1,t:'m'},{n:'Sal',g:9,p:0.9,t:'m'},{n:'Levadura instantánea',g:4,p:0.4,t:'m'},{n:'Mejorador Magimix',g:3,p:0.3,t:'m'},{n:'Agua',g:227,p:22.7,t:'a'},{n:'Manteca Gold',g:30,p:3.0,t:'a'},{n:'Margarina Cordobesa',g:30,p:3.0,t:'a'},{n:'Esencia mantequilla',g:2.96,p:0.3,t:'a'}];
 const ESPCK=['esencia'];
 const T2_NAMES=["Agua", "Manteca Gold", "Margarina Cordobesa", "Esencia mantequilla"];
 let qck={ca:0,mj:0,ja:0,mq:0,qt:0};
@@ -209,7 +209,7 @@ function renderCK(){
     if(i.t!==pt){rH+=`<tr class="d-sep"><td colspan="3">${i.t==='m'?(_canSeT1?'Mise en place':''):'Al amasar'}</td></tr>`;pt=i.t;}rH+=`<tr><td class="d-nombre">${i.n}</td><td class="r d-gramos">${fmtCK(i.n,i.g*f)} g</td><td class="pct">${i.p}%</td></tr>`;});
   el.innerHTML=`<div class="d-card"><div class="d-card-title">Receta ajustada</div><div class="d-res-total"><div><div class="d-res-lbl">Total masa necesaria</div></div><div style="text-align:right"><div class="d-res-val">${tot.toLocaleString('es-CL')}</div><div class="d-res-unit">gramos</div></div></div><div style="margin-bottom:12px">${desg}</div><table class="d-ing-table"><thead><tr><th>Ingrediente</th><th class="r">Cantidad</th><th class="r pct">%</th></tr></thead><tbody>${rH}<tr class="d-tot"><td><strong>TOTAL</strong></td><td class="r d-gramos">${tot.toLocaleString('es-CL')} g</td><td class="pct">~100%</td></tr></tbody></table></div>`;
 }
-function getRecetaBase(){ return [{"n": "Harina Super Pan Verde", "g": 300, "sep": "Mise en place"}, {"n": "Harina Super Pan 2", "g": 300, "sep": "Mise en place"}, {"n": "Azúcar", "g": 72, "sep": "Mise en place"}, {"n": "Leche en polvo industrial", "g": 12, "sep": "Mise en place"}, {"n": "Huevo en polvo", "g": 11, "sep": "Mise en place"}, {"n": "Sal", "g": 9, "sep": "Mise en place"}, {"n": "Levadura instantánea", "g": 4, "sep": "Mise en place"}, {"n": "Mejorador Magimix", "g": 3, "sep": "Mise en place"}, {"n": "Agua", "g": 228, "sep": "Al amasar"}, {"n": "Manteca Gold", "g": 30, "sep": "Al amasar"}, {"n": "Margarina Cordobesa", "g": 30, "sep": "Al amasar"}, {"n": "Esencia mantequilla", "g": 2.96, "sep": "Al amasar"}]; }
+function getRecetaBase(){ return [{"n": "Harina Super Pan Verde", "g": 300, "sep": "Mise en place"}, {"n": "Harina Super Pan 2", "g": 300, "sep": "Mise en place"}, {"n": "Azúcar", "g": 72, "sep": "Mise en place"}, {"n": "Leche en polvo industrial", "g": 12, "sep": "Mise en place"}, {"n": "Huevo en polvo", "g": 11, "sep": "Mise en place"}, {"n": "Sal", "g": 9, "sep": "Mise en place"}, {"n": "Levadura instantánea", "g": 4, "sep": "Mise en place"}, {"n": "Mejorador Magimix", "g": 3, "sep": "Mise en place"}, {"n": "Agua", "g": 227, "sep": "Al amasar"}, {"n": "Manteca Gold", "g": 30, "sep": "Al amasar"}, {"n": "Margarina Cordobesa", "g": 30, "sep": "Al amasar"}, {"n": "Esencia mantequilla", "g": 2.96, "sep": "Al amasar"}]; }
 function calcInversa(){
   var kg=parseFloat(document.getElementById('ci-kg').value);
   var el=document.getElementById('ci-res');

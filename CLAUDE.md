@@ -22,6 +22,15 @@ submódulo `recetas`). Decidido por Eibar el 2026-10-27.
   pesando con una receta que nadie decidió (pasó con Galletas de Huevo y Pan Golden).
 - Se despublica Pages y el repo pasa a privado cuando Eibar lo decida.
 
+**Excepciones autorizadas** (la regla de arriba no cambia; cada excepción la autoriza
+Eibar y se anota acá con fecha y motivo):
+
+- **2026-11-14 — Base de Tetas con CMC.** Se agregó `ficha_base_tetas_cmc.html`
+  (sub-ingrediente, base 1.000,31 g, calculadora por kilos, CMC con 2 decimales) y su
+  entrada en `index.html`. Motivo: Eibar pidió cargar esta sub-receta nueva en las dos
+  páginas a la vez, esta y Cenzo, con los mismos gramos. Sin pasos todavía (anotado en
+  `PENDIENTES.md` de `dulcitos-sistema`).
+
 Antes de esta regla, las fichas se iban a migrar todas juntas y las recetas nuevas se
 seguían cargando acá; eso quedó superado. Lo que sigue de este archivo describe cómo
 quedó la página, para leerla, no para cambiarla.

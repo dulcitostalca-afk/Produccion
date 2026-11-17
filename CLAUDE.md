@@ -35,6 +35,7 @@ Eibar y se anota acá con fecha y motivo):
   base 999,8 g. Cambiado en las 3 partes de cada ficha; el Propianato se muestra siempre con
   1 decimal y la calculadora por kilos muestra el total con su decimal. Motivo: "Se agrega
   Propianato 0,8 g/kg para alargar la vida útil" (Eibar, mismo cambio que en Cenzo v5).
+  El mismo día se sumó **Pan Hot Dog Brioche** (Harina Verde 352 → 351; Cenzo v4).
 
 Antes de esta regla, las fichas se iban a migrar todas juntas y las recetas nuevas se
 seguían cargando acá; eso quedó superado. Lo que sigue de este archivo describe cómo

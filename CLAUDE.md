@@ -30,6 +30,11 @@ Eibar y se anota acá con fecha y motivo):
   entrada en `index.html`. Motivo: Eibar pidió cargar esta sub-receta nueva en las dos
   páginas a la vez, esta y Cenzo, con los mismos gramos. Sin pasos todavía (anotado en
   `PENDIENTES.md` de `dulcitos-sistema`).
+- **2026-11-17 — Propianato en Pan Golden y Pan de Papa.** Se agregó "Propianato" 0,8 g
+  (fijo, Tramo 1, justo después del Mejorador Magimix) y se restó 1 g a la Harina Verde:
+  base 999,8 g. Cambiado en las 3 partes de cada ficha; el Propianato se muestra siempre con
+  1 decimal y la calculadora por kilos muestra el total con su decimal. Motivo: "Se agrega
+  Propianato 0,8 g/kg para alargar la vida útil" (Eibar, mismo cambio que en Cenzo v5).
 
 Antes de esta regla, las fichas se iban a migrar todas juntas y las recetas nuevas se
 seguían cargando acá; eso quedó superado. Lo que sigue de este archivo describe cómo
